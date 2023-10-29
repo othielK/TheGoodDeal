@@ -1,9 +1,9 @@
-CREATE TABLE item (
-  id int(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  title varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- CREATE TABLE item (
+--   id int(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--   title varchar(255) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO item (title) VALUES ('Stuff'), ('Doodads');
+-- INSERT INTO item (title) VALUES ('Stuff'), ('Doodads');
 
 
   CREATE TABLE `goodeal`.`user` (
@@ -107,6 +107,15 @@ INSERT INTO `goodeal`.`announce` (`user_id`, `title`, `price`, `year`,
 VALUES ('1', 'A vendre magnifique 207.. super occasion', '20000.00', '2000', 'Peugeot', '207', 'Diesel', '50000', 
 'Manuelle', 'Citadine', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur',
 'https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=')
+
+INSERT INTO `goodeal`.`announce` (`user_id`, `title`, `price`, `year`,
+ `car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`,
+  `power`, `condition`, `license`, `description` , `image`) 
+  VALUES ('2', 'Dernier Mercedes amg', '35000', 2022, 'Mercedes', 'C_Klasse', 'Petrol', '50000', 
+  'Automatic', 'Berlines', '200', 'Non', 'Avec permis', 'Voiture en bon etat',
+  'https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=')
+
+
 
 
 INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('VOLKSWAGEN');
