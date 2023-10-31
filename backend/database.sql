@@ -10,8 +10,8 @@
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(80) NOT NULL,
   `lastname` VARCHAR(80) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) UNIQUE NOT NULL,
+  `hashedPassword` VARCHAR(100) NOT NULL,
   `contact` VARCHAR(50) NOT NULL,
   `city` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`user_id`));
@@ -94,10 +94,10 @@ CREATE TABLE `goodeal`.`newsletter` (
    PRIMARY KEY (`newsletter_id`)
      );
     
-INSERT INTO `goodeal`.`user` (`user_id`, `firstname`, `lastname`, `email`, `password`, `contact`, `city`) VALUES ('1', 'othiel', 'kanagaraj', 'othiel.leith@gmail.com', 'AZERTY', '121432434', 'PARIS');
-INSERT INTO `goodeal`.`user` (`user_id`, `firstname`, `lastname`, `email`, `password`, `contact`, `city`) VALUES ('2', 'fatma', 'itchir', 'fatmaitchir@gmail.com', 'AZERTY', '234234', 'PARIS');
-INSERT INTO `goodeal`.`user` (`user_id`, `firstname`, `lastname`, `email`, `password`, `contact`, `city`) VALUES ('3', 'SALA', 'SALA', 'salamata@gmail.com', 'AZERTY', '23434', 'PARIS');
-INSERT INTO `goodeal`.`user` (`user_id`, `firstname`, `lastname`, `email`, `password`, `contact`, `city`) VALUES ('4', 'SAIMA', 'NARAT', 'saimanarat@gmail.com', 'AZERTY', '45345', 'PARIS');
+INSERT INTO `goodeal`.`user` (`user_id`, `firstname`, `lastname`, `email`, `hashedPassword`, `contact`, `city`) VALUES ('1', 'othiel', 'kanagaraj', 'othiel.leith@gmail.com', 'AZERTY', '121432434', 'PARIS');
+INSERT INTO `goodeal`.`user` (`user_id`, `firstname`, `lastname`, `email`, `hashedPassword`, `contact`, `city`) VALUES ('2', 'fatma', 'itchir', 'fatmaitchir@gmail.com', 'AZERTY', '234234', 'PARIS');
+INSERT INTO `goodeal`.`user` (`user_id`, `firstname`, `lastname`, `email`, `hashedPassword`, `contact`, `city`) VALUES ('3', 'SALA', 'SALA', 'salamata@gmail.com', 'AZERTY', '23434', 'PARIS');
+INSERT INTO `goodeal`.`user` (`user_id`, `firstname`, `lastname`, `email`, `hashedPassword`, `contact`, `city`) VALUES ('4', 'SAIMA', 'NARAT', 'saimanarat@gmail.com', 'AZERTY', '45345', 'PARIS');
 
 
 
