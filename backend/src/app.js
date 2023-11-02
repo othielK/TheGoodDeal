@@ -10,9 +10,7 @@ const express = require("express");
 const app = express();
 
 // use some application-level middlewares
-
 app.use(express.json());
-
 const cors = require("cors");
 
 app.use(
