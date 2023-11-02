@@ -9,7 +9,7 @@ export default function Content() {
     <section className="content">
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/loginpage" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/signuppage" element={<SignUpPage />} />
       </Routes>
     </section>

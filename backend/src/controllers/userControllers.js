@@ -1,3 +1,5 @@
+const argon2 = require("argon2");
+const jwt = require("jsonwebtoken");
 const models = require("../models");
 
 const browse = (req, res) => {
@@ -87,10 +89,36 @@ const destroy = (req, res) => {
     });
 };
 
+const verifyPassword = (req, res) => {
+  argon2
+    .verify(req.user.hashedPassword, req.body.password)
+    .then((isVerified) => {
+      if (isVerified) {
+        const payload = {
+          sub: req.user.id,
+          email: req.user.email,
+        };
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+          expiresIn: "1h",
+        });
+
+        console.info("token:", token);
+
+        // res.cookie("authToken", token);
+
+        res.status(200).send("Connexion réussie");
+      } else {
+        res.sendStatus(401);
+      }
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  verifyPassword,
 };

@@ -13,5 +13,5 @@ router.put("/user/:id", auth.hashPassword, userControllers.edit);
 router.get("/user/:id", userControllers.read);
 
 router.post("/user", auth.validateUser, auth.hashPassword, userControllers.add);
-
+router.post("/login", auth.checkEmailIfExist, userControllers.verifyPassword);
 module.exports = router;
