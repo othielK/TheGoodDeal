@@ -53,23 +53,27 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const user = req.body;
-
+  console.info("user :: ", user);
   // TODO validations (length, format...)
 
   models.user
     .insert(user)
     .then(([result]) => {
-      res.location(`/user/${result.insertId}`).sendStatus(201);
+      console.info(result);
+      res.status(200).json({ message: "Utilisateur crée avec succès" });
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).json({
+        error: err.errno,
+      });
     });
 };
 
 const destroy = (req, res) => {
+  const { id } = req.params;
   models.user
-    .delete(req.params.id)
+    .delete(id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);

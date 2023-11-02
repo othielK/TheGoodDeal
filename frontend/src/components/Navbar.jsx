@@ -13,13 +13,13 @@ export default function Navbar() {
           </div>
           <ul className="nav-links">
             <li>
-              <Link to="/messagepage">Messages</Link>
+              <Link to="/message">Messages</Link>
             </li>
             <li>
-              <Link to="/loginpage">Se connecter</Link>
+              <Link to="/login">Se connecter</Link>
             </li>
             <li>
-              <Link to="/announcepage">Déposer une annonce</Link>
+              <Link to="/announce">Déposer une annonce</Link>
             </li>
           </ul>
         </nav>
@@ -38,28 +38,28 @@ export default function Navbar() {
             <Link to="/">Accueil</Link>
           </li>
           <li>
-            <Link to="/resultpage">Toutes les catégories</Link>
+            <Link to="/result">Toutes les catégories</Link>
           </li>
           <li>
-            <Link to="/resultpage">Citadine</Link>
+            <Link to="/result">Citadine</Link>
           </li>
           <li>
-            <Link to="/resultpage">Berlines</Link>
+            <Link to="/result">Berlines</Link>
           </li>
           <li>
-            <Link to="/resultpage">4x4 SUV Crossover</Link>
+            <Link to="/result">4x4 SUV Crossover</Link>
           </li>
           <li>
-            <Link to="/resultpage">Sans permis</Link>
+            <Link to="/result">Sans permis</Link>
           </li>
           <li>
-            <Link to="/resultpage">Breaks</Link>
+            <Link to="/result">Breaks</Link>
           </li>
           <li>
-            <Link to="/resultpage">Cabriolet</Link>
+            <Link to="/result">Cabriolet</Link>
           </li>
           <li>
-            <Link to="/resultpage">Coupés</Link>
+            <Link to="/result">Coupés</Link>
           </li>
         </ul>
       </div>
