@@ -10,4 +10,9 @@ router.put("/items/:id", itemControllers.edit);
 router.post("/items", itemControllers.add);
 router.delete("/items/:id", itemControllers.destroy);
 
+const newsletterControllers = require("./controllers/newsletterControllers");
+
+router.post("/newsletter", newsletterControllers.add);
+router.get("/newsletter/:id", newsletterControllers.read);
+
 module.exports = router;
