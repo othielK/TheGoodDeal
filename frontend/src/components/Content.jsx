@@ -4,7 +4,6 @@ import Homepage from "../pages/Homepage";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import MessagePage from "../pages/MessagePage";
-import LoginPage from "../pages/LoginPage";
 import AnnouncePage from "../pages/AnnouncePage";
 import ResultPage from "../pages/ResultPage";
 
