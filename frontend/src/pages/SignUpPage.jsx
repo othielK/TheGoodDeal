@@ -36,7 +36,7 @@ export default function SignUpPage() {
       console.info("email", email);
       console.info("password", password);
       axios
-        .post("http://localhost:6003/user", {
+        .post("http://localhost:5000/user", {
           firstname,
           lastname,
           email,
@@ -174,18 +174,18 @@ export default function SignUpPage() {
                 />
                 <br />
                 <br />
-                <button className="btn-create" type="submit">
+                {/* <button className="btn-create" type="submit">
                   Créer un compte
-                </button>
-                {/* <input
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-                  padding: "1rem 0",
-                }}
-                type="submit"
-                value="S'enregistrer"
-              /> */}
+                </button> */}
+                <input
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    padding: "1rem 0",
+                  }}
+                  type="submit"
+                  value="S'enregistrer"
+                />
                 <br />
                 <button className="btn-deja" type="submit">
                   Déjà membre
