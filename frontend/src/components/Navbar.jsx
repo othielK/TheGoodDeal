@@ -7,7 +7,7 @@ export default function Navbar() {
     <div className="navbar">
       {/* Partie 1 : Barre de Navigation */}
       <div className="first-section">
-        <nav>
+        <nav className="nav">
           <div className="logo">
             <img src="" alt="TheGoodDeal" />
           </div>
