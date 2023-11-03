@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import "../styles/signuppage.css";
+import { AiOutlineCheckCircle, AiOutlineArrowRight } from "react-icons/ai";
 
 export default function SignUpPage() {
   const [firstname, setFirstname] = useState("");
@@ -93,70 +94,90 @@ export default function SignUpPage() {
       console.error("Les mots de passe ne correspondent pas");
     }
   };
-
+  const iconStyles = { color: "#EBAF00", fontSize: "1.5em" };
   return (
     <>
       <div className="signup_background">
-        <div className="signup_title">
-          <h1>Ne ratez aucun deal !</h1>
-          <p>
-            Accédez à catalogue complet de véhicules de qualité et prenez la
-            route en sécurité.
-          </p>
-          <button type="button">Je suis déjà membre</button>
-        </div>
-        <div className="signup_header">
-          <div className="signup_header_title">
-            <h1>Créer un compte</h1>
+        <div className="sign_up">
+          <div className="signup_title">
+            <h1>Ne ratez aucun deal!</h1>
             <p>
-              Crée un compte gratuitement et rejoins notre communauté de membres
-              pour accéder à de nombreux avantages :
+              Accédez à catalogue complet de véhicules de qualité et prenez la
+              route en sécurité.
             </p>
-            {/* <p>Prise de contact simplifiée</p>
+            <button className="btn_membre" type="button">
+              Je suis déjà membre
+              <AiOutlineArrowRight style={iconStyles} />
+            </button>
+          </div>
+          <div className="signup_header">
+            <div className="signup_header_title">
+              <h1>Créer un compte</h1>
+              <p>
+                Crée un compte gratuitement et rejoins notre communauté de
+                membres pour accéder à de nombreux avantages :
+              </p>
+              {/* <p>Prise de contact simplifiée</p>
             <p>Achetez sereinement</p>
             <p>Déposer des annonces</p> */}
-            <ul>
-              <li>Prise de contact simplifiée</li>
-              <li>Achetez sereinement</li>
-              <li>Déposer des annonces</li>
-            </ul>
-          </div>
-          <div className="register_formulaire">
-            <form onSubmit={sendRegisterData}>
-              <input
-                type="text"
-                placeholder="Prenom"
-                onChange={handleChangePrenom}
-              />
-              <br />
-              <br />
-              <input type="text" placeholder="Nom" onChange={handleChangeNom} />
+              <ul>
+                <li>
+                  <AiOutlineCheckCircle style={iconStyles} /> Prise de contact
+                  simplifiée
+                </li>
 
-              <br />
-              <br />
-              <input
-                type="email"
-                placeholder="Adresse email"
-                onChange={handleChangeEmail}
-              />
-              <br />
-              <br />
-              <input
-                type="password"
-                placeholder="Mot de passe"
-                onChange={handleChangePassword}
-              />
-              <br />
-              <br />
-              <input
-                type="password"
-                placeholder="confirmation du mot de password"
-                onChange={handleChangeCheckedPassword}
-              />
-              <br />
-              <br />
-              <button type="submit">Créer un compte</button>
-              {/* <input
+                <li>
+                  <AiOutlineCheckCircle style={iconStyles} />
+                  Achetez sereinement
+                </li>
+
+                <li>
+                  <AiOutlineCheckCircle style={iconStyles} /> Déposer des
+                  annonces
+                </li>
+              </ul>
+            </div>
+            <div className="register_formulaire">
+              <form onSubmit={sendRegisterData}>
+                <input
+                  type="text"
+                  placeholder="Prenom"
+                  onChange={handleChangePrenom}
+                />
+                <br />
+                <br />
+                <input
+                  type="text"
+                  placeholder="Nom"
+                  onChange={handleChangeNom}
+                />
+                <br />
+                <br />
+                <input
+                  type="email"
+                  placeholder="Adresse email"
+                  onChange={handleChangeEmail}
+                />
+                <br />
+                <br />
+                <input
+                  type="password"
+                  placeholder="Mot de passe"
+                  onChange={handleChangePassword}
+                />
+                <br />
+                <br />
+                <input
+                  type="password"
+                  placeholder="confirmation du mot de password"
+                  onChange={handleChangeCheckedPassword}
+                />
+                <br />
+                <br />
+                <button className="btn-create" type="submit">
+                  Créer un compte
+                </button>
+                {/* <input
                 style={{
                   backgroundColor: "black",
                   color: "white",
@@ -165,9 +186,12 @@ export default function SignUpPage() {
                 type="submit"
                 value="S'enregistrer"
               /> */}
-              <br />
-              <button type="submit">Déjà membre</button>
-            </form>
+                <br />
+                <button className="btn-deja" type="submit">
+                  Déjà membre
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
