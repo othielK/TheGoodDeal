@@ -1,4 +1,6 @@
 const models = require("../models");
+const jwt = require("jsonwebtoken");
+const argon2 = require("argon2");
 
 const browse = (req, res) => {
   models.user
@@ -86,6 +88,28 @@ const destroy = (req, res) => {
       res.sendStatus(500);
     });
 };
+const verifyPassword = (req, res) => {
+  argon2
+    .verify(req.user.hashedPassword, req.body.password)
+    .then((isVerified) => {
+      if (isVerified) {
+        const payload = {
+          sub: req.user.id,
+          email: req.user.email,
+        };
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+          expiresIn: "1h",
+        });
+
+        res.cookie("authToken", token);
+
+        res.status(200).send("Connexion réussie");
+      } else {
+        res.sendStatus(401);
+      }
+    });
+};
 
 module.exports = {
   browse,
@@ -93,4 +117,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  verifyPassword,
 };

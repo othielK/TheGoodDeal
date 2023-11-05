@@ -10,6 +10,11 @@ const express = require("express");
 const app = express();
 
 // use some application-level middlewares
+
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
+
 app.use(express.json());
 const cors = require("cors");
 

@@ -174,18 +174,10 @@ export default function SignUpPage() {
                 />
                 <br />
                 <br />
-                {/* <button className="btn-create" type="submit">
+                <button className="btn-create" type="submit">
                   Créer un compte
-                </button> */}
-                <input
-                  style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    padding: "1rem 0",
-                  }}
-                  type="submit"
-                  value="S'enregistrer"
-                />
+                </button>
+
                 <br />
                 <button className="btn-deja" type="submit">
                   Déjà membre
