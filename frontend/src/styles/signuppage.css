@@ -1,8 +1,20 @@
 .signup_background {
+  background-image: url("/src/assets/images/signup.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 20px;
+  line-height: 2 rem;
 }
 .signup_title {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
 }
 
 .signup_header {
@@ -10,6 +22,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  padding-left: 20px;
+  background-color: rgba(0, 0, 0, 0.72);
+  margin: 100px;
+}
+
+@media (max-width: 700px) {
+  .signup_background {
+    color: black;
+    background-image: none;
+
+    flex-direction: column;
+    margin: auto;
 
   background-color: rgba(0, 0, 0, 0.72);
   border-radius: 16px;
@@ -63,6 +87,7 @@
   padding: 8px 8px;
   width: 50%;
   height: 40px;
+}
 }
 @media (min-width: 700px) {
   .signup_background {
