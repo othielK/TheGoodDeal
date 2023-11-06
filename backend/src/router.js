@@ -14,4 +14,9 @@ router.get("/user/:id", userControllers.read);
 
 router.post("/user", auth.validateUser, auth.hashPassword, userControllers.add);
 
+const newsletterControllers = require("./controllers/newsletterControllers");
+
+router.post("/newsletter", newsletterControllers.add);
+router.get("/newsletter/:id", newsletterControllers.read);
+
 module.exports = router;

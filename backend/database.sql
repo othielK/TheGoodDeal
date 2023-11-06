@@ -89,7 +89,7 @@ CREATE TABLE car_type (
 
 CREATE TABLE newsletter (
   `newsletter_id` INT NOT NULL AUTO_INCREMENT,
-   `email` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(50) UNIQUE NOT NULL,
    PRIMARY KEY (`newsletter_id`)
      )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
     
@@ -163,3 +163,4 @@ INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('f
 
 -- INSERT INTO `goodeal`.`message` (`announce_id`, `sender_user_id`, `receiver_user_id`, `message`) VALUES ('1', '1', '2', 'DJFKSDLLFSLDKMFJKSLDUILEZFLKHZDFHLNSDF');
 -- INSERT INTO `goodeal`.`message` (`announce_id`, `sender_user_id`, `receiver_user_id`, `message`) VALUES ('1', '3', '4', 'IUITRITERIOVLKXNVNKFD');
+
