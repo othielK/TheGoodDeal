@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../styles/navbar.css";
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
@@ -66,6 +67,7 @@ export default function Navbar() {
           </ul>
         </nav>
       </div>
+      <SearchBar />
 
       <div className="category-section">
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
