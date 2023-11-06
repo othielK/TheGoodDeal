@@ -1,9 +1,7 @@
-const jwt = require("jsonwebtoken");
-const argon2 = require("argon2");
 const models = require("../models");
 
 const browse = (req, res) => {
-  models.user
+  models.announce
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -15,7 +13,7 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.user
+  models.announce
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -32,14 +30,14 @@ const read = (req, res) => {
 
 const edit = (req, res) => {
   // const id = req.params;
-  const user = req.body;
+  const announce = req.body;
 
   // TODO validations (length, format...)
 
-  user.id = parseInt(req.params.id, 10);
+  announce.id = parseInt(req.params.id, 10);
 
-  models.user
-    .update(user)
+  models.announce
+    .update(announce)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -54,15 +52,15 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
-  const user = req.body;
-  console.info("user :: ", user);
+  const announce = req.body;
+  console.info("announce :: ", announce);
   // TODO validations (length, format...)
 
-  models.user
-    .insert(user)
+  models.announce
+    .insert(announce)
     .then(([result]) => {
       console.info(result);
-      res.status(200).json({ message: "Utilisateur crée avec succès" });
+      res.status(200).json({ message: "Announce crée avec succès" });
     })
     .catch((err) => {
       console.error(err);
@@ -74,7 +72,7 @@ const add = (req, res) => {
 
 const destroy = (req, res) => {
   const { id } = req.params;
-  models.user
+  models.announce
     .delete(id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -88,28 +86,6 @@ const destroy = (req, res) => {
       res.sendStatus(500);
     });
 };
-const verifyPassword = (req, res) => {
-  argon2
-    .verify(req.user.hashedPassword, req.body.password)
-    .then((isVerified) => {
-      if (isVerified) {
-        const payload = {
-          sub: req.user.id,
-          email: req.user.email,
-        };
-
-        const token = jwt.sign(payload, process.env.JWT_SECRET, {
-          expiresIn: "1h",
-        });
-
-        res.cookie("authToken", token);
-
-        res.status(200).send("Connexion réussie");
-      } else {
-        res.sendStatus(401);
-      }
-    });
-};
 
 module.exports = {
   browse,
@@ -117,5 +93,4 @@ module.exports = {
   edit,
   add,
   destroy,
-  verifyPassword,
 };

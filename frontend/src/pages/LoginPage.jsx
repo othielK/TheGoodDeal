@@ -33,10 +33,10 @@ export default function LoginPage() {
         {
           email,
           password,
+        },
+        {
+          withCredentials: true,
         }
-        // {
-        //   withCredentials: true,
-        // }
       )
       .then((response) => {
         console.info(response);
