@@ -1,0 +1,41 @@
+.car-carousel-container > .test > h2 {
+  background-color: #d73239;
+  padding: 15px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.details > img {
+  max-width: auto;
+  max-height: 150px;
+  object-fit: cover;
+}
+
+.header_nouveautés {
+  margin: 0 30px 50px;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  color: grey;
+}
+
+.details > h3 {
+  padding: 10px;
+  text-align: center;
+}
+
+@media (min-width: 620px) {
+  /* .car-carousel-container {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .header_nouveautés {
+    display: flex;
+  } */
+}

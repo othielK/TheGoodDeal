@@ -1,24 +1,7 @@
 .navbar {
   background-color: bisque;
   padding: 2rem 4rem;
-}
-
-.navbar > li {
-  display: flex; /* Aligner horizontalement */
-  align-items: center; /* Aligner verticalement au centre */
-}
-
-/* Partie 1 : Barre de Navigation */
-.first-section {
-  background-color: lightcoral;
-}
-
-/* Partie 2 : Barre de recherche */
-.search-section {
-  background-color: lightgreen;
-}
-
-/* Partie 3 : Liste des catégories */
-.category-section {
-  background-color: lightskyblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
