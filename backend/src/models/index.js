@@ -29,6 +29,11 @@ pool.getConnection().catch(() => {
 
 const models = {};
 
+const NewsletterManager = require("./NewsletterManager");
+
+models.newsletter = new NewsletterManager();
+models.newsletter.setDatabase(pool);
+
 const UserManager = require("./UserManager");
 
 models.user = new UserManager();
