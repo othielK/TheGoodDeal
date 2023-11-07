@@ -88,6 +88,7 @@ const destroy = (req, res) => {
       res.sendStatus(500);
     });
 };
+
 const verifyPassword = (req, res) => {
   argon2
     .verify(req.user.hashedPassword, req.body.password)

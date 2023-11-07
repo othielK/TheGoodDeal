@@ -2,12 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* border: 1px solid red;  */
+  list-style-type: none;
 }
+
 section {
   margin: 0 auto;
   min-height: 60vh;
   max-width: 1400px;
+  list-style-type: none;
 }
 
 body {

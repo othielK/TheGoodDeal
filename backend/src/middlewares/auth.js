@@ -58,6 +58,7 @@ const validateUser = (req, res, next) => {
     next();
   }
 };
+
 const checkEmailIfExist = (req, res, next) => {
   const { email } = req.body;
 
