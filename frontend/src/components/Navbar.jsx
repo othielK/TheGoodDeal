@@ -1,65 +1,122 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import "../styles/navbar.css";
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleActiveClass = () => {
+    setIsActive(!isActive);
+  };
+
+  const removeActive = () => {
+    setIsActive(false);
+  };
+
   return (
     <div className="navbar">
-      {/* Partie 1 : Barre de Navigation */}
       <div className="first-section">
         <nav className="nav">
-          <div className="logo">
-            <img src="" alt="TheGoodDeal" />
-          </div>
-          <ul className="nav-links">
+          <button
+            type="button"
+            className={`hamburger ${isActive ? "active" : ""}`}
+            onClick={toggleActiveClass}
+          >
+            <span className="bar" />
+            <span className="bar" />
+            <span className="bar" />
+          </button>
+          <Link to="/" className="logo">
+            <img
+              src="src/assets/images/logo_the_good_deal.png"
+              alt="TheGoodDeal"
+            />
+          </Link>
+          <ul className={`navMenu ${isActive ? "active" : ""}`}>
             <li>
-              <Link to="/message">Messages</Link>
+              <NavLink to="/loginpage" className="login-icon">
+                <div className="icon-text">
+                  <img src="src/assets/images/message.png" alt="Messages" />
+                  <span>Messages</span>
+                </div>
+              </NavLink>
             </li>
             <li>
-              <Link to="/login">Se connecter</Link>
+              <NavLink to="/loginpage" className="login-icon">
+                <div className="icon-text">
+                  <img
+                    src="src/assets/images/connecter.png"
+                    alt="Se connecter"
+                  />
+                  <span>Se connecter</span>
+                </div>
+              </NavLink>
             </li>
             <li>
-              <Link to="/announce">Déposer une annonce</Link>
+              <NavLink to="/loginpage" className="login-icon">
+                <div className="icon-text">
+                  <img
+                    src="src/assets/images/annonce.png"
+                    alt="Déposer une annonce"
+                  />
+                  <span> Déposer une annonce </span>
+                </div>
+              </NavLink>
             </li>
           </ul>
         </nav>
       </div>
+      <SearchBar />
 
-      {/* Partie 2 : Barre de recherche */}
-      <div className="search-section">
-        <input type="text" placeholder="Trouvez votre good deal..." />
-        <button type="button">Rechercher</button>
-      </div>
-
-      {/* Partie 3 : Liste des catégories */}
       <div className="category-section">
-        <ul>
+        <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li>
-            <Link to="/">Accueil</Link>
+            <NavLink to="/">Accueil</NavLink>
           </li>
           <li>
-            <Link to="/result">Toutes les catégories</Link>
+            <NavLink to="/resultpage">Toutes les catégories</NavLink>
           </li>
           <li>
-            <Link to="/result">Citadine</Link>
+            <NavLink to="/resultpage">Citadine</NavLink>
           </li>
           <li>
-            <Link to="/result">Berlines</Link>
+            <NavLink to="/resultpage">Berlines</NavLink>
           </li>
           <li>
-            <Link to="/result">4x4 SUV Crossover</Link>
+            <NavLink to="/resultpage">4x4 SUV Crossover</NavLink>
           </li>
           <li>
-            <Link to="/result">Sans permis</Link>
+            <NavLink to="/resultpage">Sans permis</NavLink>
           </li>
           <li>
-            <Link to="/result">Breaks</Link>
+            <NavLink to="/resultpage">Breaks</NavLink>
           </li>
           <li>
-            <Link to="/result">Cabriolet</Link>
+            <NavLink to="/resultpage">Cabriolet</NavLink>
           </li>
           <li>
-            <Link to="/result">Coupés</Link>
+            <NavLink to="/resultpage">Coupés</NavLink>
+          </li>
+          <li className="hide-on-desktop">
+            <NavLink
+              to="/messagepage"
+              className="navLink"
+              activeClassName="active"
+              onClick={removeActive}
+            >
+              Messages
+            </NavLink>
+          </li>
+          <li className="hide-on-desktop">
+            <NavLink
+              to="/announcepage"
+              className="navLink"
+              activeClassName="active"
+              onClick={removeActive}
+            >
+              Déposer une annonce
+            </NavLink>
           </li>
         </ul>
       </div>
