@@ -1,20 +1,9 @@
 .signup_background {
-  background-image: url("/src/assets/images/signup.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
   color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  padding-left: 20px;
-  line-height: 2 rem;
+  padding: 10px;
 }
 .signup_title {
-  display: flex;
-  flex-direction: column;
-  margin-top: 100px;
+  display: none;
 }
 
 .signup_header {
@@ -22,23 +11,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding-left: 20px;
-  background-color: rgba(0, 0, 0, 0.72);
-  margin: 100px;
-}
-
-@media (max-width: 700px) {
-  .signup_background {
-    color: black;
-    background-image: none;
-
-    flex-direction: column;
-    margin: auto;
 
   background-color: rgba(0, 0, 0, 0.72);
   border-radius: 16px;
-  margin: 10px;
   gap: 10px;
+  padding: 10px;
 }
 
 .signup_header > .signup_header_title > h1 {
@@ -49,6 +26,7 @@
 
 .signup_header > .signup_header_title > ul {
   padding: 10px;
+  list-style: none;
 }
 
 .register_formulaire {
@@ -80,33 +58,28 @@
   width: 90%;
   padding: 8px 0;
 }
-.btn_membre {
-  background-color: transparent;
-  color: white;
-  border-color: #ebaf00;
-  padding: 8px 8px;
-  width: 50%;
-  height: 40px;
-}
-}
+
 @media (min-width: 700px) {
   .signup_background {
     background-image: url("/src/assets/images/signup.png");
-    background-size: 200%;
+    background-size: 180%;
     background-repeat: no-repeat;
     background-position: center;
+    height: 55vh;
+    margin-top: 35px;
   }
 
   .sign_up {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: flex-start;
     align-items: center;
     padding-left: 20px;
     line-height: 2 rem;
   }
   .signup_header {
     color: white;
+    max-width: 500px;
   }
 
   .signup_title {
@@ -118,5 +91,14 @@
   .signup_title > h1 {
     font-size: 4rem;
     font-weight: 100;
+  }
+  .btn_membre {
+    background-color: transparent;
+    color: white;
+    border-color: #ebaf00;
+    padding: 8px 8px;
+    width: 180px;
+    height: 40px;
+    margin-top: 20px;
   }
 }

@@ -5,6 +5,10 @@
   /* border: 1px solid red; */
 }
 
+section {
+  margin: 20px;
+}
+
 body {
   font-family: DM sans; /* Main font */
   /* list-style-type: none; */
@@ -13,4 +17,12 @@ body {
 
 :root {
   --color-yellow: #ebaf00;
+}
+
+@media (min-width: 700px) {
+  section {
+    margin: 0 auto;
+    min-height: 60vh;
+    max-width: 1200px;
+  }
 }
