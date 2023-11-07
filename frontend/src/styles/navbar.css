@@ -3,10 +3,12 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 10px;
 }
 .logo{
   color: #D73239;
 }
+
 .nav>ul {
   display: flex;
   padding: 1rem 0;
@@ -14,35 +16,22 @@
 
  nav>.logo>img {
   height: 2rem;
-  width: auto; 
+  width: 80px; 
   margin-left: 2rem;
 }
-.search-section {
-  display: flex;
-  justify-content: center; /* Centrer horizontalement */
-  align-items: center; /* Centrer verticalement */
-  width: 100%; /* 100% de la largeur disponible */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-  padding: 15px;
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
 }
 
-input[type="text"] {
-  width: 50%; /* Ajustez la largeur comme vous le souhaitez */
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 15px;
-  background-color: #3460D2; /* Couleur de fond du bouton */
-  color: #fff; /* Couleur du texte du bouton */
-  border: none;
-  border-radius: 5px;
-  margin-left: 10px; /* Espacement entre le champ de texte et le bouton */
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
+
 /* Pour aligner les éléments de la liste horizontalement */
 .category-section ul {
   display: flex;
@@ -51,7 +40,6 @@ button {
   margin: 0;
   justify-content: center;
   padding-top: 10px;
-
 }
 
 /* Pour espacer les éléments de la liste */
@@ -90,9 +78,6 @@ nav>ul>li {
 :link{
   text-decoration: none;
 }
-.navLink Se conncter {
-  color: aqua;
-}
 .login-icon {
   display: flex;
   align-items: center;
@@ -101,6 +86,15 @@ nav>ul>li {
 .icon-text {
   display: flex;
   align-items: center;
+}
+.login-icon img {
+  margin-right: 8px; /* Espacement entre l'icône et le texte */
+}
+.navMenu .login-icon {
+  margin: 8px; /* Ajustez la valeur selon vos préférences */
+}
+.navLink .login-icon img {
+  margin: 8px;
 }
 
 
@@ -114,22 +108,21 @@ nav>ul>li {
     display: flex;
     justify-content: space-between;
   }
-   
+  
 
   .navMenu {
     position: absolute;
     flex-direction: column;
     gap: 0;
     top: 50px;
-    left: auto;
     right: -100%;
     justify-content: flex-start;
     align-items: center;
     width: 100vw;
     height: 100vh;
     transition: 0.7s ease-in-out;
-    background-color:  #D73239;
-    padding: 100px;
+    background-color:  white;
+    transition: 0.7s ease-in-out;
   }
   .navMenu.active {
     right: auto;
@@ -142,10 +135,6 @@ nav>ul>li {
     flex-direction: column;
     gap: 10px;
   }
-  .navMenu li {
-    margin: 16px 0;
-   
-  }
   
   .search-section, .category-section {
     width: 100%; /* 100% de la largeur disponible */
@@ -154,6 +143,7 @@ nav>ul>li {
   .navMenu li {
     margin: 0;
     font-size: 15px;
+    padding-left: 15px;
   } 
   
    .category-section ul {
@@ -161,19 +151,17 @@ nav>ul>li {
      gap: 15px; 
      justify-content: flex-start;
      align-items: flex-start;
-     margin-left: px;
-   
   }
   input[type="text"]{
     font-size: 10px;
-  
+
   }
-  
   
 }
 @media screen and (min-width: 781px) {
   .hide-on-desktop {
     display: none;
+    border-top: sold;
   }
 
 }

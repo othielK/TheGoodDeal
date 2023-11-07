@@ -15,60 +15,82 @@ export default function Navbar() {
 
   return (
     <div className="navbar">
-      <div className="first-section">
-        <nav className="nav">
-          <button
-            type="button"
-            className={`hamburger ${isActive ? "active" : ""}`}
-            onClick={toggleActiveClass}
-          >
-            <span className="bar" />
-            <span className="bar" />
-            <span className="bar" />
-          </button>
-          <Link to="/" className="logo">
-            <img
-              src="src/assets/images/logo_the_good_deal.png"
-              alt="TheGoodDeal"
-            />
+      <nav className="nav">
+        <button
+          type="button"
+          className={`hamburger ${isActive ? "active" : ""}`}
+          onClick={toggleActiveClass}
+        >
+          <span className="bar" />
+          <span className="bar" />
+          <span className="bar" />
+        </button>
+        <Link to="/" className="logo">
+          <img
+            src="src/assets/images/logo_the_good_deal.png"
+            alt="TheGoodDeal"
+          />
+        </Link>
+        <div className="hide-on-desktop">
+          <Link to="/loginpage" className="login-icon">
+            <span>Se connecter</span>
+            <div className="icon-text">
+              <img src="src/assets/images/connecter.png" alt="Se connecter" />
+            </div>
           </Link>
-          <ul className={`navMenu ${isActive ? "active" : ""}`}>
-            <li>
-              <NavLink to="/loginpage" className="login-icon">
-                <div className="icon-text">
-                  <img src="src/assets/images/message.png" alt="Messages" />
-                  <span>Messages</span>
-                </div>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/loginpage" className="login-icon">
-                <div className="icon-text">
-                  <img
-                    src="src/assets/images/connecter.png"
-                    alt="Se connecter"
-                  />
-                  <span>Se connecter</span>
-                </div>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/loginpage" className="login-icon">
-                <div className="icon-text">
-                  <img
-                    src="src/assets/images/annonce.png"
-                    alt="Déposer une annonce"
-                  />
-                  <span> Déposer une annonce </span>
-                </div>
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
+        </div>
+        <ul className={`navMenu ${isActive ? "active" : ""}`}>
+          <li>
+            <NavLink to="/loginpage" className="login-icon">
+              <div className="icon-text">
+                <img src="src/assets/images/message.png" alt="Messages" />
+                <span>Messages</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/loginpage" className="login-icon">
+              <div className="icon-text">
+                <img src="src/assets/images/connecter.png" alt="Se connecter" />
+                <span>Se connecter</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/loginpage" className="login-icon">
+              <div className="icon-text">
+                <img
+                  src="src/assets/images/annonce.png"
+                  alt="Déposer une annonce"
+                />
+                <span> Déposer une annonce </span>
+              </div>
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
 
       <div className="category-section">
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
+          <li className="hide-on-desktop">
+            <NavLink to="/loginpage" className="login-icon">
+              <div className="icon-text">
+                <img
+                  src="src/assets/images/annonce.png"
+                  alt="Déposer une annonce"
+                />
+                <span> Déposer une annonce </span>
+              </div>
+            </NavLink>
+          </li>
+          <li className="hide-on-desktop">
+            <NavLink to="/loginpage" className="login-icon">
+              <div className="icon-text">
+                <img src="src/assets/images/message.png" alt="Messages" />
+                <span>Messages</span>
+              </div>
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/">Accueil</NavLink>
           </li>
@@ -98,22 +120,22 @@ export default function Navbar() {
           </li>
           <li className="hide-on-desktop">
             <NavLink
-              to="/messagepage"
+              to="/page404"
               className="navLink"
               activeClassName="active"
               onClick={removeActive}
             >
-              Messages
+              A PROPOS DE THEGOODDEAL
             </NavLink>
           </li>
           <li className="hide-on-desktop">
             <NavLink
-              to="/announcepage"
+              to="/page404"
               className="navLink"
               activeClassName="active"
               onClick={removeActive}
             >
-              Déposer une annonce
+              INFORMATIONS LEGALES
             </NavLink>
           </li>
         </ul>
