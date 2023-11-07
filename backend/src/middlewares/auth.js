@@ -1,6 +1,7 @@
 const argon2 = require("argon2");
 const Joi = require("joi");
-// const models = require("../models");
+const jwt = require("jsonwebtoken");
+const models = require("../models");
 
 const checkIfGoodUser = (req, res, next) => {
   const { email, password } = req.query;
@@ -57,8 +58,46 @@ const validateUser = (req, res, next) => {
     next();
   }
 };
+
+const checkEmailIfExist = (req, res, next) => {
+  const { email } = req.body;
+
+  models.user.searchByEmail(email).then(([user]) => {
+    if (user.length !== 0) {
+      // eslint-disable-next-line prefer-destructuring
+      req.user = user[0];
+      console.info("req.user : ", req.user);
+      next();
+    } else {
+      res.sendStatus(401);
+    }
+  });
+};
+
+const checkIfIsAllowed = (req, res, next) => {
+  try {
+    const { authToken } = req.cookies;
+    console.info("token de checkIfIsAllowed: ", authToken);
+
+    if (!authToken) {
+      return res.status(401).send("Désolé, mais c'est ciao !");
+    }
+
+    const payload = jwt.verify(authToken, process.env.JWT_SECRET);
+
+    req.user = payload;
+    console.info(payload);
+
+    return next();
+  } catch {
+    return res.sendStatus(401);
+  }
+};
+
 module.exports = {
   checkIfGoodUser,
   validateUser,
   hashPassword,
+  checkEmailIfExist,
+  checkIfIsAllowed,
 };

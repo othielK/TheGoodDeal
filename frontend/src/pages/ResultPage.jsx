@@ -1,8 +1,26 @@
+import React, { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
+import axios from "axios";
+import CarList from "../components/CarList";
+
 export default function ResultPage() {
+  const [cars, setCars] = useState([]);
+
+  const getCars = () => {
+    axios.get("http://localhost:5000/announce").then((response) => {
+      setCars(response.data);
+      console.info(response.data);
+    });
+  };
+
+  useEffect(() => {
+    getCars();
+  }, []);
   return (
-    <h1>
-      Bienvenue sur la page resultat , il y aura toute les catégories de
-      véhicules ainsi que les differents filtres
-    </h1>
+    <div className="cards">
+      {cars.map((car) => (
+        <CarList key={car.id} car={car} />
+      ))}
+    </div>
   );
 }
