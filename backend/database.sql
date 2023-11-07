@@ -113,34 +113,34 @@ INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('f
 
 
 
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('VOLKSWAGEN');
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('MERCEDES-BENZ');
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('BMW');
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('PEUGEOT');
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('AUDI');
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('RENAULT');
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('OPEL');
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('DACIA');
--- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('FORD');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('VOLKSWAGEN');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('MERCEDES-BENZ');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('BMW');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('PEUGEOT');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('AUDI');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('RENAULT');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('OPEL');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('DACIA');
+INSERT INTO car_brand (`car_brand_name`) VALUES ('FORD');
 
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('1', 'Golf');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('1', 'Polo');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('1', 'Up!');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('1', 'Tiguan');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('1', 'Passat');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('1', 'T-Roc');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('2', 'C-Klasse');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('2', 'A-Klasse');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('2', 'E-Klasse');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('2', 'CLA');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('2', 'B-Klasse');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('2', 'S-Klasse');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('3', '3-serie');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('3', '5-serie');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('3', '1-serie');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('3', 'X5');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('3', 'X1');
--- INSERT INTO `goodeal`.`car_model` (`car_brand_id`, `car_model`) VALUES ('3', 'X3');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('1', 'Golf');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('1', 'Polo');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('1', 'Up!');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('1', 'Tiguan');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('1', 'Passat');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('1', 'T-Roc');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('2', 'C-Klasse');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('2', 'A-Klasse');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('2', 'E-Klasse');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('2', 'CLA');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('2', 'B-Klasse');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('2', 'S-Klasse');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('3', '3-serie');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('3', '5-serie');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('3', '1-serie');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('3', 'X5');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('3', 'X1');
+INSERT INTO car_model (`car_brand_id`, `car_model`) VALUES ('3', 'X3');
 
 
 -- INSERT INTO `goodeal`.`car_type` (`car_type`) VALUES ('Citadines');

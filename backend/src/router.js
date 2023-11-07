@@ -5,8 +5,11 @@ const router = express.Router();
 const userControllers = require("./controllers/userControllers");
 const announceControllers = require("./controllers/announceControllers");
 const newsletterControllers = require("./controllers/newsletterControllers");
+const carbrandControllers = require("./controllers/carbrandControllers");
 
 const auth = require("./middlewares/auth");
+
+router.get("/carbrand", carbrandControllers.browse);
 
 router.get("/user", userControllers.browse);
 router.delete("/user/:id", userControllers.destroy);

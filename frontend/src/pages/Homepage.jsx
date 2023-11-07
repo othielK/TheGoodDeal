@@ -3,6 +3,7 @@ import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import CarCarousel from "../components/CarCarrousel";
 import "../styles/homepage.css";
+import CarBrandMenu from "../components/CarBrandMenu";
 
 export default function Homepage() {
   return (
@@ -30,6 +31,7 @@ export default function Homepage() {
 
       <div>
         <CarCarousel />
+        <CarBrandMenu />
       </div>
     </>
   );
