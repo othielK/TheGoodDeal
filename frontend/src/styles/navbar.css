@@ -98,6 +98,7 @@ nav>ul>li {
 }
 
 
+
 @media screen and (max-width: 780px) {
   .hamburger {
     display: block;
@@ -163,5 +164,4 @@ nav>ul>li {
     display: none;
     border-top: sold;
   }
-
 }
