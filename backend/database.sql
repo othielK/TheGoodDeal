@@ -5,7 +5,6 @@
 
 -- INSERT INTO item (title) VALUES ('Stuff'), ('Doodads');
 
-
   CREATE TABLE user (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(80) NOT NULL,
@@ -33,6 +32,7 @@ CREATE TABLE announce (
   `image` TEXT NOT NULL,
   `contact` VARCHAR(50) NOT NULL,
   `city` VARCHAR(50)  NOT NULL,
+  `postalcode` INT  NOT NULL,
   PRIMARY KEY (`announce_id`),
 
   CONSTRAINT `fk_user_announce`
@@ -95,22 +95,13 @@ CREATE TABLE newsletter (
     
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('SALA', 'sala', 'sala@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('fatma', 'itchir', 'fatmaitchir@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('saima', 'NORAT', 'sAIMA@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('OTHIEL', 'KANAGARAJ', 'OTHIEL@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
 
--- INSERT INTO `goodeal`.`announce` (`user_id`, `title`, `price`, `year`, 
--- `car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`, 
--- `power`, `condition`, `license`, `description`, `image`,`contact` , `city`) 
--- VALUES ('1', 'A vendre magnifique 207.. super occasion', '20000.00', '2000', 'Peugeot', '207', 'Diesel', '50000', 
--- 'Manuelle', 'Citadine', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur',
--- 'https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=','435345345','PARIS')
-
--- INSERT INTO `goodeal`.`announce` (`user_id`, `title`, `price`, `year`,
---  `car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`,
---   `power`, `condition`, `license`, `description` , `image`) 
---   VALUES ('2', 'Dernier Mercedes amg', '35000', 2022, 'Mercedes', 'C_Klasse', 'Petrol', '50000', 
---   'Automatic', 'Berlines', '200', 'Non', 'Avec permis', 'Voiture en bon etat',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/89/40/5b/89405b5cbb386cc70328d996fe7eb01ca350543f.jpg?rule=ad-large')
-
-
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`,`power`, `condition`, `license`, `description`, `image`,`contact` , `city`,`postalcode`) VALUES ('1', 'A vendre magnifique 207.. super occasion', '20000.00', '2000', 'Peugeot', '207', 'Diesel', '50000','Manuelle', 'Citadine', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur','https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=','435345345','PARIS',75014);
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`,`power`, `condition`, `license`, `description` , `image`,`contact`, `city`,`postalcode`) VALUES ('2', 'Dernier Mercedes amg', '35000', 2022, 'Mercedes', 'C_Klasse', 'Petrol', '50000', 'Automatic', 'Berlines', '200', 'Non', 'Avec permis', 'Voiture en bon etat','https://imgd.aeplcdn.com/370x208/n/cw/ec/116201/c-class-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80','435345345','PARIS',75014);
+INSERT INTO announce (`user_id`, `title`, `price`, `year`, `car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`, `power`, `condition`,`license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('3', '2022 Audi A4 Premium', 35000.00, 2022, 'Audi', 'A4', 'Diesel', 15000, 'Automatic', 'Sedan', 220, 'Non', 'Avec permis', 'Brand new Audi A4 Premium with low mileage.', 'https://vehicle-images.dealerinspire.com/d425-11002263/WAUDAAF4XPN008695/253716c405b9ee21f490653aa08ec070.jpg', '12345678', 'PARIS',75014);
+INSERT INTO announce ( `user_id`, `title`, `price`, `year`, `car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`, `power`, `condition`, `license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('4','2021 Volkswagen Polo TSI', 20000, 2021, 'Volkswagen', 'Polo', 'Diesel', 18000, 'Automatic', 'Hatchback', 110, 'yes', 'Avec permis','Well-maintained Volkswagen Polo TSI for sale.', 'https://spn-mda.spinny.com/img/w_bhOcE4TGmSQptVZkm9OQ/mobile/file.JPG?w=300&dpr=1.5', '78833032', 'PARIS', 75014);
 
 
 -- INSERT INTO `goodeal`.`car_brand` (`car_brand_name`) VALUES ('VOLKSWAGEN');
