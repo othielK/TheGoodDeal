@@ -28,4 +28,6 @@ router.post("/announce", announceControllers.add);
 router.post("/newsletter", newsletterControllers.add);
 router.get("/newsletter/:id", newsletterControllers.read);
 
+router.get("/announce/model/:model", announceControllers.searchByModel);
+
 module.exports = router;

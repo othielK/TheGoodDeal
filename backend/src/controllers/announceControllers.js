@@ -86,6 +86,17 @@ const destroy = (req, res) => {
       res.sendStatus(500);
     });
 };
+// SEARCH
+const searchByModel = (req, res) => {
+  const { model } = req.params;
+  models.announce.findByModel(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
 
 module.exports = {
   browse,
@@ -93,4 +104,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  searchByModel,
 };
