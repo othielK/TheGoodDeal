@@ -26,15 +26,17 @@ class AnnounceManager extends AbstractManager {
         announce.image,
         announce.contact,
         announce.city,
+        announce.postalcode,
       ]
     );
   }
 
-  //   searchByCartype(car_type) {
-  //     return this.database.query(`SELECT * FROM announce WHERE car_type = ?`, [
-  //       car_type,
-  //     ]);
-  //   }
+  // search
+  findByModel(model) {
+    return this.database.query(`SELECT * FROM announce WHERE car_model = ?`, [
+      model,
+    ]);
+  }
 
   //    update(announce) {
   //     return this.database.query(
