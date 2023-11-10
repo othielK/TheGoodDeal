@@ -5,7 +5,7 @@
   max-width: auto;
 }
 
-a {
+.footer a {
   color: black;
   text-decoration: none;
 }
@@ -39,7 +39,7 @@ a {
   margin-top: 1rem;
 }
 
-ul {
+.footer sul {
   display: flex;
   flex-direction: column;
 }

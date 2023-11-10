@@ -1,65 +1,145 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import "../styles/navbar.css";
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleActiveClass = () => {
+    setIsActive(!isActive);
+  };
+
+  const removeActive = () => {
+    setIsActive(false);
+  };
+
   return (
     <div className="navbar">
-      {/* Partie 1 : Barre de Navigation */}
-      <div className="first-section">
-        <nav className="nav">
-          <div className="logo">
-            <img src="" alt="TheGoodDeal" />
-          </div>
-          <ul className="nav-links">
-            <li>
-              <Link to="/message">Messages</Link>
-            </li>
-            <li>
-              <Link to="/login">Se connecter</Link>
-            </li>
-            <li>
-              <Link to="/announce">Déposer une annonce</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <nav className="nav">
+        <button
+          type="button"
+          className={`hamburger ${isActive ? "active" : ""}`}
+          onClick={toggleActiveClass}
+        >
+          <span className="bar" />
+          <span className="bar" />
+          <span className="bar" />
+        </button>
+        <Link to="/" className="logo">
+          <img
+            src="src/assets/images/logo_the_good_deal.png"
+            alt="TheGoodDeal"
+          />
+        </Link>
+        <div className="hide-on-desktop">
+          <Link to="/login" className="login-icon">
+            <span>Se connecter</span>
+            <div className="icon-text">
+              <img src="src/assets/images/connecter.png" alt="Se connecter" />
+            </div>
+          </Link>
+        </div>
+        <ul className={`navMenu ${isActive ? "active" : ""}`}>
+          <li>
+            <NavLink to="/login" className="login-icon">
+              <div className="icon-text">
+                <img src="src/assets/images/message.png" alt="Messages" />
+                <span>Messages</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/login" className="login-icon">
+              <div className="icon-text">
+                <img src="src/assets/images/connecter.png" alt="Se connecter" />
+                <span>Se connecter</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/login" className="login-icon">
+              <div className="icon-text">
+                <img
+                  src="src/assets/images/annonce.png"
+                  alt="Déposer une annonce"
+                />
+                <span> Déposer une annonce </span>
+              </div>
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
 
-      {/* Partie 2 : Barre de recherche */}
-      <div className="search-section">
-        <input type="text" placeholder="Trouvez votre good deal..." />
-        <button type="button">Rechercher</button>
-      </div>
+      <SearchBar />
 
-      {/* Partie 3 : Liste des catégories */}
       <div className="category-section">
-        <ul>
-          <li>
-            <Link to="/">Accueil</Link>
+        <ul className={`navMenu ${isActive ? "active" : ""}`}>
+          <li className="hide-on-desktop">
+            <NavLink to="/login" className="login-icon">
+              <div className="icon-text">
+                <img
+                  src="src/assets/images/annonce.png"
+                  alt="Déposer une annonce"
+                />
+                <span> Déposer une annonce </span>
+              </div>
+            </NavLink>
+          </li>
+          <li className="hide-on-desktop">
+            <NavLink to="/login" className="login-icon">
+              <div className="icon-text">
+                <img src="src/assets/images/message.png" alt="Messages" />
+                <span>Messages</span>
+              </div>
+            </NavLink>
           </li>
           <li>
-            <Link to="/result">Toutes les catégories</Link>
+            <NavLink to="/">Accueil</NavLink>
           </li>
           <li>
-            <Link to="/result">Citadine</Link>
+            <NavLink to="/result">Toutes les catégories</NavLink>
           </li>
           <li>
-            <Link to="/result">Berlines</Link>
+            <NavLink to="/result">Citadine</NavLink>
           </li>
           <li>
-            <Link to="/result">4x4 SUV Crossover</Link>
+            <NavLink to="/result">Berlines</NavLink>
           </li>
           <li>
-            <Link to="/result">Sans permis</Link>
+            <NavLink to="/result">4x4 SUV Crossover</NavLink>
           </li>
           <li>
-            <Link to="/result">Breaks</Link>
+            <NavLink to="/result">Sans permis</NavLink>
           </li>
           <li>
-            <Link to="/result">Cabriolet</Link>
+            <NavLink to="/result">Breaks</NavLink>
           </li>
           <li>
-            <Link to="/result">Coupés</Link>
+            <NavLink to="/result">Cabriolet</NavLink>
+          </li>
+          <li>
+            <NavLink to="/result">Coupés</NavLink>
+          </li>
+          <li className="hide-on-desktop">
+            <NavLink
+              to="/page404"
+              className="navLink"
+              activeClassName="active"
+              onClick={removeActive}
+            >
+              A PROPOS DE THEGOODDEAL
+            </NavLink>
+          </li>
+          <li className="hide-on-desktop">
+            <NavLink
+              to="/page404"
+              className="navLink"
+              activeClassName="active"
+              onClick={removeActive}
+            >
+              INFORMATIONS LEGALES
+            </NavLink>
           </li>
         </ul>
       </div>

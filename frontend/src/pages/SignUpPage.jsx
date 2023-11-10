@@ -94,6 +94,7 @@ export default function SignUpPage() {
       console.error("Les mots de passe ne correspondent pas");
     }
   };
+
   const iconStyles = { color: "#EBAF00", fontSize: "1.5em" };
   return (
     <>
