@@ -1,4 +1,4 @@
-  CREATE TABLE user (
+CREATE TABLE user (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(80) NOT NULL,
   `lastname` VARCHAR(80) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE car_model (
   `car_brand_id` INT NOT NULL,
   `car_model_name` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`car_model_id`),
-  
+
   CONSTRAINT `fk_carbrand_carmodel`
     FOREIGN KEY (`car_brand_id`)
     REFERENCES car_brand (`car_brand_id`)
@@ -92,7 +92,7 @@ CREATE TABLE car_type (
   `message` VARCHAR(500) NOT NULL,
   `msgsentdate` date NOT NULL,
   PRIMARY KEY (`message_id`),
-  
+
    CONSTRAINT `fk_announce_message`
     FOREIGN KEY (`announce_id`)
     REFERENCES announce (`announce_id`)
@@ -112,7 +112,7 @@ INSERT INTO car_brand (`car_brand_name`) VALUES ('AUDI');
 INSERT INTO car_brand (`car_brand_name`) VALUES ('RENAULT');
 INSERT INTO car_brand (`car_brand_name`) VALUES ('OPEL');
 INSERT INTO car_brand (`car_brand_name`) VALUES ('DACIA');
-INSERT INTO car_brand (`car_brand_name`) VALUES ('FORD');     
+INSERT INTO car_brand (`car_brand_name`) VALUES ('FORD');
 
 
 
@@ -146,8 +146,10 @@ INSERT INTO car_model (`car_brand_id`, `car_model_name`) VALUES ('5', 'A6');
 INSERT INTO car_model (`car_brand_id`, `car_model_name`) VALUES ('5', 'A1');
 INSERT INTO car_model (`car_brand_id`, `car_model_name`) VALUES ('5', 'A5');
 INSERT INTO car_model (`car_brand_id`, `car_model_name`) VALUES ('5', 'Q3');
-
-
+INSERT INTO car_model (`car_brand_id`, `car_model_name`) VALUES ('6', 'Clio'),('6', 'Mégane'),('6', 'Captur'),('6', 'Twingo'),('6', 'Kangoo'),('6', 'Scénic');
+INSERT INTO car_model (`car_brand_id`, `car_model_name`) VALUES ('7', 'Corsa'),('7', 'Astra'),('7', 'Mokka'),('7', 'Crossland X'),('7', 'Meriva'),('7', 'Insignia');
+INSERT INTO car_model (`car_brand_id`, `car_model_name`) VALUES ('8', 'Duster'),('8', 'Sandero'),('8', 'Logan MCV'),('8', 'Sandero Stepway'),('8', 'Spring'),('8', 'Lodgy');
+INSERT INTO car_model (`car_brand_id`, `car_model_name`) VALUES ('9', 'Focus'), ('9', 'Fiesta'), ('9', 'Kuga'), ('9', 'Ka'), ('9', 'Puma'), ('9', 'C-Max');
 
 INSERT INTO car_type (`car_type_name`) VALUES ('Citadines');
 INSERT INTO car_type (`car_type_name`) VALUES ('Berlines');
@@ -157,7 +159,7 @@ INSERT INTO car_type (`car_type_name`) VALUES ('Cabriolets');
 INSERT INTO car_type (`car_type_name`) VALUES ('Coupés');
 
 
-    
+
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('SALA', 'sala', 'sala@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('fatma', 'itchir', 'fatmaitchir@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('saima', 'NORAT', 'sAIMA@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
@@ -181,4 +183,3 @@ INSERT INTO announce ( `user_id`, `title`, `price`, `year`, `car_brand_id`, `car
 
 -- INSERT INTO `goodeal`.`message` (`announce_id`, `sender_user_id`, `receiver_user_id`, `message`) VALUES ('1', '1', '2', 'DJFKSDLLFSLDKMFJKSLDUILEZFLKHZDFHLNSDF');
 -- INSERT INTO `goodeal`.`message` (`announce_id`, `sender_user_id`, `receiver_user_id`, `message`) VALUES ('1', '3', '4', 'IUITRITERIOVLKXNVNKFD');
-

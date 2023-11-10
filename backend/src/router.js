@@ -6,8 +6,14 @@ const userControllers = require("./controllers/userControllers");
 
 const announceControllers = require("./controllers/announceControllers");
 const newsletterControllers = require("./controllers/newsletterControllers");
+const carbrandControllers = require("./controllers/carbrandControllers");
+const carmodelControllers = require("./controllers/carmodelControllers");
 
 const auth = require("./middlewares/auth");
+
+router.get("/carmodel", carmodelControllers.browse);
+router.get("/carbrand", carbrandControllers.browse);
+router.get("/carmodelbybrand", carbrandControllers.modelsFromBrand);
 
 router.get("/user", userControllers.browse);
 // router.post("/user", userControllers.add);
