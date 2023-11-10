@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Cardcarresult from "../components/Cardcarresult";
+import "../styles/carmodelresult.css";
 
 export default function CarmodelResult() {
   const [dataModel, setDataModel] = useState([]);
@@ -10,9 +11,7 @@ export default function CarmodelResult() {
 
   const searchModel = () => {
     axios
-      .get(
-        `${import.meta.env.VITE_BACKEND_URL}/announce/model/${modelResearch}`
-      )
+      .get(`${import.meta.env.VITE_BACKEND_URL}/announce/${modelResearch}`)
       .then((response) => {
         setDataModel(response.data);
         console.info(response.data);
@@ -28,17 +27,21 @@ export default function CarmodelResult() {
   }, [modelResearch]);
 
   return (
-    <div className="model_resul ts">
-      <h2>
-        Nous avons trouvé {dataModel.length} résultats pour {modelResearch}
-      </h2>
-      <div className="model_list">
-        {!errorName ? (
-          dataModel.map((model) => <Cardcarresult key={model.id} car={model} />)
-        ) : (
-          <p>Aucun résultat</p>
-        )}
+    dataModel && (
+      <div className="model_results">
+        <h2>
+          Nous avons trouvé {dataModel.length} résultats pour {modelResearch}
+        </h2>
+        <div className="model_list">
+          {!errorName ? (
+            dataModel.map((model) => (
+              <Cardcarresult key={model.id} car={model} />
+            ))
+          ) : (
+            <p>Aucun résultat</p>
+          )}
+        </div>
       </div>
-    </div>
+    )
   );
 }
