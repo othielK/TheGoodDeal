@@ -16,7 +16,7 @@ export default function Cardcarresult({ car }) {
         <div className="cardetails">
           <h5>
             {car.car_brand_name}
-            <span> {car.car_model}</span>
+            <span> {car.car_model_name}</span>
           </h5>
           <h5>€ {car.price}</h5>
           <div className="tag_card_car">
@@ -38,7 +38,9 @@ export default function Cardcarresult({ car }) {
               <span> {car.transmission}</span>
             </h6>
           </div>
-          <h5>{car.city}</h5>
+          <h5>
+            {car.city} {car.postalcode}
+          </h5>
         </div>
       </div>
     )
@@ -48,12 +50,13 @@ Cardcarresult.propTypes = {
   car: PropTypes.shape({
     image: PropTypes.string,
     car_brand_name: PropTypes.string,
-    car_model: PropTypes.string,
+    car_model_name: PropTypes.string,
     price: PropTypes.string,
     year: PropTypes.string,
     kilometer: PropTypes.string,
     motorisation: PropTypes.string,
     transmission: PropTypes.string,
     city: PropTypes.string,
+    postalcode: PropTypes.string,
   }).isRequired,
 };

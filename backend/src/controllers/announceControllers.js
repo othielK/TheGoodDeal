@@ -86,6 +86,19 @@ const destroy = (req, res) => {
       res.sendStatus(500);
     });
 };
+
+// SELECTALL
+const select = (req, res) => {
+  const { model } = req.params;
+  models.announce.selectAll(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
 // SEARCH
 const searchByModel = (req, res) => {
   const { model } = req.params;
@@ -105,4 +118,5 @@ module.exports = {
   add,
   destroy,
   searchByModel,
+  select,
 };
