@@ -1,0 +1,76 @@
+/* body {
+    margin-left: 100px; 
+    margin-right: 100px; 
+  } */
+
+.carannounce {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+.carimage {
+  width: 9rem;
+  /* height: 10rem; */
+  height: 120px;
+}
+
+.carimage > img {
+  max-width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.cardetails {
+  padding: 10px;
+}
+
+.cardetails > h5 {
+  margin: 10px 0;
+}
+.cardetails > .tag_card_car > h6 {
+  margin: 5px O;
+  margin-bottom: 4px;
+  padding: 5px 5px;
+  width: 100px;
+  text-align: center;
+  background-color: #f3cd60;
+  border-radius: 10px;
+}
+
+@media (min-width: 700px) {
+  .carannounce {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+
+    /* CSS FOR CENTER */
+    /* margin: 0 auto;
+        min-height: 30vh;
+        max-width: 1000px;   */
+  }
+  .cardetails > h6 {
+    display: inline-block;
+    margin: 5px 0 3px;
+    padding: 5px 5px;
+    width: 80px;
+    text-align: center;
+    background-color: #f3cd60;
+    border-radius: 10px;
+  }
+
+  .tag_card_car {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cardetails {
+    width: 30rem;
+  }
+}

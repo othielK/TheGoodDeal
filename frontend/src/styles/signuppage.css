@@ -1,0 +1,122 @@
+.signup_background {
+  background-image: url("/src/assets/images/signup.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 20px;
+  line-height: 2 rem;
+}
+.signup_title {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.signup_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 20px;
+  background-color: rgba(0, 0, 0, 0.72);
+  margin: 100px;
+}
+
+@media (max-width: 700px) {
+  .signup_background {
+    color: black;
+    background-image: none;
+
+    flex-direction: column;
+    margin: auto;
+
+    background-color: rgba(0, 0, 0, 0.72);
+    border-radius: 16px;
+    margin: 10px;
+    gap: 10px;
+  }
+
+  .signup_header > .signup_header_title > h1 {
+    color: #ebaf00;
+    padding: 10px 0;
+    border-bottom: 1px solid white;
+  }
+
+  .signup_header > .signup_header_title > ul {
+    padding: 10px;
+  }
+
+  .register_formulaire {
+    width: 100%;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .register_formulaire input {
+    width: 90%;
+    padding: 8px 0;
+  }
+
+  .btn-create {
+    background-color: #3460d2;
+    padding: 5px;
+    width: 90%;
+    text-align: center;
+    border-radius: 66px;
+    border: none;
+    padding: 8px 0;
+  }
+  .btn-deja {
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-decoration: underline;
+    text-align: center;
+    width: 90%;
+    padding: 8px 0;
+  }
+  .btn_membre {
+    background-color: transparent;
+    color: white;
+    border-color: #ebaf00;
+    padding: 8px 8px;
+    width: 50%;
+    height: 40px;
+  }
+}
+@media (min-width: 700px) {
+  .signup_background {
+    background-image: url("/src/assets/images/signup.png");
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .sign_up {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    line-height: 2 rem;
+  }
+  .signup_header {
+    color: white;
+  }
+
+  .signup_title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 140px;
+    /* width: 50%; */
+  }
+  .signup_title > h1 {
+    font-size: 4rem;
+    font-weight: 100;
+  }
+}
