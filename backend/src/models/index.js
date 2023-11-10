@@ -29,6 +29,11 @@ pool.getConnection().catch(() => {
 
 const models = {};
 
+const CarmodelManager = require("./CarmodelManager");
+
+models.carmodel = new CarmodelManager();
+models.carmodel.setDatabase(pool);
+
 const CarbrandManager = require("./CarbrandManager");
 
 models.carbrand = new CarbrandManager();
