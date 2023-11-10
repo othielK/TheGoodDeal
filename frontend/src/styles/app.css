@@ -7,13 +7,6 @@
   list-style-type: none;
 }
 
-section {
-  margin: 0 auto;
-  min-height: 60vh;
-  max-width: 1400px;
-  list-style-type: none;
-}
-
 body {
   font-family: 'DM Sans', sans-serif;
   /* list-style-type: none; */
