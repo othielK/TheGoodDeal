@@ -99,6 +99,7 @@ nav>ul>li {
 
 
 
+
 @media screen and (max-width: 780px) {
   .hamburger {
     display: block;
@@ -124,6 +125,8 @@ nav>ul>li {
     transition: 0.7s ease-in-out;
     background-color:  white;
     transition: 0.7s ease-in-out;
+   
+  z-index: 99; 
   }
   .navMenu.active {
     right: auto;
@@ -157,6 +160,8 @@ nav>ul>li {
     font-size: 10px;
 
   }
+  
+  
   
 }
 @media screen and (min-width: 781px) {

@@ -7,6 +7,7 @@ import MessagePage from "../pages/MessagePage";
 import AnnouncePage from "../pages/AnnouncePage";
 import ResultPage from "../pages/ResultPage";
 import SearchResult from "../pages/SearchResult";
+import Backoffice from "../pages/Backoffice";
 
 export default function Content() {
   return (
@@ -19,6 +20,7 @@ export default function Content() {
         <Route path="/announce" element={<AnnouncePage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/search" element={<SearchResult />} />
+        <Route path="/backoffice" element={<Backoffice />} />
       </Routes>
     </section>
   );

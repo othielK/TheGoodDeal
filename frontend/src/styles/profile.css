@@ -1,0 +1,7 @@
+.card_profile {
+    width: 300px; /* Largeur de la carte */
+    padding: 60px; /* Espace intérieur de la carte */
+    border-radius: 10px; /* Coins arrondis de la carte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre de la carte */
+    background-color: #ffffff; /* Couleur de fond de la carte */
+  }
