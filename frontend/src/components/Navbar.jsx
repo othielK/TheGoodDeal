@@ -33,7 +33,7 @@ export default function Navbar() {
           />
         </Link>
         <div className="hide-on-desktop">
-          <Link to="/loginpage" className="login-icon">
+          <Link to="/login" className="login-icon">
             <span>Se connecter</span>
             <div className="icon-text">
               <img src="src/assets/images/connecter.png" alt="Se connecter" />
@@ -42,7 +42,7 @@ export default function Navbar() {
         </div>
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li>
-            <NavLink to="/loginpage" className="login-icon">
+            <NavLink to="/login" className="login-icon">
               <div className="icon-text">
                 <img src="src/assets/images/message.png" alt="Messages" />
                 <span>Messages</span>
@@ -50,7 +50,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/loginpage" className="login-icon">
+            <NavLink to="/login" className="login-icon">
               <div className="icon-text">
                 <img src="src/assets/images/connecter.png" alt="Se connecter" />
                 <span>Se connecter</span>
@@ -58,7 +58,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/loginpage" className="login-icon">
+            <NavLink to="/login" className="login-icon">
               <div className="icon-text">
                 <img
                   src="src/assets/images/annonce.png"
@@ -76,7 +76,7 @@ export default function Navbar() {
       <div className="category-section">
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li className="hide-on-desktop">
-            <NavLink to="/loginpage" className="login-icon">
+            <NavLink to="/login" className="login-icon">
               <div className="icon-text">
                 <img
                   src="src/assets/images/annonce.png"
@@ -87,7 +87,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li className="hide-on-desktop">
-            <NavLink to="/loginpage" className="login-icon">
+            <NavLink to="/login" className="login-icon">
               <div className="icon-text">
                 <img src="src/assets/images/message.png" alt="Messages" />
                 <span>Messages</span>
@@ -98,28 +98,28 @@ export default function Navbar() {
             <NavLink to="/">Accueil</NavLink>
           </li>
           <li>
-            <NavLink to="/resultpage">Toutes les catégories</NavLink>
+            <NavLink to="/result">Toutes les catégories</NavLink>
           </li>
           <li>
-            <NavLink to="/resultpage">Citadine</NavLink>
+            <NavLink to="/result">Citadine</NavLink>
           </li>
           <li>
-            <NavLink to="/resultpage">Berlines</NavLink>
+            <NavLink to="/result">Berlines</NavLink>
           </li>
           <li>
-            <NavLink to="/resultpage">4x4 SUV Crossover</NavLink>
+            <NavLink to="/result">4x4 SUV Crossover</NavLink>
           </li>
           <li>
-            <NavLink to="/resultpage">Sans permis</NavLink>
+            <NavLink to="/result">Sans permis</NavLink>
           </li>
           <li>
-            <NavLink to="/resultpage">Breaks</NavLink>
+            <NavLink to="/result">Breaks</NavLink>
           </li>
           <li>
-            <NavLink to="/resultpage">Cabriolet</NavLink>
+            <NavLink to="/result">Cabriolet</NavLink>
           </li>
           <li>
-            <NavLink to="/resultpage">Coupés</NavLink>
+            <NavLink to="/result">Coupés</NavLink>
           </li>
           <li>
             <NavLink to="/backoffice">Backoffice</NavLink>
