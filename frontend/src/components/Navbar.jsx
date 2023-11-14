@@ -121,6 +121,9 @@ export default function Navbar() {
           <li>
             <NavLink to="/result">Coupés</NavLink>
           </li>
+          <li>
+            <NavLink to="/backoffice">Backoffice</NavLink>
+          </li>
           <li className="hide-on-desktop">
             <NavLink
               to="/page404"
