@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const uploadMiddleware = require("./middlewares/upload");
+
 const userControllers = require("./controllers/userControllers");
 const announceControllers = require("./controllers/announceControllers");
 const newsletterControllers = require("./controllers/newsletterControllers");
@@ -21,6 +23,11 @@ router.delete("/announce/:id", announceControllers.destroy);
 router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
 router.get("/announce/:id", announceControllers.read);
 router.post("/announce", announceControllers.add);
+router.post(
+  "/test",
+  uploadMiddleware.uploadFile,
+  announceControllers.checkUpload
+);
 
 router.post("/newsletter", newsletterControllers.add);
 router.get("/newsletter/:id", newsletterControllers.read);

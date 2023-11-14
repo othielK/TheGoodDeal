@@ -7,9 +7,9 @@ class AnnounceManager extends AbstractManager {
 
   insert(announce) {
     return this.database.query(
-      `insert into ${this.table} (user_id, title, price, year,car_brand_name,car_model,motorisation,kilometer,transmission,car_type,power,condition,license,description,image,contact,city ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} ( title, price, year,car_brand_name,car_model,motorisation,kilometer,transmission,car_type,power,condition,license,description,image,contact,city,postalcode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        announce.user_id,
+        // announce.user_id,
         announce.title,
         announce.price,
         announce.year,
@@ -26,6 +26,7 @@ class AnnounceManager extends AbstractManager {
         announce.image,
         announce.contact,
         announce.city,
+        announce.postalcode,
       ]
     );
   }

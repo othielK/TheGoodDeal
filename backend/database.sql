@@ -98,17 +98,17 @@ INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('f
 
 -- INSERT INTO `goodeal`.`announce` (`user_id`, `title`, `price`, `year`, 
 -- `car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`, 
--- `power`, `condition`, `license`, `description`, `image`,`contact` , `city`) 
+-- `power`, `condition`, `license`, `description`, `image`,`contact` , `city`,`postalcode`) 
 -- VALUES ('1', 'A vendre magnifique 207.. super occasion', '20000.00', '2000', 'Peugeot', '207', 'Diesel', '50000', 
 -- 'Manuelle', 'Citadine', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur',
--- 'https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=','435345345','PARIS')
+-- 'https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=','435345345','PARIS', `75020`)
 
 -- INSERT INTO `goodeal`.`announce` (`user_id`, `title`, `price`, `year`,
 --  `car_brand_name`, `car_model`, `motorisation`, `kilometer`, `transmission`, `car_type`,
---   `power`, `condition`, `license`, `description` , `image`) 
+--   `power`, `condition`, `license`, `description` , `image`,`contact` , `city`,`postalcode`) 
 --   VALUES ('2', 'Dernier Mercedes amg', '35000', 2022, 'Mercedes', 'C_Klasse', 'Petrol', '50000', 
 --   'Automatic', 'Berlines', '200', 'Non', 'Avec permis', 'Voiture en bon etat',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/89/40/5b/89405b5cbb386cc70328d996fe7eb01ca350543f.jpg?rule=ad-large')
+--   'https://img.leboncoin.fr/api/v1/lbcpb1/images/89/40/5b/89405b5cbb386cc70328d996fe7eb01ca350543f.jpg?rule=ad-large','435345345','PARIS', `75020`)
 
 
 
