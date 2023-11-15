@@ -171,7 +171,6 @@ INSERT INTO announce (`user_id`, `title`, `price`, `year`, `car_brand_id`, `car_
 INSERT INTO announce ( `user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `condition`, `license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('4','2021 Volkswagen Polo TSI', 20000, 2021, '1', '2', 'Diesel', 18000, 'Automatic', '3', 110, 'yes', 'Avec permis','Well-maintained Volkswagen Polo TSI for sale.', 'https://spn-mda.spinny.com/img/w_bhOcE4TGmSQptVZkm9OQ/mobile/file.JPG?w=300&dpr=1.5', '78833032', 'PARIS', 75014
 );
 
-
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('othiel.leith@gmail.com');
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('saima.narat@gmail.com');
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('salamata@gmail.com');

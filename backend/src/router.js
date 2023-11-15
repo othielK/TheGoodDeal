@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const uploadMiddleware = require("./middlewares/upload");
+
 const userControllers = require("./controllers/userControllers");
 
 const announceControllers = require("./controllers/announceControllers");
@@ -24,6 +26,12 @@ router.get("/user/:id", userControllers.read);
 
 router.post("/user", auth.validateUser, auth.hashPassword, userControllers.add);
 router.post("/login", auth.checkEmailIfExist, userControllers.verifyPassword);
+
+router.post(
+  "/test",
+  uploadMiddleware.uploadFile,
+  announceControllers.checkUpload
+);
 
 router.get("/announce", announceControllers.select);
 // router.delete("/announce/:id", announceControllers.destroy);

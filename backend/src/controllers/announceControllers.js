@@ -53,14 +53,15 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const announce = req.body;
+  const picture = req.file.filename;
   console.info("announce :: ", announce);
   // TODO validations (length, format...)
 
   models.announce
-    .insert(announce)
+    .insert(announce, picture)
     .then(([result]) => {
       console.info(result);
-      res.status(200).json({ message: "Announce crée avec succès" });
+      res.status(200).json({ message: "Announce créée avec succès" });
     })
     .catch((err) => {
       console.error(err);
@@ -68,6 +69,10 @@ const add = (req, res) => {
         error: err.errno,
       });
     });
+};
+
+const checkUpload = (req, res) => {
+  res.status(200).send("fichier téléchargé");
 };
 
 const destroy = (req, res) => {
@@ -117,6 +122,7 @@ module.exports = {
   edit,
   add,
   destroy,
+  checkUpload,
   searchByModel,
   select,
 };
