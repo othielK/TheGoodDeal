@@ -42,6 +42,7 @@ router.get("/announce", announceControllers.select);
 router.post("/newsletter", newsletterControllers.add);
 router.get("/newsletter/:id", newsletterControllers.read);
 
-router.get("/announce/:model", announceControllers.searchByModel);
+router.get("/announce/model/:model", announceControllers.searchByModel);
+router.get("/announce/brand/:brand", announceControllers.searchByBrand);
 
 module.exports = router;

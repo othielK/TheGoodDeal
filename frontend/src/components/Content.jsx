@@ -7,7 +7,7 @@ import MessagePage from "../pages/MessagePage";
 import AnnouncePage from "../pages/AnnouncePage";
 import ResultPage from "../pages/ResultPage";
 import Backoffice from "../pages/Backoffice";
-import CarmodelResult from "../pages/CarmodelResult";
+import CarbrandmodelResult from "../pages/CarbrandmodelResult";
 
 export default function Content() {
   return (
@@ -20,7 +20,7 @@ export default function Content() {
         <Route path="/announce" element={<AnnouncePage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/backoffice" element={<Backoffice />} />
-        <Route path="/result/:modelResearch" element={<CarmodelResult />} />
+        <Route path="/result/:userResearch" element={<CarbrandmodelResult />} />
       </Routes>
     </section>
   );

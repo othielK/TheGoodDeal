@@ -1,32 +1,26 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import "../styles/carbrandmodelresult.css";
 
 import InputLabel from "@mui/material/InputLabel";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Cardcarresult from "../components/Cardcarresult";
 import filterCars from "../services/carFilterServices";
+import Cardcarresult from "../components/Cardcarresult";
 
-export default function ResultPage() {
-  const [cars, setCars] = useState([]);
+export default function CarmodelResult() {
+  const [dataModel, setDataModel] = useState([]);
+  const [errorModel, setErrorModel] = useState(false);
+  const [dataBrand, setDataBrand] = useState([]);
+  const [errorBrand, setErrorBrand] = useState(false);
   const [motorisation, setMotorisation] = useState("");
   const [price, setPrice] = useState("");
   const [kilometer, setKilometer] = useState("");
-
-  const getCars = () => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/announce`)
-      .then((response) => {
-        setCars(response.data);
-        console.info(response.data);
-      });
-  };
-
-  useEffect(() => {
-    getCars();
-  }, []);
+  const { userResearch } = useParams();
 
   const handleChange = (event) => {
     setMotorisation(event.target.value);
@@ -40,8 +34,46 @@ export default function ResultPage() {
     setKilometer(event.target.value);
   };
 
-  const filteredCars = filterCars(cars, motorisation, price, kilometer);
+  const filteredBrandCars = filterCars(
+    dataBrand,
+    motorisation,
+    price,
+    kilometer
+  );
+  const filteredModelCars = filterCars(
+    dataModel,
+    motorisation,
+    price,
+    kilometer
+  );
 
+  const searchModel = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/announce/model/${userResearch}`)
+      .then((response) => {
+        setDataModel(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        setErrorModel(true);
+      });
+  };
+  const searchBrand = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/announce/brand/${userResearch}`)
+      .then((response) => {
+        setDataBrand(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        setErrorBrand(true);
+      });
+  };
+
+  useEffect(() => {
+    searchModel();
+    searchBrand();
+  }, [userResearch]);
   return (
     <>
       <div className="motorisation">
@@ -106,12 +138,46 @@ export default function ResultPage() {
         </Box>
       </div>
 
-      {filteredCars.map((car) => (
-        <div className="cards">
-          <Cardcarresult key={car.id} car={car} />
+      {dataModel.length > 0 && dataModel[0].car_model_name === userResearch && (
+        <div className="model_results">
+          <h2>
+            {filteredModelCars.length > 0
+              ? `Nous avons trouvé ${dataModel.length} résultat pour ${userResearch}`
+              : `Nous avons trouvé ${filteredModelCars.length} résultats pour ${userResearch}`}
+          </h2>
+          <div className="model_list">
+            {!errorModel ? (
+              filteredModelCars.map((car) => (
+                <div className="cards" key={car.id}>
+                  <Cardcarresult car={car} />
+                </div>
+              ))
+            ) : (
+              <p>Aucun résultat</p>
+            )}
+            {/* {filteredModelCars.length === 0 && <p>Aucun résultat</p>} */}
+          </div>
         </div>
-      ))}
-      {filteredCars.length === 0 && <p>Aucun résultat</p>}
+      )}
+      {dataBrand.length > 0 && dataBrand[0].car_brand_name === userResearch && (
+        <div className="brand_results">
+          <h2>
+            {filteredBrandCars.length > 0
+              ? `Nous avons trouvé ${dataBrand.length} résultat pour ${userResearch}`
+              : `Nous avons trouvé ${filteredBrandCars.length} résultats pour ${userResearch}`}
+          </h2>
+          <div className="model_list">
+            {!errorBrand ? (
+              filteredBrandCars.map((brandCar) => (
+                <Cardcarresult key={brandCar.id} car={brandCar} />
+              ))
+            ) : (
+              <p>Aucun résultat</p>
+            )}
+            {/* {filteredBrandCars.length === 0 && <p>Aucun résultat</p>} */}
+          </div>
+        </div>
+      )}
     </>
   );
 }
