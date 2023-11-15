@@ -6,6 +6,8 @@ import SignUpPage from "../pages/SignUpPage";
 import MessagePage from "../pages/MessagePage";
 import AnnouncePage from "../pages/AnnouncePage";
 import ResultPage from "../pages/ResultPage";
+import Backoffice from "../pages/Backoffice";
+import CarmodelResult from "../pages/CarmodelResult";
 
 export default function Content() {
   return (
@@ -17,6 +19,8 @@ export default function Content() {
         <Route path="/message" element={<MessagePage />} />
         <Route path="/announce" element={<AnnouncePage />} />
         <Route path="/result" element={<ResultPage />} />
+        <Route path="/backoffice" element={<Backoffice />} />
+        <Route path="/result/:modelResearch" element={<CarmodelResult />} />
       </Routes>
     </section>
   );

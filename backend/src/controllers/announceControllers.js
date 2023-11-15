@@ -92,6 +92,30 @@ const destroy = (req, res) => {
     });
 };
 
+// SELECTALL
+const select = (req, res) => {
+  const { model } = req.params;
+  models.announce.selectAll(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
+// SEARCH
+const searchByModel = (req, res) => {
+  const { model } = req.params;
+  models.announce.findByModel(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
 module.exports = {
   browse,
   read,
@@ -99,4 +123,6 @@ module.exports = {
   add,
   destroy,
   checkUpload,
+  searchByModel,
+  select,
 };

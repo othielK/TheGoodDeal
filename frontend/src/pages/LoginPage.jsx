@@ -29,7 +29,7 @@ export default function LoginPage() {
 
     axios
       .post(
-        "http://localhost:5000/login",
+        `${import.meta.env.VITE_BACKEND_URL}/login`,
         {
           email,
           password,
@@ -51,7 +51,6 @@ export default function LoginPage() {
       });
   };
 
-  const iconStyles = { color: "#EBAF00", fontSize: "1.5em" };
   return (
     <div className="login_background">
       <div className="login_up">
@@ -67,7 +66,9 @@ export default function LoginPage() {
           <Link to="/signup">
             <button className="btn_membre" type="submit">
               Je veux être membre
-              <AiOutlineArrowRight style={iconStyles} />
+              <span className="iconWrapper_login">
+                <AiOutlineArrowRight />
+              </span>
             </button>
           </Link>
         </div>
@@ -101,9 +102,6 @@ export default function LoginPage() {
               <br />
             </form>
 
-            {/* <button className="btn-signup" type="submit">
-              Pas encore membre ?
-            </button> */}
             <Link to="/signup" className="btn-signup">
               Pas encore membre ?
             </Link>
