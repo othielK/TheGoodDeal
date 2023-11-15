@@ -98,7 +98,9 @@ export default function Navbar() {
             <NavLink to="/">Accueil</NavLink>
           </li>
           <li>
-            <NavLink to="/result">Toutes les catégories</NavLink>
+            <NavLink onClick="window.location.reload()" to="/result">
+              Toutes les catégories
+            </NavLink>
           </li>
           <li>
             <NavLink to="/result">Citadine</NavLink>
