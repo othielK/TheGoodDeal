@@ -1,9 +1,12 @@
-.secound.part {
+form{
+    width: 100%;
+}
+.content {
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    flex-direction: column;
-    padding: 40px;
+    justify-content: center;
+    padding: 20px;
 }
 
 h2 {
@@ -13,45 +16,80 @@ h2 {
     justify-items: center;
 }
 
-form {
-  column-count: 2;
-  column-gap: 40px;
-}
-
-input[type="submit"] {
-    margin-top: 30px;
-    background-color: #89B803;
-    color: white;
-    height: 50px;
-    cursor: pointer;
+form>.secoundpart{
     
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 input[type="text"] {
     margin: 10px 0px 10px 0px;
-    height: 30px;
-    width: auto;
+    height: 40px;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 0px;
 }
 
 input[type="number"] {
     margin: 10px 0px 10px 0px;
-    height: 30px;
-    width: auto;
+    height: 40px;
+    width: 100%;
+    border: 1px solid;
 }
 
 select#Séléction {
     margin: 10px 0px 10px 0px;
-    height: 30px;
-    width: auto;
+    height: 40px;
+    width: 360px;
+    border: 1px solid;
 }
 
-.button {
+.form>.button {
     display: flex;
     justify-content: center;
 }
 
 .description>input[type="text"] {
     height: 200px;
-    width: auto;
+    width: 100%;
+    border: 1px solid;
 
+}
+.description>.pictures {
+    background-color: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: 50px 0px;
+    margin-top: 20px;
+}
+
+.button>input[type="submit"] {
+    margin-top: 30px;
+    background-color: #89B803;
+    color: white;
+    height: 30px;
+    width: 150px;
+    cursor: pointer;
+    border: none;
+    
+}
+@media (max-width: 930px) {
+    .left {
+      width: 100%;
+    }
+    .right {
+        width: 100%;
+    }
+    select#Séléction{
+        width: 100%;
+    }
+    input[type="text"] {
+        width: 100%;
+    }
+    input[type="number"] {
+        width: 100%;
+    }
 }

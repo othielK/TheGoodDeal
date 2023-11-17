@@ -15,9 +15,19 @@ class AnnounceManager extends AbstractManager {
     );
   }
 
+  selectAllForAnnounce(announce) {
+    return this.database.query(
+      `SELECT a.title, a.price, a.year,a.motorisation,a.kilometer,a.transmission, a.power,a.condition,a.license,a.description,a.image,a.contact,a.city,a.postalcode, b.car_brand_name, m.car_model_name, t.car_type_name
+      FROM announce as a 
+      JOIN car_brand as b ON a.car_brand_id = b.car_brand_id 
+      JOIN car_model as m ON a.car_model_id = m.car_model_id
+      JOIN car_type as t ON a.car_type_id= t.car_type_id,`[announce]
+    );
+  }
+
   insert(announce) {
     return this.database.query(
-      `insert into ${this.table} ( title, price, year,car_brand_name,car_model,motorisation,kilometer,transmission,car_type,power,condition,license,description,image,contact,city,postalcode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} ( title, price, year,car_brand_name,car_model_,motorisation,kilometer,transmission,car_type,power,condition,license,description,image,contact,city,postalcode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         // announce.user_id,
         announce.title,

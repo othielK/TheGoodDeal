@@ -39,6 +39,11 @@ const CarbrandManager = require("./CarbrandManager");
 models.carbrand = new CarbrandManager();
 models.carbrand.setDatabase(pool);
 
+const CartypeManager = require("./CartypeManager");
+
+models.cartype = new CartypeManager();
+models.cartype.setDatabase(pool);
+
 const NewsletterManager = require("./NewsletterManager");
 
 models.newsletter = new NewsletterManager();

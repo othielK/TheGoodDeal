@@ -10,12 +10,15 @@ const announceControllers = require("./controllers/announceControllers");
 const newsletterControllers = require("./controllers/newsletterControllers");
 const carbrandControllers = require("./controllers/carbrandControllers");
 const carmodelControllers = require("./controllers/carmodelControllers");
+const cartypeControllers = require("./controllers/cartypeControllers");
 
 const auth = require("./middlewares/auth");
 
 router.get("/carmodel", carmodelControllers.browse);
+router.get("/carmodellistbybrand/:id", carmodelControllers.listModelByBrand);
 router.get("/carbrand", carbrandControllers.browse);
 router.get("/carmodelbybrand", carbrandControllers.modelsFromBrand);
+router.get("/cartype", cartypeControllers.types);
 
 router.get("/user", userControllers.browse);
 // router.post("/user", userControllers.add);
@@ -42,6 +45,6 @@ router.get("/announce", announceControllers.select);
 router.post("/newsletter", newsletterControllers.add);
 router.get("/newsletter/:id", newsletterControllers.read);
 
-router.get("/announce/:model", announceControllers.searchByModel);
+// router.get("/announce/:model", announceControllers.searchByModel);
 
 module.exports = router;
