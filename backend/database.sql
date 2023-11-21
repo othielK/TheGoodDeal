@@ -84,14 +84,17 @@ CREATE TABLE car_type (
     REFERENCES announce (`announce_id`)
    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-   CREATE TABLE message (
+   CREATE TABLE messages (
   `message_id` INT NOT NULL AUTO_INCREMENT,
   `announce_id` INT NOT NULL,
   `sender_user_id` INT NOT NULL,
   `receiver_user_id` INT NOT NULL,
-  `message` VARCHAR(500) NOT NULL,
-  `msgsentdate` date NOT NULL,
+  `content` TEXT NOT NULL,
+  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`message_id`),
+
+  FOREIGN KEY (sender_user_id) REFERENCES user(user_id),
+  FOREIGN KEY (receiver_user_id) REFERENCES user(user_id),
 
    CONSTRAINT `fk_announce_message`
     FOREIGN KEY (`announce_id`)
@@ -170,6 +173,9 @@ INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_m
 INSERT INTO announce (`user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `condition`,`license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('3', '2022 Audi A4 Premium', 35000.00, 2022, '5', '26', 'Diesel', 15000, 'Automatic', '2', 220, 'Non', 'Avec permis', 'Brand new Audi A4 Premium with low mileage.', 'https://vehicle-images.dealerinspire.com/d425-11002263/WAUDAAF4XPN008695/253716c405b9ee21f490653aa08ec070.jpg', '12345678', 'PARIS',75014);
 INSERT INTO announce ( `user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `condition`, `license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('4','2021 Volkswagen Polo TSI', 20000, 2021, '1', '2', 'Diesel', 18000, 'Automatic', '3', 110, 'yes', 'Avec permis','Well-maintained Volkswagen Polo TSI for sale.', 'https://spn-mda.spinny.com/img/w_bhOcE4TGmSQptVZkm9OQ/mobile/file.JPG?w=300&dpr=1.5', '78833032', 'PARIS', 75014
 );
+
+INSERT INTO messages (announce_id, sender_user_id, receiver_user_id, content) 
+VALUES ('1', '2', '3', 'Coucou Fatma');
 
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('othiel.leith@gmail.com');
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('saima.narat@gmail.com');

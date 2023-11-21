@@ -40,6 +40,8 @@ export default function LoginPage() {
       )
       .then((response) => {
         console.info(response);
+        localStorage.setItem("id", response.data.id);
+        localStorage.setItem("email", response.data.email);
         setSuccess(response.data.message);
         setError(false);
         navigateToHomepage();
