@@ -53,12 +53,12 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const announce = req.body;
-  const picture = req.file.filename;
+  // const picture = req.file.filename;
   console.info("announce :: ", announce);
   // TODO validations (length, format...)
 
   models.announce
-    .insert(announce, picture)
+    .insert(announce)
     .then(([result]) => {
       console.info(result);
       res.status(200).json({ message: "Announce créée avec succès" });

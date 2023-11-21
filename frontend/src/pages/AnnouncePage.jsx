@@ -20,13 +20,13 @@ export default function AnnouncePage() {
     city: "",
     postalcode: "",
     description: "",
-    image: "",
+    // image: "",
   });
 
   const [brand, setBrand] = useState([]);
-  // const [model, setModel] = useState([]);
+  const [models, setModels] = useState([]);
   const [type, setType] = useState([]);
-  const [selectBrandId, setSelectBrandId] = useState("");
+  const [selectBrandId, setSelectBrandId] = useState(1);
 
   const handleChangeValues = (event) => {
     if (event.target.type === "file") {
@@ -42,6 +42,11 @@ export default function AnnouncePage() {
     }
   };
 
+  const handleChangeBrand = (event) => {
+    setModels([]);
+    setSelectBrandId(event.target.value);
+  };
+
   const handleModelList = (event) => {
     setSelectBrandId(event.target.value);
   };
@@ -55,7 +60,8 @@ export default function AnnouncePage() {
     brandModels[car.car_brand_name].push(car.car_model_name);
   });
 
-  const sendFormData = () => {
+  const sendFormData = (event) => {
+    event.preventDefault();
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/announce`, {
         announce,
@@ -83,12 +89,7 @@ export default function AnnouncePage() {
         }/carmodellistbybrand/${selectBrandId}`
       )
       .then((response) => {
-        const filteredModels = response.data.filter(
-          (car) => car.car_brand_id === selectBrandId
-        );
-        // setModel(filteredModels);
-        // setModel(response.data);
-        console.info(filteredModels);
+        setModels(response.data);
       });
   };
 
@@ -109,8 +110,6 @@ export default function AnnouncePage() {
     getModelbyBrand();
   }, [selectBrandId]);
 
-  console.info(selectBrandId);
-  // console.info(announce);
   return (
     <div className="annonce">
       <h2>Merci d’avoir choisi TheGoodeal afin de publier votre annonce !</h2>
@@ -142,11 +141,11 @@ export default function AnnouncePage() {
                 <select
                   id="Séléction"
                   name="brand"
-                  onChange={handleChangeValues}
+                  onChange={handleChangeBrand}
                 >
                   <option value="">Sélectionner une marque </option>
                   {brand.map((car) => (
-                    <option key={car.id} value={car.id}>
+                    <option key={car.car_brand_id} value={car.car_brand_id}>
                       {car.car_brand_name}
                     </option>
                   ))}
@@ -156,11 +155,11 @@ export default function AnnouncePage() {
                 <h4> De quel modéle s'agit-il</h4>
                 <select name="model" id="Séléction" onChange={handleModelList}>
                   <option value="">Sélectionner un modéle </option>
-                  {/* {model.map((m) => (
-                    <option key={m.id} value={m.id}>
-                      {m.car_model_name}
-                      </option>
-                      ))} */}
+                  {models.map((model) => (
+                    <option key={model.car_brand_id} value={model.car_brand_id}>
+                      {model.car_model_name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="year">
@@ -296,14 +295,15 @@ export default function AnnouncePage() {
               <input type="file" name="image" onChange={handleChangeValues} />
             </div>
           </div>
+          <div className="button">
+            <input
+              type="submit"
+              value="Publier l'annonce"
+              // ref={inputRef}
+              onSubmit={sendFormData}
+            />
+          </div>
         </form>
-        <div className="button">
-          <input
-            type="submit"
-            value="Publier l'annonce"
-            onSubmit={sendFormData}
-          />
-        </div>
       </div>
     </div>
   );

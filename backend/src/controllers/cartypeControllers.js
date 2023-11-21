@@ -15,7 +15,7 @@ const browse = (req, res) => {
 // ANNOUNCE PAGE
 const types = (req, res) => {
   models.cartype
-    .findAll()
+    .findTypes()
     .then(([rows]) => {
       res.send(rows);
     })
