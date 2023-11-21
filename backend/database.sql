@@ -33,8 +33,8 @@ CREATE TABLE car_type (
   `announce_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `title` VARCHAR(100) NOT NULL,
-  `price` DECIMAL(10,2) NOT NULL,
-  `year` YEAR(4) NOT NULL,
+  `price` INT NOT NULL,
+  `year` INT NOT NULL,
   `car_brand_id` INT NOT NULL,
   `car_model_id` INT NOT NULL,
  `motorisation` VARCHAR(20) NOT NULL,
@@ -42,10 +42,10 @@ CREATE TABLE car_type (
   `transmission` VARCHAR(20) NOT NULL,
   `car_type_id` INT NOT NULL,
     `power` INT NOT NULL,
-  `condition` VARCHAR(10) NOT NULL,
+  `state` VARCHAR(10) NOT NULL,
   `license` VARCHAR(20) NOT NULL,
   `description` TEXT(500) NOT NULL,
-  `image` TEXT NOT NULL,
+  `image` TEXT,
   `contact` VARCHAR(50) NOT NULL,
   `city` VARCHAR(50)  NOT NULL,
   `postalcode` INT  NOT NULL,
@@ -165,10 +165,10 @@ INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('f
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('saima', 'NORAT', 'sAIMA@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('OTHIEL', 'KANAGARAJ', 'OTHIEL@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
 
-INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `condition`, `license`, `description`, `image`,`contact` , `city`,`postalcode`) VALUES ('1', 'A vendre magnifique 207.. super occasion', '20000.00', '2000', '4', '24', 'Diesel', '50000','Manuelle', '1', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur','https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=','435345345','PARIS',75014);
-INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `condition`, `license`, `description` , `image`,`contact`, `city`,`postalcode`) VALUES ('2', 'Dernier Mercedes amg', '35000', 2022, '2', '7', 'Petrol', '50000', 'Automatic', '2', '200', 'Non', 'Avec permis', 'Voiture en bon etat','https://imgd.aeplcdn.com/370x208/n/cw/ec/116201/c-class-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80','435345345','PARIS',75014);
-INSERT INTO announce (`user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `condition`,`license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('3', '2022 Audi A4 Premium', 35000.00, 2022, '5', '26', 'Diesel', 15000, 'Automatic', '2', 220, 'Non', 'Avec permis', 'Brand new Audi A4 Premium with low mileage.', 'https://vehicle-images.dealerinspire.com/d425-11002263/WAUDAAF4XPN008695/253716c405b9ee21f490653aa08ec070.jpg', '12345678', 'PARIS',75014);
-INSERT INTO announce ( `user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `condition`, `license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('4','2021 Volkswagen Polo TSI', 20000, 2021, '1', '2', 'Diesel', 18000, 'Automatic', '3', 110, 'yes', 'Avec permis','Well-maintained Volkswagen Polo TSI for sale.', 'https://spn-mda.spinny.com/img/w_bhOcE4TGmSQptVZkm9OQ/mobile/file.JPG?w=300&dpr=1.5', '78833032', 'PARIS', 75014
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description`, `image`,`contact` , `city`,`postalcode`) VALUES ('1', 'A vendre magnifique 207.. super occasion', '20000.00', '2000', '4', '24', 'Diesel', '50000','Manuelle', '1', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur','https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=','435345345','PARIS',75014);
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `image`,`contact`, `city`,`postalcode`) VALUES ('2', 'Dernier Mercedes amg', '35000', 2022, '2', '7', 'Petrol', '50000', 'Automatic', '2', '200', 'Non', 'Avec permis', 'Voiture en bon etat','https://imgd.aeplcdn.com/370x208/n/cw/ec/116201/c-class-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80','435345345','PARIS',75014);
+INSERT INTO announce (`user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `state`,`license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('3', '2022 Audi A4 Premium', 35000.00, 2022, '5', '26', 'Diesel', 15000, 'Automatic', '2', 220, 'Non', 'Avec permis', 'Brand new Audi A4 Premium with low mileage.', 'https://vehicle-images.dealerinspire.com/d425-11002263/WAUDAAF4XPN008695/253716c405b9ee21f490653aa08ec070.jpg', '12345678', 'PARIS',75014);
+INSERT INTO announce ( `user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `state`, `license`, `description`, `image`, `contact`, `city`,`postalcode`) VALUES ('4','2021 Volkswagen Polo TSI', 20000, 2021, '1', '2', 'Diesel', 18000, 'Automatic', '3', 110, 'yes', 'Avec permis','Well-maintained Volkswagen Polo TSI for sale.', 'https://spn-mda.spinny.com/img/w_bhOcE4TGmSQptVZkm9OQ/mobile/file.JPG?w=300&dpr=1.5', '78833032', 'PARIS', 75014
 );
 
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('othiel.leith@gmail.com');

@@ -51,6 +51,8 @@ const edit = (req, res) => {
     });
 };
 
+// sala announce
+
 const add = (req, res) => {
   const announce = req.body;
   // const picture = req.file.filename;
@@ -70,6 +72,18 @@ const add = (req, res) => {
       });
     });
 };
+
+const selectNewAnnounce = (req, res) => {
+  const { model } = req.params;
+  models.announce.selectAllForAnnounce(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+// upload image
 
 const checkUpload = (req, res) => {
   res.status(200).send("fichier téléchargé");
@@ -125,4 +139,5 @@ module.exports = {
   checkUpload,
   searchByModel,
   select,
+  selectNewAnnounce,
 };

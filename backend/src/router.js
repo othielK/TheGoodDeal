@@ -37,6 +37,7 @@ router.post(
 );
 
 router.get("/announce", announceControllers.select);
+router.get("/listAnnounces", announceControllers.browse);
 // router.delete("/announce/:id", announceControllers.destroy);
 // router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
 // router.get("/announce/:id", announceControllers.read);
