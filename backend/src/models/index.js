@@ -54,6 +54,11 @@ const AnnounceManager = require("./AnnounceManager");
 models.announce = new AnnounceManager();
 models.announce.setDatabase(pool);
 
+const MessageManager = require("./MessageManager");
+
+models.message = new MessageManager();
+models.message.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

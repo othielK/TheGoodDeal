@@ -66,7 +66,6 @@ const checkEmailIfExist = (req, res, next) => {
     if (user.length !== 0) {
       // eslint-disable-next-line prefer-destructuring
       req.user = user[0];
-      console.info("req.user : ", req.user);
       next();
     } else {
       res.sendStatus(401);
