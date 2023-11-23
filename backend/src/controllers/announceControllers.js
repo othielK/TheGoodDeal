@@ -99,6 +99,18 @@ const select = (req, res) => {
   });
 };
 
+// SEARCH FOR CAR DETAILS
+const getCarDetails = (req, res) => {
+  const { id } = req.params;
+  models.announce.getCarDetailsAll(id).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
 // SEARCH
 const searchByModel = (req, res) => {
   const { model } = req.params;
@@ -119,4 +131,5 @@ module.exports = {
   destroy,
   searchByModel,
   select,
+  getCarDetails,
 };

@@ -1,0 +1,124 @@
+/* PARTIE IMAGE */
+.selected_image {
+  display: none;
+}
+
+.image_scroll {
+  display: flex;
+  overflow-x: auto;
+}
+
+.image_scroll img {
+  width: 100%;
+  height: auto;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* PARTIE CONTENT */
+
+.car_content {
+  line-height: 150%;
+  padding-top: 10px;
+}
+
+.car_content > p {
+  color: #555;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.car_content > h5 {
+  color: #d73239;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.tag_card_car {
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.tag_card_car > .tag_car_details {
+  background-color: #f3cd60;
+  width: calc(50% - 30px);
+  gap: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 64px;
+  padding: 5px;
+}
+.description {
+  padding: 30px 0;
+}
+
+@media only screen and (min-width: 769px) {
+  .car_detail_image {
+    overflow-x: hidden;
+  }
+
+  .selected_image {
+    display: block;
+  }
+  .selected_image > img {
+    width: 615px;
+    height: 400px;
+  }
+
+  .image_scroll > img {
+    width: 150px;
+    height: auto;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .image_scroll {
+    overflow-x: hidden;
+  }
+}
+
+/* @media (min-width:  500px) {
+
+    .card_details_car{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 20px;
+    } */
+
+/* partie 1 */
+
+/* .tag_card_car {
+        flex-wrap: nowrap;
+        width: 50%;
+    }
+    
+    .tag_card_car > .tag_car_details {
+        width: 100%;
+        padding:0 10px;
+
+    } */
+
+/* partie 2 */
+
+/* .part2{
+        max-width: 650px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .detail-pair{
+        margin: 10px;
+        width: calc(20% - 20px);
+        height :80px;
+    } */
+
+/* partie 3 */
+
+/* partie 4 */

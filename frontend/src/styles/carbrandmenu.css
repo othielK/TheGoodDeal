@@ -1,49 +1,38 @@
-.car_brand_menu{
-  
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px;
+.car_brand_menu {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
 .car_model_by_brand {
-
-    width: 50%; 
-    box-sizing: border-box;
-    padding: 10px;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 10px;
 }
 .car_model_by_brand > a > h3 {
-    display: flex;
-
-
-    
+  display: flex;
 }
 .car_model_list {
-    border-bottom: 1px solid #ccc;
-} 
+  border-bottom: 1px solid #ccc;
+}
 
- .model_list > a{
-    color: #999;
-font-size: 14px;
-font-weight: 700;
+.model_list > a {
+  color: #999;
+  font-size: 14px;
+  font-weight: 700;
+}
 
+@media (min-width: 900px) {
+  .car_brand_menu {
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: nowrap;
+    justify-content: space-around;
   }
-
-  @media (min-width: 900px) {
-    .car_brand_menu{
-  
-        display: flex;
-        /* flex-direction: row; */
-        flex-wrap: nowrap;
-        justify-content: space-around;
-
-
-    }
-    .car_model_list {
-        border-bottom: none;
-    } 
-    .car_model_by_brand {
-
-        width: auto;
-    }
-
+  .car_model_list {
+    border-bottom: none;
   }
+  .car_model_by_brand {
+    width: auto;
+  }
+}

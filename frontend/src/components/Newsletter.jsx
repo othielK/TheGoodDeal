@@ -15,7 +15,7 @@ export default function Newsletter() {
     event.preventDefault();
 
     axios
-      .post("http://localhost:5000/newsletter", {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/newsletter`, {
         email,
       })
 

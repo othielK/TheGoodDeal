@@ -7,6 +7,7 @@ import MessagePage from "../pages/MessagePage";
 import AnnouncePage from "../pages/AnnouncePage";
 import ResultPage from "../pages/ResultPage";
 import CarmodelResult from "../pages/CarmodelResult";
+import CarDetailPage from "../pages/CarDetailPage";
 
 export default function Content() {
   return (
@@ -19,6 +20,7 @@ export default function Content() {
         <Route path="/announce" element={<AnnouncePage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/result/:modelResearch" element={<CarmodelResult />} />
+        <Route path="/cardetails/:id" element={<CarDetailPage />} />
         {/* <Route path="/search" element={<SearchResult />} /> */}
       </Routes>
     </section>

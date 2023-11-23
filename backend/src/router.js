@@ -8,8 +8,12 @@ const announceControllers = require("./controllers/announceControllers");
 const newsletterControllers = require("./controllers/newsletterControllers");
 const carbrandControllers = require("./controllers/carbrandControllers");
 const carmodelControllers = require("./controllers/carmodelControllers");
+const favoriteControllers = require("./controllers/favoriteControllers");
 
 const auth = require("./middlewares/auth");
+
+router.post("/favoris", favoriteControllers.add);
+router.get("/favoris/:id", favoriteControllers.readFavorite);
 
 router.get("/carmodel", carmodelControllers.browse);
 router.get("/carbrand", carbrandControllers.browse);
@@ -28,7 +32,7 @@ router.post("/login", auth.checkEmailIfExist, userControllers.verifyPassword);
 router.get("/announce", announceControllers.select);
 // router.delete("/announce/:id", announceControllers.destroy);
 // router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
-// router.get("/announce/:id", announceControllers.read);
+router.get("/announce/:id", announceControllers.getCarDetails);
 // router.post("/announce", announceControllers.add);
 
 router.post("/newsletter", newsletterControllers.add);
