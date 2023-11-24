@@ -11,7 +11,7 @@ export default function AnnouncePage() {
     user_id: 1,
     title: "",
     price: 0,
-    image: "",
+    image_1: "",
     year: "",
     car_brand_id: 1,
     car_model_id: 1,
@@ -43,11 +43,6 @@ export default function AnnouncePage() {
         ...annonce,
         [event.target.name]: parseInt(event.target.value, 10),
       });
-      // } else if (event.target.name === "image") {
-      //   setAnnonce({
-      //     ...annonce,
-      //     image: event.target.files[0],
-      //   });
     } else {
       setAnnonce({
         ...annonce,
@@ -57,33 +52,32 @@ export default function AnnouncePage() {
   };
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setAnnonce((prevData) => ({ ...prevData, image: file }));
+    setAnnonce((prevData) => ({ ...prevData, image_1: event.target.files[0] }));
   };
 
   const sendFormData = (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("user_id", annonce.user_id);
+    formData.append("title", annonce.title);
+    formData.append("price", annonce.price);
+    formData.append("image_1", annonce.image_1);
+    formData.append("year", annonce.year);
+    formData.append("car_brand_id", annonce.car_brand_id);
+    formData.append("car_model_id", annonce.car_model_id);
+    formData.append("motorisation", annonce.motorisation);
+    formData.append("kilometer", annonce.kilometer);
+    formData.append("transmission", annonce.transmission);
+    formData.append("car_type_id", annonce.car_type_id);
+    formData.append("power", annonce.power);
+    formData.append("state", annonce.state);
+    formData.append("license", annonce.license);
+    formData.append("description", annonce.description);
+    formData.append("contact", annonce.contact);
+    formData.append("city", annonce.city);
+    formData.append("postalcode", annonce.postalcode);
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/announce`, {
-        user_id: annonce.user_id,
-        title: annonce.title,
-        price: annonce.price,
-        image: annonce.image,
-        year: annonce.year,
-        car_brand_id: annonce.car_brand_id,
-        car_model_id: annonce.car_model_id,
-        motorisation: annonce.motorisation,
-        kilometer: annonce.kilometer,
-        transmission: annonce.transmission,
-        car_type_id: annonce.car_type_id,
-        power: annonce.power,
-        state: annonce.state,
-        license: annonce.license,
-        description: annonce.description,
-        contact: annonce.contact,
-        city: annonce.city,
-        postalcode: annonce.postalcode,
-      })
+      .post(`${import.meta.env.VITE_BACKEND_URL}/announce`, formData)
       .then((response) => {
         console.info(response);
       });
@@ -127,7 +121,8 @@ export default function AnnouncePage() {
     getModel();
   }, [annonce.car_brand_id]);
 
-  console.info(annonce);
+  // console.info(annonce);
+  console.info(annonce.image_1);
 
   return (
     <div className="annonce">
@@ -204,7 +199,7 @@ export default function AnnouncePage() {
             onChange={handleChangeValues}
           />
           <p>Les photos de votre véhicule</p>
-          <input type="file" name="image" onChange={handleFileChange} />
+          <input type="file" name="image_1" onChange={handleFileChange} />
 
           <div className="button">
             <input

@@ -73,9 +73,9 @@ CREATE TABLE images (
   `image_id` INT NOT NULL AUTO_INCREMENT,
   `announce_id` INT NOT NULL,
   `image_1` VARCHAR(255),
-  -- `image_2` VARCHAR(255),
-  -- `image_3` VARCHAR(255),
-  -- `image_4` VARCHAR(255),
+  `image_2` VARCHAR(255),
+  `image_3` VARCHAR(255),
+  `image_4` VARCHAR(255),
   
 
   PRIMARY KEY (`image_id`),

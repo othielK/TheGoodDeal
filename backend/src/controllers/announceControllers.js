@@ -55,7 +55,6 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const announce = req.body;
-  // const picture = req.file.filename;
   const picture = req.file.filename;
   console.info("coucou", picture);
   models.announce.insert(announce).then(([result]) => {
