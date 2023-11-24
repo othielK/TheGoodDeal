@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
@@ -107,8 +107,10 @@ export default function ResultPage() {
       </div>
 
       {filteredCars.map((car) => (
-        <div className="cards">
-          <Cardcarresult key={car.id} car={car} />
+        <div className="cards" key={car.id}>
+          <Link to={`/cardetails/${car.id}`}>
+            <Cardcarresult car={car} />
+          </Link>
         </div>
       ))}
       {filteredCars.length === 0 && <p>Aucun résultat</p>}
