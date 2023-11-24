@@ -87,5 +87,20 @@ class AnnounceManager extends AbstractManager {
   //       ]
   //     );
   //   }
+
+  getCarDetailsAll(id) {
+    return this.database.query(
+      `SELECT a.image, a.title, a.price, a.year, b.car_brand_name, m.car_model_name, a.motorisation, a.kilometer, a.transmission, a.city, a.postalcode, a.description, a.license, a.condition, a.power, t.car_type_name, u.firstname, LEFT(u.firstname, 1) AS first_letter_of_firstname
+      FROM announce a 
+      JOIN car_brand b ON a.car_brand_id = b.car_brand_id 
+      JOIN car_model m ON a.car_model_id = m.car_model_id
+      JOIN car_type t ON a.car_type_id = t.car_type_id
+      JOIN user u ON a.user_id = u.user_id
+      WHERE a.announce_id = ?
+      `,
+      [id]
+    );
+  }
 }
+
 module.exports = AnnounceManager;

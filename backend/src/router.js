@@ -46,6 +46,7 @@ router.get("/newsletter/:id", newsletterControllers.read);
 router.get("/announce/model/:model", announceControllers.searchByModel);
 router.get("/announce/brand/:brand", announceControllers.searchByBrand);
 router.get("/announce/search/:searchTerm", announceControllers.search);
+router.get("/announce/:id", announceControllers.getCarDetails);
 
 router.post("/sendmessage", messageControllers.sendMessageBetweenUsers);
 router.get(
