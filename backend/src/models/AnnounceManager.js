@@ -52,10 +52,10 @@ class AnnounceManager extends AbstractManager {
     );
   }
 
-  insertImage(picture, id) {
+  insertImage(picture1, picture2, picture3, picture4, id) {
     return this.database.query(
-      `INSERT INTO images (image_1, announce_id) VALUES (?, ?)`,
-      [picture, id]
+      `INSERT INTO images (image_1, image_2, image_3, image_4, announce_id) VALUES (?, ?, ?, ?, ?)`,
+      [picture1, picture2, picture3, picture4, id]
     );
   }
 

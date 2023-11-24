@@ -55,13 +55,18 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const announce = req.body;
-  const picture = req.file.filename;
-  console.info("coucou", picture);
+  // eslint-disable-next-line prefer-destructuring
+  const files = req.files;
+  const image1 = files.image_1[0].path;
+  const image2 = files.image_2[0].path;
+  const image3 = files.image_3[0].path;
+  const image4 = files.image_4[0].path;
+
   models.announce.insert(announce).then(([result]) => {
     console.info(result);
     const announceId = result.insertId;
     models.announce
-      .insertImage(picture, announceId)
+      .insertImage(image1, image2, image3, image4, announceId)
       .then(([result2]) => {
         console.info(result2);
         res.status(200).send("Créée avec succés");
