@@ -12,6 +12,9 @@ export default function AnnouncePage() {
     title: "",
     price: 0,
     image_1: "",
+    image_2: "",
+    image_3: "",
+    image_4: "",
     year: "",
     car_brand_id: 1,
     car_model_id: 1,
@@ -52,7 +55,14 @@ export default function AnnouncePage() {
   };
 
   const handleFileChange = (event) => {
-    setAnnonce((prevData) => ({ ...prevData, image_1: event.target.files[0] }));
+    setAnnonce((prevData) => ({
+      ...prevData,
+      image_1: event.target.files[0],
+      image_2: event.target.files[0],
+      image_3: event.target.files[0],
+      image_4: event.target.files[0],
+    }));
+    // setAnnonce((prevData) => ({ ...prevData, image_1,: event.target.files[0] }));
   };
 
   const sendFormData = (event) => {
@@ -62,6 +72,9 @@ export default function AnnouncePage() {
     formData.append("title", annonce.title);
     formData.append("price", annonce.price);
     formData.append("image_1", annonce.image_1);
+    formData.append("image_2", annonce.image_2);
+    formData.append("image_3", annonce.image_3);
+    formData.append("image_4", annonce.image_4);
     formData.append("year", annonce.year);
     formData.append("car_brand_id", annonce.car_brand_id);
     formData.append("car_model_id", annonce.car_model_id);
@@ -200,6 +213,9 @@ export default function AnnouncePage() {
           />
           <p>Les photos de votre véhicule</p>
           <input type="file" name="image_1" onChange={handleFileChange} />
+          <input type="file" name="image_2" onChange={handleFileChange} />
+          <input type="file" name="image_3" onChange={handleFileChange} />
+          <input type="file" name="image_4" onChange={handleFileChange} />
 
           <div className="button">
             <input
