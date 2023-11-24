@@ -27,6 +27,7 @@ export default function Content() {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/backoffice" element={<Backoffice />} />
         <Route path="/result/:userResearch" element={<CarbrandmodelResult />} />
+        <Route path="/search/:userSearch" element={<CarbrandmodelResult />} />
         <Route path="/cardetails/:id" element={<CarDetailPage />} />
       </Routes>
     </section>
