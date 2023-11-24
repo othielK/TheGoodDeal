@@ -8,24 +8,24 @@ export default function AnnouncePage() {
   const [types, setTypes] = useState([]);
 
   const [annonce, setAnnonce] = useState({
-    title: "",
     user_id: 1,
+    title: "",
     price: 0,
+    image: "",
+    year: "",
     car_brand_id: 1,
     car_model_id: 1,
-    year: undefined,
     motorisation: "essence",
-    kilometer: undefined,
+    kilometer: "",
     transmission: "manuelle",
     car_type_id: 1,
-    power: undefined,
+    power: "",
     state: "yes",
     license: "yes",
+    description: "",
     contact: "",
     city: "",
-    postalcode: undefined,
-    description: "",
-    image: undefined,
+    postalcode: "",
   });
 
   const handleChangeValues = (event) => {
@@ -36,17 +36,18 @@ export default function AnnouncePage() {
       event.target.name === "year" ||
       event.target.name === "kilometer" ||
       event.target.name === "car_type_id" ||
-      event.target.name === "power"
+      event.target.name === "power" ||
+      event.target.name === "postalcode"
     ) {
       setAnnonce({
         ...annonce,
         [event.target.name]: parseInt(event.target.value, 10),
       });
-    } else if (event.target.name === "image") {
-      setAnnonce({
-        ...annonce,
-        image: event.target.files[0],
-      });
+      // } else if (event.target.name === "image") {
+      //   setAnnonce({
+      //     ...annonce,
+      //     image: event.target.files[0],
+      //   });
     } else {
       setAnnonce({
         ...annonce,
@@ -55,16 +56,22 @@ export default function AnnouncePage() {
     }
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setAnnonce((prevData) => ({ ...prevData, image: file }));
+  };
+
   const sendFormData = (event) => {
     event.preventDefault();
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/announce`, {
-        title: annonce.title,
         user_id: annonce.user_id,
+        title: annonce.title,
         price: annonce.price,
+        image: annonce.image,
+        year: annonce.year,
         car_brand_id: annonce.car_brand_id,
         car_model_id: annonce.car_model_id,
-        year: annonce.year,
         motorisation: annonce.motorisation,
         kilometer: annonce.kilometer,
         transmission: annonce.transmission,
@@ -72,11 +79,10 @@ export default function AnnouncePage() {
         power: annonce.power,
         state: annonce.state,
         license: annonce.license,
+        description: annonce.description,
         contact: annonce.contact,
         city: annonce.city,
         postalcode: annonce.postalcode,
-        description: annonce.description,
-        image: annonce.image,
       })
       .then((response) => {
         console.info(response);
@@ -198,7 +204,7 @@ export default function AnnouncePage() {
             onChange={handleChangeValues}
           />
           <p>Les photos de votre véhicule</p>
-          <input type="file" name="image" onChange={handleChangeValues} />
+          <input type="file" name="image" onChange={handleFileChange} />
 
           <div className="button">
             <input

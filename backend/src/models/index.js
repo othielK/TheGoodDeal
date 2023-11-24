@@ -59,6 +59,11 @@ const AnnounceManager = require("./AnnounceManager");
 models.announce = new AnnounceManager();
 models.announce.setDatabase(pool);
 
+const ImageManager = require("./ImageManager");
+
+models.image = new ImageManager();
+models.image.setDatabase(pool);
+
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

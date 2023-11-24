@@ -11,6 +11,7 @@ const newsletterControllers = require("./controllers/newsletterControllers");
 const carbrandControllers = require("./controllers/carbrandControllers");
 const carmodelControllers = require("./controllers/carmodelControllers");
 const cartypeControllers = require("./controllers/cartypeControllers");
+const imageControllers = require("./controllers/imageControllers");
 
 const auth = require("./middlewares/auth");
 
@@ -41,7 +42,9 @@ router.get("/listAnnounces", announceControllers.browse);
 // router.delete("/announce/:id", announceControllers.destroy);
 // router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
 // router.get("/announce/:id", announceControllers.read);
-router.post("/announce", announceControllers.add);
+router.post("/announce", uploadMiddleware.uploadFile, announceControllers.add);
+
+router.get("/image", imageControllers.read);
 
 router.post("/newsletter", newsletterControllers.add);
 router.get("/newsletter/:id", newsletterControllers.read);

@@ -56,22 +56,49 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const announce = req.body;
   // const picture = req.file.filename;
-  console.info("announce :: ", announce);
-  // TODO validations (length, format...)
-
-  models.announce
-    .insert(announce)
-    .then(([result]) => {
-      console.info(result);
-      res.status(200).json({ message: "Announce créée avec succès" });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json({
-        error: err.errno,
+  const picture = req.file.filename;
+  console.info("coucou", picture);
+  models.announce.insert(announce).then(([result]) => {
+    console.info(result);
+    const announceId = result.insertId;
+    models.announce
+      .insertImage(picture, announceId)
+      .then(([result2]) => {
+        console.info(result2);
+        res.status(200).send("Créée avec succés");
+      })
+      .catch((err) => {
+        res.status(500).send(err);
       });
-    });
+  });
 };
+// upload image
+
+const checkUpload = (req, res) => {
+  res.status(200).send("fichier téléchargé");
+};
+
+// const addAnnounceWithImages = (req, res) => {
+//   const { announce, images } = req.body;
+
+//   models.announce
+//     .insert(announce)
+//     .then((announceId) => {
+//       console.info(`Announce créée avec succés: ${announceId}`);
+//       res.status(200).json({ message: "Announce créée avec succès" });
+//       return models.announce.insertImage(images, announceId);
+//     })
+//     .then(() => {
+//       console.info("Images insérées avec succés");
+//       res.status(200).json({ message: "Annonce et images créés avec succès" });
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.status(500).json({
+//         error: err.errno,
+//       });
+//     });
+// };
 
 const selectNewAnnounce = (req, res) => {
   const { model } = req.params;
@@ -82,11 +109,6 @@ const selectNewAnnounce = (req, res) => {
       res.send(rows);
     }
   });
-};
-// upload image
-
-const checkUpload = (req, res) => {
-  res.status(200).send("fichier téléchargé");
 };
 
 const destroy = (req, res) => {
@@ -140,4 +162,5 @@ module.exports = {
   searchByModel,
   select,
   selectNewAnnounce,
+  // addAnnounceWithImages,
 };
