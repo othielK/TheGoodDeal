@@ -127,6 +127,18 @@ const searchByBrand = (req, res) => {
     }
   });
 };
+
+// SEARCHBAR
+const search = (req, res) => {
+  const { searchTerm } = req.params;
+  models.announce.searchBar(searchTerm).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
 module.exports = {
   browse,
   read,
@@ -137,4 +149,5 @@ module.exports = {
   searchByModel,
   searchByBrand,
   select,
+  search,
 };

@@ -5,6 +5,18 @@ class AnnounceManager extends AbstractManager {
     super({ table: "announce" });
   }
 
+  // SEARCHBAR
+  searchBar(searchTerm) {
+    return this.database.query(
+      `SELECT  a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      FROM announce a 
+      JOIN car_brand b ON a.car_brand_id = b.car_brand_id 
+      JOIN car_model m ON a.car_model_id = m.car_model_id 
+      WHERE b.car_brand_name LIKE ? OR m.car_model_name LIKE ?`,
+      [`%${searchTerm}%`, `%${searchTerm}%`]
+    );
+  }
+
   selectAll(announce) {
     return this.database.query(
       `SELECT  a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
