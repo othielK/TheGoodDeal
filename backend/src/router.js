@@ -12,6 +12,7 @@ const carbrandControllers = require("./controllers/carbrandControllers");
 const carmodelControllers = require("./controllers/carmodelControllers");
 const cartypeControllers = require("./controllers/cartypeControllers");
 const imageControllers = require("./controllers/imageControllers");
+const messageControllers = require("./controllers/messageControllers");
 
 const auth = require("./middlewares/auth");
 
@@ -49,6 +50,20 @@ router.get("/image", imageControllers.read);
 router.post("/newsletter", newsletterControllers.add);
 router.get("/newsletter/:id", newsletterControllers.read);
 
-// router.get("/announce/:model", announceControllers.searchByModel);
+router.get("/announce/model/:model", announceControllers.searchByModel);
+router.get("/announce/brand/:brand", announceControllers.searchByBrand);
+router.get("/announce/search/:searchTerm", announceControllers.search);
+router.get("/announce/:id", announceControllers.getCarDetails);
 
+router.post("/sendmessage", messageControllers.sendMessageBetweenUsers);
+router.get(
+  "/messages/:userId",
+  auth.checkIfIsAllowed,
+  messageControllers.listUserMessage
+);
+
+router.get(
+  "/messages/sender/:userId/receiver/:receiverId",
+  messageControllers.listMessagesBetweenUsers
+);
 module.exports = router;

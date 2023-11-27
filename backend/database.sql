@@ -100,14 +100,17 @@ CREATE TABLE images (
     REFERENCES announce (`announce_id`)
    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-   CREATE TABLE message (
+   CREATE TABLE messages (
   `message_id` INT NOT NULL AUTO_INCREMENT,
   `announce_id` INT NOT NULL,
   `sender_user_id` INT NOT NULL,
   `receiver_user_id` INT NOT NULL,
-  `message` VARCHAR(500) NOT NULL,
-  `msgsentdate` date NOT NULL,
+  `content` TEXT NOT NULL,
+  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`message_id`),
+
+  FOREIGN KEY (sender_user_id) REFERENCES user(user_id),
+  FOREIGN KEY (receiver_user_id) REFERENCES user(user_id),
 
    CONSTRAINT `fk_announce_message`
     FOREIGN KEY (`announce_id`)
@@ -213,6 +216,9 @@ INSERT INTO announce ( `user_id`, `title`, `price`, `year`, `car_brand_id`, `car
 --   'https://img.leboncoin.fr/api/v1/lbcpb1/images/a9/76/12/a976125fe6f921752781537fd3709bca924ae47b.jpg?rule=ad-large',
 --   'https://img.leboncoin.fr/api/v1/lbcpb1/images/a9/76/12/a976125fe6f921752781537fd3709bca924ae47b.jpg?rule=ad-large'
 -- )
+
+INSERT INTO messages (announce_id, sender_user_id, receiver_user_id, content) 
+VALUES ('1', '2', '3', 'Coucou Fatma');
 
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('othiel.leith@gmail.com');
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('saima.narat@gmail.com');

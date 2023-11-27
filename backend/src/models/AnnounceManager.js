@@ -5,25 +5,25 @@ class AnnounceManager extends AbstractManager {
     super({ table: "announce" });
   }
 
-  // selectAll(announce) {
-  //   return this.database.query(
-  //     `SELECT a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
-  //     FROM announce a
-  //     JOIN car_brand b ON a.car_brand_id = b.car_brand_id
-  //     JOIN car_model m ON a.car_model_id = m.car_model_id`,
-  //     [announce]
-  //   );
-  // }
-
-  // sala announce
-
-  selectAllForAnnounce(announce) {
+  // SEARCHBAR
+  searchBar(searchTerm) {
     return this.database.query(
-      `SELECT a.title, a.price, a.year,a.motorisation,a.kilometer,a.transmission, a.power,a.state,a.license,a.description,a.contact,a.city,a.postalcode, b.car_brand_id, m.car_model_id, t.car_type_id,
-      FROM announce as a 
-      JOIN car_brand as b ON a.car_brand_id = b.car_brand_id 
-      JOIN car_model as m ON a.car_model_id = m.car_model_id
-      JOIN car_type as t ON a.car_type_id= t.car_type_id,`[announce]
+      `SELECT  a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      FROM announce a
+      JOIN car_brand b ON a.car_brand_id = b.car_brand_id
+      JOIN car_model m ON a.car_model_id = m.car_model_id
+      WHERE b.car_brand_name LIKE ? OR m.car_model_name LIKE ?`,
+      [`%${searchTerm}%`, `%${searchTerm}%`]
+    );
+  }
+
+  selectAll(announce) {
+    return this.database.query(
+      `SELECT  a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      FROM announce a
+      JOIN car_brand b ON a.car_brand_id = b.car_brand_id
+      JOIN car_model m ON a.car_model_id = m.car_model_id`,
+      [announce]
     );
   }
 
@@ -59,29 +59,41 @@ class AnnounceManager extends AbstractManager {
     );
   }
 
-  // search
+  // searchbymodel
   findByModel(model) {
     return this.database.query(
       `SELECT a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
-      FROM announce a 
-      JOIN car_brand b ON a.car_brand_id = b.car_brand_id 
+      FROM announce a
+      JOIN car_brand b ON a.car_brand_id = b.car_brand_id
       JOIN car_model m ON a.car_model_id = m.car_model_id WHERE m.car_model_name  = ?`,
       [model]
     );
   }
 
-  //    update(announce) {
-  //     return this.database.query(
-  //       `update ${this.table} set   firstname = ?, lastname= ?, email= ?, hashedPassword= ?  where user_id = ?`,
-  //       [
-  //         user.firstname,
-  //         user.lastname,
-  //         user.email,
-  //         user.hashedPassword,
-  //         user.user_id,
-  //       ]
-  //     );
-  //   }
+  // searchbybrand
+  findByBrand(brand) {
+    return this.database.query(
+      `SELECT a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      FROM announce a
+      JOIN car_model m ON a.car_model_id = m.car_model_id
+      JOIN car_brand b ON a.car_brand_id = b.car_brand_id WHERE b.car_brand_name  = ?`,
+      [brand]
+    );
+  }
+
+  getCarDetailsAll(id) {
+    return this.database.query(
+      `SELECT a.image, a.title, a.price, a.year, b.car_brand_name, m.car_model_name, a.motorisation, a.kilometer, a.transmission, a.city, a.postalcode, a.description, a.license, a.condition, a.power, t.car_type_name, u.firstname, LEFT(u.firstname, 1) AS first_letter_of_firstname
+      FROM announce a
+      JOIN car_brand b ON a.car_brand_id = b.car_brand_id
+      JOIN car_model m ON a.car_model_id = m.car_model_id
+      JOIN car_type t ON a.car_type_id = t.car_type_id
+      JOIN user u ON a.user_id = u.user_id
+      WHERE a.announce_id = ?
+      `,
+      [id]
+    );
+  }
 }
 
 module.exports = AnnounceManager;
