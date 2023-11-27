@@ -51,28 +51,68 @@ const edit = (req, res) => {
     });
 };
 
+// sala announce
+
 const add = (req, res) => {
   const announce = req.body;
-  const picture = req.file.filename;
-  console.info("announce :: ", announce);
-  // TODO validations (length, format...)
+  // eslint-disable-next-line prefer-destructuring
+  const files = req.files;
+  const image1 = files.image_1[0].path;
+  const image2 = files.image_2[0].path;
+  const image3 = files.image_3[0].path;
+  const image4 = files.image_4[0].path;
 
-  models.announce
-    .insert(announce, picture)
-    .then(([result]) => {
-      console.info(result);
-      res.status(200).json({ message: "Announce créée avec succès" });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json({
-        error: err.errno,
+  models.announce.insert(announce).then(([result]) => {
+    console.info(result);
+    const announceId = result.insertId;
+    models.announce
+      .insertImage(image1, image2, image3, image4, announceId)
+      .then(([result2]) => {
+        console.info(result2);
+        res.status(200).send("Créée avec succés");
+      })
+      .catch((err) => {
+        res.status(500).send(err);
       });
-    });
+  });
 };
+// upload image
 
 const checkUpload = (req, res) => {
   res.status(200).send("fichier téléchargé");
+};
+
+// const addAnnounceWithImages = (req, res) => {
+//   const { announce, images } = req.body;
+
+//   models.announce
+//     .insert(announce)
+//     .then((announceId) => {
+//       console.info(`Announce créée avec succés: ${announceId}`);
+//       res.status(200).json({ message: "Announce créée avec succès" });
+//       return models.announce.insertImage(images, announceId);
+//     })
+//     .then(() => {
+//       console.info("Images insérées avec succés");
+//       res.status(200).json({ message: "Annonce et images créés avec succès" });
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.status(500).json({
+//         error: err.errno,
+//       });
+//     });
+// };
+
+const selectNewAnnounce = (req, res) => {
+  const { model } = req.params;
+  models.announce.selectAllForAnnounce(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
 };
 
 const destroy = (req, res) => {
@@ -163,6 +203,8 @@ module.exports = {
   searchByModel,
   searchByBrand,
   select,
+  selectNewAnnounce,
+  // addAnnounceWithImages,
   search,
   getCarDetails,
 };

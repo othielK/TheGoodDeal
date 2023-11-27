@@ -3,184 +3,293 @@ import axios from "axios";
 import "../styles/announcepage.css";
 
 export default function AnnouncePage() {
-  const [announce, setAnnounce] = useState({
+  const [brand, setBrand] = useState([]);
+  const [models, setModels] = useState([]);
+  const [types, setTypes] = useState([]);
+
+  const [annonce, setAnnonce] = useState({
+    user_id: 1,
     title: "",
-    price: "",
-    brand: "Peugeot",
-    model: "207",
+    price: 0,
+    image_1: "",
+    image_2: "",
+    image_3: "",
+    image_4: "",
     year: "",
-    motorisation: "diesel",
-    km: "",
-    transmission: "",
-    type: "",
+    car_brand_id: 1,
+    car_model_id: 1,
+    motorisation: "essence",
+    kilometer: "",
+    transmission: "manuelle",
+    car_type_id: 1,
     power: "",
-    condition: "oui",
-    license: "",
+    state: "yes",
+    license: "yes",
+    description: "",
     contact: "",
     city: "",
     postalcode: "",
-    description: "",
-    image: "",
   });
 
   const handleChangeValues = (event) => {
-    if (event.target.type === "file") {
-      setAnnounce({
-        ...announce,
-        [event.target.name]: event.target.files[0],
+    if (
+      event.target.name === "car_brand_id" ||
+      event.target.name === "car_model_id" ||
+      event.target.name === "price" ||
+      event.target.name === "year" ||
+      event.target.name === "kilometer" ||
+      event.target.name === "car_type_id" ||
+      event.target.name === "power" ||
+      event.target.name === "postalcode"
+    ) {
+      setAnnonce({
+        ...annonce,
+        [event.target.name]: parseInt(event.target.value, 10),
       });
     } else {
-      setAnnounce({
-        ...announce,
+      setAnnonce({
+        ...annonce,
         [event.target.name]: event.target.value,
       });
     }
   };
 
-  const sendFormData = () => {
+  const handleFileChange = (event) => {
+    setAnnonce((prevData) => ({
+      ...prevData,
+      image_1: event.target.files[0],
+      image_2: event.target.files[0],
+      image_3: event.target.files[0],
+      image_4: event.target.files[0],
+    }));
+    // setAnnonce((prevData) => ({ ...prevData, image_1,: event.target.files[0] }));
+  };
+
+  const sendFormData = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("user_id", annonce.user_id);
+    formData.append("title", annonce.title);
+    formData.append("price", annonce.price);
+    formData.append("image_1", annonce.image_1);
+    formData.append("image_2", annonce.image_2);
+    formData.append("image_3", annonce.image_3);
+    formData.append("image_4", annonce.image_4);
+    formData.append("year", annonce.year);
+    formData.append("car_brand_id", annonce.car_brand_id);
+    formData.append("car_model_id", annonce.car_model_id);
+    formData.append("motorisation", annonce.motorisation);
+    formData.append("kilometer", annonce.kilometer);
+    formData.append("transmission", annonce.transmission);
+    formData.append("car_type_id", annonce.car_type_id);
+    formData.append("power", annonce.power);
+    formData.append("state", annonce.state);
+    formData.append("license", annonce.license);
+    formData.append("description", annonce.description);
+    formData.append("contact", annonce.contact);
+    formData.append("city", annonce.city);
+    formData.append("postalcode", annonce.postalcode);
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/announce`, {
-        announce,
-      })
+      .post(`${import.meta.env.VITE_BACKEND_URL}/announce`, formData)
       .then((response) => {
-        setAnnounce(response.data);
+        console.info(response);
+      });
+  };
+
+  const getBrand = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/carbrand`)
+      .then((response) => {
+        setBrand(response.data);
+      });
+  };
+
+  const getModel = () => {
+    axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/carmodellistbybrand/${
+          annonce.car_brand_id
+        }`
+      )
+      .then((response) => {
+        setModels(response.data);
+      });
+  };
+
+  const getType = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/cartype`)
+      .then((response) => {
+        setTypes(response.data);
         console.info(response.data);
       });
   };
 
   useEffect(() => {
-    sendFormData();
+    getBrand();
+    getType();
   }, []);
 
-  console.info(announce);
+  useEffect(() => {
+    getModel();
+  }, [annonce.car_brand_id]);
+
+  // console.info(annonce);
+  console.info(annonce.image_1);
+
   return (
     <div className="annonce">
       <h2>Merci d’avoir choisi TheGoodeal afin de publier votre annonce !</h2>
 
-      <div className="secound part">
+      <div className="content">
         <form onSubmit={sendFormData}>
-          <h4>Quel titre voulez vous donner à votre annonce ? </h4>
-          <input
-            type="text"
-            placeholder="A vendre magnifique 207... Super occasion..."
-            name="title"
-            onChange={handleChangeValues}
-          />
-          <h4>Prix demandé en euro</h4>
-          <input
-            type="number"
-            placeholder="20000... 5000...."
-            name="price"
-            onChange={handleChangeValues}
-          />
-          <h4> Sélectionner la marque de votre véhicule</h4>
-          <select id="Séléction" name="price" onChange={handleChangeValues}>
-            <option value="">Peugeot</option>
-          </select>
-          <h4> De quel modéle s'agit-il</h4>
-          <select name="model" id="Séléction" onChange={handleChangeValues}>
-            <option value="">207... C3... Clio...</option>
-          </select>
-          <h4>Année de votre véhicule </h4>
-          <input
-            type="number"
-            placeholder="1999... 2014..."
-            name="year"
-            onChange={handleChangeValues}
-          />
-          <h4> Type de motorisation</h4>
-          <select
-            name="motorisation"
-            id="Séléction"
-            onChange={handleChangeValues}
-          >
-            <option value="">Diesel</option>
-          </select>
-          <h4>Nombre de kilométres </h4>
-          <input
-            type="number"
-            placeholder="20000... 100000..."
-            name="km"
-            onChange={handleChangeValues}
-          />
-          <h4> Transmission</h4>
-          <select
-            name="transmission"
-            id="Séléction"
-            onChange={handleChangeValues}
-          >
-            <option value="">Manuelle</option>
-          </select>
-          <h4> Type de véhicule</h4>
-          <select name="type" id="Séléction" onChange={handleChangeValues}>
-            <option value="">Citadine</option>
-          </select>
-
-          <h4>Puissance en Ch </h4>
-          <input
-            type="text"
-            placeholder="75..."
-            name="power"
-            onChange={handleChangeValues}
-          />
-
-          <h4> Premiére main</h4>
-          <select name="condition" id="Séléction" onChange={handleChangeValues}>
-            <option value="">Non</option>
-            <option value="">Oui</option>
-          </select>
-          <h4> Permis</h4>
-          <select name="license" id="Séléction" onChange={handleChangeValues}>
-            <option value="">Avec permis</option>
-            <option value="">Sans permis</option>
-          </select>
-
-          <h4>Numéro de mobile de contact </h4>
-          <input
-            type="text"
-            placeholder="0605040302..."
-            name="contact"
-            onChange={handleChangeValues}
-          />
-
-          <h4>Votre ville </h4>
-          <input
-            type="text"
-            placeholder="Paris...Marseille..."
-            name="city"
-            onChange={handleChangeValues}
-          />
-
-          <h4>Code postale </h4>
-          <input
-            type="number"
-            placeholder="75020...13018..."
-            name="postalcode"
-            onChange={handleChangeValues}
-          />
-
+          <div className="contentpartform">
+            <div className="firstpartform">
+              <div className="title">
+                <p>Titre</p>
+                <input name="title" type="text" onChange={handleChangeValues} />
+              </div>
+              <div className="price">
+                <p>Prix</p>
+                <input
+                  type="number"
+                  name="price"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="brand">
+                <p> Sélectionner la marque de votre véhicule</p>
+                <select name="car_brand_id" onChange={handleChangeValues}>
+                  <option value="">Sélectionner une marque </option>
+                  {brand.map((car) => (
+                    <option key={car.car_brand_id} value={car.car_brand_id}>
+                      {car.car_brand_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="model">
+                <p> De quel modéle s'agit-il</p>
+                <select name="car_model_id" onChange={handleChangeValues}>
+                  <option value="">Sélectionner un modele </option>
+                  {models.map((model) => (
+                    <option key={model.car_model_id} value={model.car_model_id}>
+                      {model.car_model_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="year">
+                <p>Année</p>
+                <input
+                  type="number"
+                  name="year"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="motorisation">
+                <p> Type de motorisation</p>
+                <select onChange={handleChangeValues} name="motorisation">
+                  <option value="essence">Essence</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="electrique">Electrique</option>
+                </select>
+              </div>
+              <div className="kilometer">
+                <p>Kilomètres</p>
+                <input
+                  type="number"
+                  name="kilometer"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="transmission">
+                <p> Transmission</p>
+                <select onChange={handleChangeValues} name="transmission">
+                  <option value="manuelle">Manuelle</option>
+                  <option value="automatique">Automatique</option>
+                </select>
+              </div>
+              <div className="type">
+                <p> Type de véhicule</p>
+                <select name="car_type_id" onChange={handleChangeValues}>
+                  {types.map((type) => (
+                    <option value={type.car_type_id}>
+                      {type.car_type_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="secoundpartform">
+              <div className="power">
+                <p>Puissance</p>
+                <input
+                  type="number"
+                  name="power"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="main">
+                <p>Première main</p>
+                <select name="state" onChange={handleChangeValues}>
+                  <option value="yes">Oui</option>
+                  <option value="no">Non</option>
+                </select>
+              </div>
+              <div className="permis">
+                <p> Permis</p>
+                <select name="licence" onChange={handleChangeValues}>
+                  <option value="yes">Avec permis</option>
+                  <option value="no">Sans permis</option>
+                </select>
+              </div>
+              <div className="contact">
+                <p>Téléphone</p>
+                <input
+                  type="text"
+                  name="contact"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="city">
+                <p>Ville</p>
+                <input type="text" name="city" onChange={handleChangeValues} />
+              </div>
+              <div className="postalcode">
+                <p>Code postal</p>
+                <input
+                  type="number"
+                  name="postalcode"
+                  onChange={handleChangeValues}
+                />
+              </div>
+            </div>
+          </div>
           <div className="description">
-            <h4>Description complète de votre véhicule ... </h4>
-            <input
+            <p>Description</p>
+            <textarea
               type="text"
-              placeholder="Voiture en bon étât. Quelques rayures à l’avant et à l’arrière. Courroie de distribution à changer bientôt. Jamais accidentée. Non fumeur."
               name="description"
               onChange={handleChangeValues}
             />
-            <div className="pictures">
-              <h4>Les photos de votre véhicule</h4>
-
-              <input type="file" name="image" onChange={handleChangeValues} />
-            </div>
+          </div>
+          <div className="pictures">
+            <p>Les photos de votre véhicule</p>
+            <input type="file" name="image_1" onChange={handleFileChange} />
+            <input type="file" name="image_2" onChange={handleFileChange} />
+            <input type="file" name="image_3" onChange={handleFileChange} />
+            <input type="file" name="image_4" onChange={handleFileChange} />
+          </div>
+          <div className="button">
+            <input
+              type="submit"
+              value="Publier l'annonce"
+              // ref={inputRef}
+              onSubmit={sendFormData}
+            />
           </div>
         </form>
-        <div className="button">
-          <input
-            type="submit"
-            value="Publier l'annonce"
-            onSubmit={sendFormData}
-          />
-        </div>
       </div>
     </div>
   );
