@@ -1,27 +1,30 @@
-form {
-  width: 100%;
-}
-.content {
+.contentpartform {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  /* flex-direction: row; */
+  padding: 40px;
   justify-content: center;
-  padding: 20px;
 }
 
-h2 {
+form {
+  width: 100%;
+}
+
+.contentpartform> .secoundpartform {
+  width: 45%;
+  margin-left: 20px;
+}
+.contentpartform> .firstpartform {
+  width: 45%;
+}
+
+.annonce> h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   justify-items: center;
 }
-
-form > .secoundpart {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
 input[type="text"] {
   margin: 10px 0px 10px 0px;
   height: 40px;
@@ -37,12 +40,33 @@ input[type="number"] {
   border: 1px solid;
 }
 
-select#Séléction {
+select {
   margin: 10px 0px 10px 0px;
   height: 40px;
-  width: 360px;
+  width: 100%;
   border: 1px solid;
 }
+form >.description{
+  padding: 40px;
+}
+
+/* 
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+
+
+form > .secoundpart {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 
 .form > .button {
   display: flex;
@@ -89,4 +113,4 @@ select#Séléction {
   input[type="number"] {
     width: 100%;
   }
-}
+} */

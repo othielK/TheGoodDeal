@@ -143,80 +143,144 @@ export default function AnnouncePage() {
 
       <div className="content">
         <form onSubmit={sendFormData}>
-          <p>Titre</p>
-          <input name="title" type="text" onChange={handleChangeValues} />
-          <p>Prix</p>
-          <input type="number" name="price" onChange={handleChangeValues} />
-          <select name="car_brand_id" onChange={handleChangeValues}>
-            <option value="">Sélectionner une marque </option>
-            {brand.map((car) => (
-              <option key={car.car_brand_id} value={car.car_brand_id}>
-                {car.car_brand_name}
-              </option>
-            ))}
-          </select>
-
-          <select name="car_model_id" onChange={handleChangeValues}>
-            <option value="">Sélectionner un modele </option>
-            {models.map((model) => (
-              <option key={model.car_model_id} value={model.car_model_id}>
-                {model.car_model_name}
-              </option>
-            ))}
-          </select>
-          <p>Année</p>
-          <input type="number" name="year" onChange={handleChangeValues} />
-          <select onChange={handleChangeValues} name="motorisation">
-            <option value="essence">Essence</option>
-            <option value="diesel">Diesel</option>
-            <option value="electrique">Electrique</option>
-          </select>
-          <p>Kilomètres</p>
-          <input type="number" name="kilometer" onChange={handleChangeValues} />
-          <select onChange={handleChangeValues} name="transmission">
-            <option value="manuelle">Manuelle</option>
-            <option value="automatique">Automatique</option>
-          </select>
-
-          <select name="car_type_id" onChange={handleChangeValues}>
-            {types.map((type) => (
-              <option value={type.car_type_id}>{type.car_type_name}</option>
-            ))}
-          </select>
-
-          <p>Puissance</p>
-          <input type="number" name="power" onChange={handleChangeValues} />
-          <p>Première main</p>
-          <select name="state" onChange={handleChangeValues}>
-            <option value="yes">Oui</option>
-            <option value="no">Non</option>
-          </select>
-          <select name="licence" onChange={handleChangeValues}>
-            <option value="yes">Avec permis</option>
-            <option value="no">Sans permis</option>
-          </select>
-          <p>Téléphone</p>
-          <input type="text" name="contact" onChange={handleChangeValues} />
-          <p>Ville</p>
-          <input type="text" name="city" onChange={handleChangeValues} />
-          <p>Code postal</p>
-          <input
-            type="number"
-            name="postalcode"
-            onChange={handleChangeValues}
-          />
-          <p>Description</p>
-          <textarea
-            type="text"
-            name="description"
-            onChange={handleChangeValues}
-          />
-          <p>Les photos de votre véhicule</p>
-          <input type="file" name="image_1" onChange={handleFileChange} />
-          <input type="file" name="image_2" onChange={handleFileChange} />
-          <input type="file" name="image_3" onChange={handleFileChange} />
-          <input type="file" name="image_4" onChange={handleFileChange} />
-
+          <div className="contentpartform">
+            <div className="firstpartform">
+              <div className="title">
+                <p>Titre</p>
+                <input name="title" type="text" onChange={handleChangeValues} />
+              </div>
+              <div className="price">
+                <p>Prix</p>
+                <input
+                  type="number"
+                  name="price"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="brand">
+                <p> Sélectionner la marque de votre véhicule</p>
+                <select name="car_brand_id" onChange={handleChangeValues}>
+                  <option value="">Sélectionner une marque </option>
+                  {brand.map((car) => (
+                    <option key={car.car_brand_id} value={car.car_brand_id}>
+                      {car.car_brand_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="model">
+                <p> De quel modéle s'agit-il</p>
+                <select name="car_model_id" onChange={handleChangeValues}>
+                  <option value="">Sélectionner un modele </option>
+                  {models.map((model) => (
+                    <option key={model.car_model_id} value={model.car_model_id}>
+                      {model.car_model_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="year">
+                <p>Année</p>
+                <input
+                  type="number"
+                  name="year"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="motorisation">
+                <p> Type de motorisation</p>
+                <select onChange={handleChangeValues} name="motorisation">
+                  <option value="essence">Essence</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="electrique">Electrique</option>
+                </select>
+              </div>
+              <div className="kilometer">
+                <p>Kilomètres</p>
+                <input
+                  type="number"
+                  name="kilometer"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="transmission">
+                <p> Transmission</p>
+                <select onChange={handleChangeValues} name="transmission">
+                  <option value="manuelle">Manuelle</option>
+                  <option value="automatique">Automatique</option>
+                </select>
+              </div>
+              <div className="type">
+                <p> Type de véhicule</p>
+                <select name="car_type_id" onChange={handleChangeValues}>
+                  {types.map((type) => (
+                    <option value={type.car_type_id}>
+                      {type.car_type_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="secoundpartform">
+              <div className="power">
+                <p>Puissance</p>
+                <input
+                  type="number"
+                  name="power"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="main">
+                <p>Première main</p>
+                <select name="state" onChange={handleChangeValues}>
+                  <option value="yes">Oui</option>
+                  <option value="no">Non</option>
+                </select>
+              </div>
+              <div className="permis">
+                <p> Permis</p>
+                <select name="licence" onChange={handleChangeValues}>
+                  <option value="yes">Avec permis</option>
+                  <option value="no">Sans permis</option>
+                </select>
+              </div>
+              <div className="contact">
+                <p>Téléphone</p>
+                <input
+                  type="text"
+                  name="contact"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="city">
+                <p>Ville</p>
+                <input type="text" name="city" onChange={handleChangeValues} />
+              </div>
+              <div className="postalcode">
+                <p>Code postal</p>
+                <input
+                  type="number"
+                  name="postalcode"
+                  onChange={handleChangeValues}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="description">
+            <p>Description</p>
+            <textarea
+              type="text"
+              name="description"
+              onChange={handleChangeValues}
+            />
+          </div>
+          <div className="pictures">
+            <p>Les photos de votre véhicule</p>
+            <input type="file" name="image_1" onChange={handleFileChange} />
+            <input type="file" name="image_2" onChange={handleFileChange} />
+            <input type="file" name="image_3" onChange={handleFileChange} />
+            <input type="file" name="image_4" onChange={handleFileChange} />
+          </div>
           <div className="button">
             <input
               type="submit"
