@@ -7,6 +7,11 @@ const Context = createContext();
 function Provider({ children }) {
   const [infoUser, setInfoUser] = useState({
     id: localStorage.getItem("id"),
+    firstname: localStorage.getItem("firstname"),
+    // first_letter_of_firstname: localStorage.getItem(
+    //   "first_letter_of_firstname"
+    // ),
+    lastname: localStorage.getItem("lastname"),
     email: localStorage.getItem("email"),
   });
 

@@ -14,19 +14,24 @@ class UserManager extends AbstractManager {
 
   update(user) {
     return this.database.query(
-      `update ${this.table} set   firstname = ?, lastname= ?, email= ?, hashedPassword= ?  where user_id = ?`,
-      [
-        user.firstname,
-        user.lastname,
-        user.email,
-        user.hashedPassword,
-        user.user_id,
-      ]
+      `update ${this.table} set   firstname = ?, lastname= ?, email= ?  where user_id = ?`,
+      [user.firstname, user.lastname, user.email, user.user_id]
     );
   }
 
   searchByEmail(email) {
     return this.database.query(`SELECT * FROM user WHERE email = ?`, [email]);
+  }
+
+  selectAvatar(id) {
+    return this.database.query(
+      `SELECT firstname, LEFT(firstname, 1) AS first_letter_of_firstname
+      FROM user
+      WHERE user_id =?
+
+      `,
+      [id]
+    );
   }
 }
 
