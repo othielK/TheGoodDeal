@@ -9,6 +9,7 @@ import Backoffice from "../pages/Backoffice";
 import CarbrandmodelResult from "../pages/CarbrandmodelResult";
 import Messages from "../pages/Messages";
 import MessageDetails from "../pages/MessageDetails";
+import UpdateUser from "../pages/UpdateUser";
 
 export default function Content() {
   return (
@@ -26,6 +27,7 @@ export default function Content() {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/backoffice" element={<Backoffice />} />
         <Route path="/result/:userResearch" element={<CarbrandmodelResult />} />
+        <Route path="/updateUser" element={<UpdateUser />} />
       </Routes>
     </section>
   );
