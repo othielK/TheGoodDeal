@@ -13,6 +13,7 @@ import filterCars from "../services/carFilterServices";
 import Cardcarresult from "../components/Cardcarresult";
 
 export default function CarmodelResult() {
+  const [data, setData] = useState([]);
   const [dataModel, setDataModel] = useState([]);
   const [errorModel, setErrorModel] = useState(false);
   const [dataBrand, setDataBrand] = useState([]);
@@ -21,6 +22,7 @@ export default function CarmodelResult() {
   const [price, setPrice] = useState("");
   const [kilometer, setKilometer] = useState("");
   const { userResearch } = useParams();
+  const { userSearch } = useParams();
 
   const handleChange = (event) => {
     setMotorisation(event.target.value);
@@ -46,6 +48,7 @@ export default function CarmodelResult() {
     price,
     kilometer
   );
+  const filteredSearchCars = filterCars(data, motorisation, price, kilometer);
 
   const searchModel = () => {
     axios
@@ -69,6 +72,22 @@ export default function CarmodelResult() {
         setErrorBrand(true);
       });
   };
+
+  const searchCars = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/announce/search/${userSearch}`)
+      .then((response) => {
+        console.info(response.data);
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    searchCars();
+  }, [userSearch]);
 
   useEffect(() => {
     searchModel();
@@ -175,6 +194,22 @@ export default function CarmodelResult() {
               <p>Aucun résultat</p>
             )}
             {/* {filteredBrandCars.length === 0 && <p>Aucun résultat</p>} */}
+          </div>
+        </div>
+      )}
+      {data.length > 0 && (
+        <div className="car_results">
+          <h2>
+            {filteredSearchCars.length > 0
+              ? `Nous avons trouvé ${data.length} résultat pour ${userSearch}`
+              : `Nous avons trouvé ${filteredSearchCars.length} résultats pour ${userSearch}`}
+          </h2>
+          <div>
+            {filteredSearchCars.map((car) => (
+              //   <Link key={car.id} to={`/result/${car.id}`}>
+              <Cardcarresult key={car.id} car={car} />
+              //   </Link>
+            ))}
           </div>
         </div>
       )}

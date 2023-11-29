@@ -12,6 +12,34 @@ const browse = (req, res) => {
     });
 };
 
+// ANNOUNCE PAGE
+const searchBymodelAnnounce = (req, res) => {
+  const { model } = req.params;
+  models.car_model.selectByModel(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
+const listModelByBrand = (req, res) => {
+  const { id } = req.params;
+  // const id = req.params;
+  // const modelId = parseInt(id, 10);
+  console.info(id);
+  models.carmodel.findModelsFromBrand(id).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
 module.exports = {
   browse,
+  searchBymodelAnnounce,
+  listModelByBrand,
 };
