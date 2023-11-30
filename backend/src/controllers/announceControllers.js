@@ -172,7 +172,7 @@ const searchByBrand = (req, res) => {
 const search = (req, res) => {
   const { searchTerm } = req.params;
   models.announce.searchBar(searchTerm).then(([rows]) => {
-  if (rows[0] == null) {
+    if (rows[0] == null) {
       res.sendStatus(404);
     } else {
       res.send(rows);
@@ -184,14 +184,13 @@ const search = (req, res) => {
 const getCarDetails = (req, res) => {
   const { id } = req.params;
   models.announce.getCarDetailsAll(id).then(([rows]) => {
- if (rows[0] == null) {
+    if (rows[0] == null) {
       res.sendStatus(404);
     } else {
       res.send(rows);
     }
   });
 };
-
 
 module.exports = {
   browse,

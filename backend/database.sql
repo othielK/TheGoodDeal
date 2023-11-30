@@ -49,7 +49,7 @@ CREATE TABLE user (
   `description` TEXT(500) NOT NULL,
    `contact` VARCHAR(50) NOT NULL,
   `city` VARCHAR(50)  NOT NULL,
-  `postalcode` INT  NOT NULL,
+  `postalcode` VARCHAR(50)  NOT NULL,
   PRIMARY KEY (`announce_id`),
 
   CONSTRAINT `fk_user_announce`
