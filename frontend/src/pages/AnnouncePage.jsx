@@ -1,11 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "../styles/announcepage.css";
+import { Alert, AlertTitle } from "@mui/material";
+import ExportContext from "../contexts/Context";
 
 export default function AnnouncePage() {
+  const { infoUser } = useContext(ExportContext.Context);
   const [brand, setBrand] = useState([]);
   const [models, setModels] = useState([]);
   const [types, setTypes] = useState([]);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const [annonce, setAnnonce] = useState({
     user_id: 1,
@@ -16,8 +21,8 @@ export default function AnnouncePage() {
     image_3: "",
     image_4: "",
     year: "",
-    car_brand_id: 1,
-    car_model_id: 1,
+    car_brand_id: null,
+    car_model_id: null,
     motorisation: "essence",
     kilometer: "",
     transmission: "manuelle",
@@ -39,8 +44,7 @@ export default function AnnouncePage() {
       event.target.name === "year" ||
       event.target.name === "kilometer" ||
       event.target.name === "car_type_id" ||
-      event.target.name === "power" ||
-      event.target.name === "postalcode"
+      event.target.name === "power"
     ) {
       setAnnonce({
         ...annonce,
@@ -64,11 +68,12 @@ export default function AnnouncePage() {
     }));
     // setAnnonce((prevData) => ({ ...prevData, image_1,: event.target.files[0] }));
   };
+  console.info("user_id,", infoUser.id);
 
   const sendFormData = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("user_id", annonce.user_id);
+    formData.append("user_id", infoUser.id);
     formData.append("title", annonce.title);
     formData.append("price", annonce.price);
     formData.append("image_1", annonce.image_1);
@@ -90,9 +95,17 @@ export default function AnnouncePage() {
     formData.append("city", annonce.city);
     formData.append("postalcode", annonce.postalcode);
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/announce`, formData)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/announce`, formData, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.info(response);
+        setSuccess(response.data.message);
+        setError(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.response.data.error);
       });
   };
 
@@ -134,8 +147,7 @@ export default function AnnouncePage() {
     getModel();
   }, [annonce.car_brand_id]);
 
-  // console.info(annonce);
-  console.info(annonce.image_1);
+  console.info(annonce);
 
   return (
     <div className="annonce">
@@ -147,12 +159,18 @@ export default function AnnouncePage() {
             <div className="firstpartform">
               <div className="title">
                 <p>Titre</p>
-                <input name="title" type="text" onChange={handleChangeValues} />
+                <input
+                  name="title"
+                  type="text"
+                  placeholder="A vendre magnifique 207... Super occasion..."
+                  onChange={handleChangeValues}
+                />
               </div>
               <div className="price">
                 <p>Prix</p>
                 <input
                   type="number"
+                  placeholder="20000... 5000...."
                   name="price"
                   onChange={handleChangeValues}
                 />
@@ -183,11 +201,12 @@ export default function AnnouncePage() {
                 <p>Année</p>
                 <input
                   type="number"
+                  placeholder="1999... 2014..."
                   name="year"
                   onChange={handleChangeValues}
                 />
               </div>
-              <div className="motorisation">
+              <div className="motorisations">
                 <p> Type de motorisation</p>
                 <select onChange={handleChangeValues} name="motorisation">
                   <option value="essence">Essence</option>
@@ -199,6 +218,7 @@ export default function AnnouncePage() {
                 <p>Kilomètres</p>
                 <input
                   type="number"
+                  placeholder="20000... 100000..."
                   name="kilometer"
                   onChange={handleChangeValues}
                 />
@@ -210,6 +230,8 @@ export default function AnnouncePage() {
                   <option value="automatique">Automatique</option>
                 </select>
               </div>
+            </div>
+            <div className="secoundpartform">
               <div className="type">
                 <p> Type de véhicule</p>
                 <select name="car_type_id" onChange={handleChangeValues}>
@@ -220,12 +242,12 @@ export default function AnnouncePage() {
                   ))}
                 </select>
               </div>
-            </div>
-            <div className="secoundpartform">
+
               <div className="power">
                 <p>Puissance</p>
                 <input
                   type="number"
+                  placeholder="75..."
                   name="power"
                   onChange={handleChangeValues}
                 />
@@ -248,38 +270,48 @@ export default function AnnouncePage() {
                 <p>Téléphone</p>
                 <input
                   type="text"
+                  placeholder="0605040302..."
                   name="contact"
                   onChange={handleChangeValues}
                 />
               </div>
               <div className="city">
                 <p>Ville</p>
-                <input type="text" name="city" onChange={handleChangeValues} />
+                <input
+                  type="text"
+                  placeholder="Paris...Marseille..."
+                  name="city"
+                  onChange={handleChangeValues}
+                />
               </div>
               <div className="postalcode">
                 <p>Code postal</p>
                 <input
-                  type="number"
+                  type="text"
+                  placeholder="75020...13018..."
                   name="postalcode"
                   onChange={handleChangeValues}
                 />
               </div>
             </div>
-          </div>
-          <div className="description">
-            <p>Description</p>
-            <textarea
-              type="text"
-              name="description"
-              onChange={handleChangeValues}
-            />
-          </div>
-          <div className="pictures">
-            <p>Les photos de votre véhicule</p>
-            <input type="file" name="image_1" onChange={handleFileChange} />
-            <input type="file" name="image_2" onChange={handleFileChange} />
-            <input type="file" name="image_3" onChange={handleFileChange} />
-            <input type="file" name="image_4" onChange={handleFileChange} />
+            <div className="part3form">
+              <div className="descriptions">
+                <p>Description</p>
+                <textarea
+                  type="text"
+                  placeholder="Voiture en bon étât. Quelques rayures à l’avant et à l’arrière. Courroie de distribution à changer bientôt. Jamais accidentée. Non fumeur."
+                  name="description"
+                  onChange={handleChangeValues}
+                />
+              </div>
+              <div className="pictures">
+                <p>Les photos de votre véhicule</p>
+                <input type="file" name="image_1" onChange={handleFileChange} />
+                <input type="file" name="image_2" onChange={handleFileChange} />
+                <input type="file" name="image_3" onChange={handleFileChange} />
+                <input type="file" name="image_4" onChange={handleFileChange} />
+              </div>
+            </div>
           </div>
           <div className="button">
             <input
@@ -290,6 +322,23 @@ export default function AnnouncePage() {
             />
           </div>
         </form>
+        <div className="alerte">
+          {success ?? (
+            <Alert severity="success">
+              <AlertTitle>Annonce créée avec succés</AlertTitle>
+              {success}
+            </Alert>
+          )}
+
+          {error && (
+            <Alert severity="error">
+              <AlertTitle>
+                Merci de remplir tous les champs obligatoires
+              </AlertTitle>
+              {error}
+            </Alert>
+          )}
+        </div>
       </div>
     </div>
   );

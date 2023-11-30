@@ -1,13 +1,13 @@
 @media only screen and (min-width: 1000px) {
-    .first_element {
-      display: flex;
-      gap: 20px;
-    }
-  
-    .second_element {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-    }
+  .first_element {
+    display: flex;
+    gap: 20px;
   }
+
+  .second_element {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+}

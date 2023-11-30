@@ -15,6 +15,7 @@ const imageControllers = require("./controllers/imageControllers");
 const messageControllers = require("./controllers/messageControllers");
 
 const auth = require("./middlewares/auth");
+const authannounce = require("./middlewares/authannounce");
 
 router.get("/carmodel", carmodelControllers.browse);
 router.get("/carmodellistbybrand/:id", carmodelControllers.listModelByBrand);
@@ -44,7 +45,12 @@ router.get("/listAnnounces", announceControllers.browse);
 // router.delete("/announce/:id", announceControllers.destroy);
 // router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
 // router.get("/announce/:id", announceControllers.read);
-router.post("/announce", uploadMiddleware.uploadFile, announceControllers.add);
+router.post(
+  "/announce",
+  uploadMiddleware.uploadFile,
+  authannounce.validateAnnounce,
+  announceControllers.add
+);
 
 router.get("/image", imageControllers.read);
 
