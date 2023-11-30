@@ -120,8 +120,8 @@ nav > ul > li {
     transition: 0.7s ease-in-out;
     background-color: white;
     transition: 0.7s ease-in-out;
-   
-  z-index: 99; 
+
+    z-index: 99;
   }
   .navMenu.active {
     right: auto;

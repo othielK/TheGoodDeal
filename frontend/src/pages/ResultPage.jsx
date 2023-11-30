@@ -108,9 +108,9 @@ export default function ResultPage() {
 
       {filteredCars.map((car) => (
         <div className="cards">
-          {/* <Link key={car.id} to={`/cardetails/${car.id}`}> */}
-          <Cardcarresult key={car.id} car={car} />
-          {/* </Link> */}
+          <Link key={car.id} to={`/cardetails/${car.id}`}>
+            <Cardcarresult key={car.id} car={car} />
+          </Link>
         </div>
       ))}
       {filteredCars.length === 0 && <p>Aucun résultat</p>}

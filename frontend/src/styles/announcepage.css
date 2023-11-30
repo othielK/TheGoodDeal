@@ -1,16 +1,16 @@
 .secound.part {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    flex-direction: column;
-    padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: column;
+  padding: 40px;
 }
 
 h2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-items: center;
 }
 
 form {
@@ -19,39 +19,37 @@ form {
 }
 
 input[type="submit"] {
-    margin-top: 30px;
-    background-color: #89B803;
-    color: white;
-    height: 50px;
-    cursor: pointer;
-    
+  margin-top: 30px;
+  background-color: #89b803;
+  color: white;
+  height: 50px;
+  cursor: pointer;
 }
 
 input[type="text"] {
-    margin: 10px 0px 10px 0px;
-    height: 30px;
-    width: auto;
+  margin: 10px 0px 10px 0px;
+  height: 30px;
+  width: auto;
 }
 
 input[type="number"] {
-    margin: 10px 0px 10px 0px;
-    height: 30px;
-    width: auto;
+  margin: 10px 0px 10px 0px;
+  height: 30px;
+  width: auto;
 }
 
 select#Séléction {
-    margin: 10px 0px 10px 0px;
-    height: 30px;
-    width: auto;
+  margin: 10px 0px 10px 0px;
+  height: 30px;
+  width: auto;
 }
 
 .button {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.description>input[type="text"] {
-    height: 200px;
-    width: auto;
-
+.description > input[type="text"] {
+  height: 200px;
+  width: auto;
 }

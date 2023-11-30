@@ -88,7 +88,8 @@ const checkIfIsAllowed = (req, res, next) => {
     console.info(payload);
 
     return next();
-  } catch {
+  } catch (error) {
+    console.error("Erreur lors de la vérification du token :", error);
     return res.sendStatus(401);
   }
 };

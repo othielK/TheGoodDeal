@@ -36,7 +36,7 @@ export default function SignUpPage() {
       console.info("email", email);
       console.info("password", password);
       axios
-        .post("http://localhost:5000/user", {
+        .post("http://localhost:5008/user", {
           firstname,
           lastname,
           email,

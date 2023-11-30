@@ -11,8 +11,22 @@ const newsletterControllers = require("./controllers/newsletterControllers");
 const carbrandControllers = require("./controllers/carbrandControllers");
 const carmodelControllers = require("./controllers/carmodelControllers");
 const messageControllers = require("./controllers/messageControllers");
+const favoriteControllers = require("./controllers/favoriteControllers");
 
 const auth = require("./middlewares/auth");
+
+router.post("/favoris", auth.checkIfIsAllowed, favoriteControllers.add);
+router.get("/favoris/:id", favoriteControllers.readFavorite);
+router.get("/favoris", favoriteControllers.browse);
+router.get("/favorisbyuser/:userId", favoriteControllers.readFavoritebyUser);
+router.delete(
+  "/favoris/:userId/:announceId",
+  favoriteControllers.deleteFavorite
+);
+router.get(
+  "/favorischeck/:userId/:announceId",
+  favoriteControllers.favorisCheck
+);
 
 router.get("/carmodel", carmodelControllers.browse);
 router.get("/carbrand", carbrandControllers.browse);

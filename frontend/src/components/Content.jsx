@@ -10,6 +10,8 @@ import CarbrandmodelResult from "../pages/CarbrandmodelResult";
 import Messages from "../pages/Messages";
 import MessageDetails from "../pages/MessageDetails";
 import CarDetailPage from "../pages/CarDetailPage";
+import Contact from "./Contact";
+import MyFavorite from "../pages/MyFavorite";
 
 export default function Content() {
   return (
@@ -29,6 +31,10 @@ export default function Content() {
         <Route path="/result/:userResearch" element={<CarbrandmodelResult />} />
         <Route path="/search/:userSearch" element={<CarbrandmodelResult />} />
         <Route path="/cardetails/:id" element={<CarDetailPage />} />
+        <Route path="/contact/:id" element={<Contact />} />
+        <Route path="/mesfavoris" element={<MyFavorite />} />
+
+        {/* <Route path="/cardetails/:id" element={<CarDetailPage />} /> */}
       </Routes>
     </section>
   );

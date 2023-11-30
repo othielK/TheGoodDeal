@@ -1,0 +1,25 @@
+.main > h1 {
+  font-size: 2em; /* Taille de la police */
+  margin: 20px;
+  text-align: center;
+}
+
+.card {
+  position: relative;
+}
+
+.coeur {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+}
+
+.heart-icon {
+  font-size: 24px;
+  color: red;
+  cursor: pointer;
+
+  &:hover {
+    color: darkred;
+  }
+}
