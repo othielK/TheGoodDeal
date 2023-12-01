@@ -40,6 +40,10 @@ export default function LoginPage() {
       )
       .then((response) => {
         console.info(response);
+        localStorage.setItem("id", response.data.id);
+        localStorage.setItem("email", response.data.email);
+        localStorage.setItem("firstname", response.data.firstname);
+        localStorage.setItem("lastname", response.data.lastname);
         setSuccess(response.data.message);
         setError(false);
         navigateToHomepage();
@@ -51,7 +55,6 @@ export default function LoginPage() {
       });
   };
 
-  const iconStyles = { color: "#EBAF00", fontSize: "1.5em" };
   return (
     <div className="login_background">
       <div className="login_up">
@@ -67,7 +70,9 @@ export default function LoginPage() {
           <Link to="/signup">
             <button className="btn_membre" type="submit">
               Je veux être membre
-              <AiOutlineArrowRight style={iconStyles} />
+              <span className="iconWrapper_login">
+                <AiOutlineArrowRight />
+              </span>
             </button>
           </Link>
         </div>
@@ -101,9 +106,6 @@ export default function LoginPage() {
               <br />
             </form>
 
-            {/* <button className="btn-signup" type="submit">
-              Pas encore membre ?
-            </button> */}
             <Link to="/signup" className="btn-signup">
               Pas encore membre ?
             </Link>

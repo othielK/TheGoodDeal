@@ -24,7 +24,20 @@ const modelsFromBrand = (req, res) => {
     });
 };
 
+// ANNOUNCE PAGE
+const searchByBrandAnnounce = (req, res) => {
+  const { brand } = req.params;
+  models.car_brand.selectByBrand(brand).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
 module.exports = {
   browse,
   modelsFromBrand,
+  searchByBrandAnnounce,
 };

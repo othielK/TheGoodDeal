@@ -120,6 +120,8 @@ nav > ul > li {
     transition: 0.7s ease-in-out;
     background-color: white;
     transition: 0.7s ease-in-out;
+
+    z-index: 99;
   }
   .navMenu.active {
     right: auto;
@@ -154,6 +156,7 @@ nav > ul > li {
     font-size: 10px;
   }
 }
+
 @media screen and (min-width: 781px) {
   .hide-on-desktop {
     display: none;

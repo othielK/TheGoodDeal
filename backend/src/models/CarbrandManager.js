@@ -13,6 +13,16 @@ class CarbrandManager extends AbstractManager {
       `
     );
   }
+  // // search Announce page
+
+  // selectByBrand(brand) {
+  //   return this.database.query(
+  //     `SELECT car_brand.car_brand_name
+  //     FROM car_brand;
+  //     `,
+  //     [brand]
+  //   );
+  // }
 }
 
 module.exports = CarbrandManager;

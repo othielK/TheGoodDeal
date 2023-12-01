@@ -11,7 +11,12 @@ export default function Cardcarresult({ car }) {
     car && (
       <div className="carannounce">
         <div className="carimage">
-          <img src={car.image} alt="" />
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/uploads/${
+              car.image_1
+            }`}
+            alt=""
+          />
         </div>
         <div className="cardetails">
           <h5>
@@ -48,15 +53,15 @@ export default function Cardcarresult({ car }) {
 }
 Cardcarresult.propTypes = {
   car: PropTypes.shape({
-    image: PropTypes.string,
+    image_1: PropTypes.string,
     car_brand_name: PropTypes.string,
     car_model_name: PropTypes.string,
-    price: PropTypes.string,
-    year: PropTypes.string,
-    kilometer: PropTypes.string,
+    price: PropTypes.number,
+    year: PropTypes.number,
+    kilometer: PropTypes.number,
     motorisation: PropTypes.string,
     transmission: PropTypes.string,
     city: PropTypes.string,
-    postalcode: PropTypes.string,
+    postalcode: PropTypes.number,
   }).isRequired,
 };

@@ -98,34 +98,77 @@ export default function Navbar() {
             <NavLink to="/">Accueil</NavLink>
           </li>
           <li>
-            <NavLink to="/result">Toutes les catégories</NavLink>
+            <NavLink onClick="window.location.reload()" to="/result/type/all">
+              Toutes les catégories
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/result">Citadine</NavLink>
+            <NavLink
+              onClick="window.location.reload()"
+              to="/result/type/citadines"
+            >
+              Citadines
+            </NavLink>
+          </li>
+          {/* <li>
+            <NavLink to="/result/type/citadines">Citadines</NavLink>
+          </li> */}
+          <li>
+            <NavLink
+              onClick="window.location.reload()"
+              to="/result/type/berlines"
+            >
+              Berlines
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/result">Berlines</NavLink>
+            <NavLink
+              onClick="window.location.reload()"
+              to="/result/type/4x4, suv, crossover"
+            >
+              4x4 SUV Crossover
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/result">4x4 SUV Crossover</NavLink>
+            <NavLink
+              onClick="window.location.reload()"
+              to="/result/type/sans permis"
+            >
+              Sans permis
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/result">Sans permis</NavLink>
+            <NavLink
+              onClick="window.location.reload()"
+              to="/result/type/breaks"
+            >
+              Breaks
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/result">Breaks</NavLink>
+            <NavLink
+              onClick="window.location.reload()"
+              to="/result/type/cabriolets"
+            >
+              Cabriolet
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/result">Cabriolet</NavLink>
+            <NavLink
+              onClick="window.location.reload()"
+              to="/result/type/coupés"
+            >
+              Coupés
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/result">Coupés</NavLink>
+            <NavLink to="/backoffice">Backoffice</NavLink>
           </li>
           <li className="hide-on-desktop">
             <NavLink
               to="/page404"
               className="navLink"
-              activeClassName="active"
+              activeclassname="active"
               onClick={removeActive}
             >
               A PROPOS DE THEGOODDEAL
@@ -135,7 +178,7 @@ export default function Navbar() {
             <NavLink
               to="/page404"
               className="navLink"
-              activeClassName="active"
+              activeclassname="active"
               onClick={removeActive}
             >
               INFORMATIONS LEGALES

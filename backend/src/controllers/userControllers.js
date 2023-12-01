@@ -95,8 +95,11 @@ const verifyPassword = (req, res) => {
     .then((isVerified) => {
       if (isVerified) {
         const payload = {
-          sub: req.user.id,
+          sub: req.user.user_id,
           email: req.user.email,
+          id: req.user.user_id,
+          firstname: req.user.firstname,
+          lastname: req.user.lastname,
         };
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
@@ -105,10 +108,31 @@ const verifyPassword = (req, res) => {
 
         res.cookie("authToken", token);
 
-        res.status(200).send("Connexion réussie");
+        res.status(200).json({
+          message: "Connexion réussie",
+          id: req.user.user_id,
+          email: req.user.email,
+          firstname: req.user.firstname,
+          lastname: req.user.lastname,
+        });
       } else {
         res.sendStatus(401);
       }
+    });
+};
+const avatar = (req, res) => {
+  models.user
+    .selectAvatar(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
     });
 };
 
@@ -118,5 +142,6 @@ module.exports = {
   edit,
   add,
   destroy,
+  avatar,
   verifyPassword,
 };

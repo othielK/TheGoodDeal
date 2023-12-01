@@ -6,9 +6,9 @@ export default function SearchBar() {
   const [userResearch, setUserResearch] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    // e.preventDefault();
-    navigate(`/search${userResearch}`);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate(`/search/${userResearch}`);
   };
 
   const handleSearch = (event) => {
@@ -23,6 +23,7 @@ export default function SearchBar() {
         onChange={handleSearch}
       />
       <button type="submit">Rechercher</button>
+      {/* <input type="submit" value="Rechercher" /> */}
     </form>
   );
 }

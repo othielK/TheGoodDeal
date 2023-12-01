@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Link, useParams } from "react-router-dom";
+import InputLabel from "@mui/material/InputLabel";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import Cardcarresult from "../components/Cardcarresult";
+import filterCars from "../services/carFilterServices";
 
 export default function ResultPage() {
   const [cars, setCars] = useState([]);
+  const [carType, setCarType] = useState([]);
+  const [motorisation, setMotorisation] = useState("");
+  const [price, setPrice] = useState("");
+  const [kilometer, setKilometer] = useState("");
+  const { type } = useParams();
+  // const [viewType, setViewType] = useState("all");
 
   const getCars = () => {
     axios
@@ -15,14 +27,139 @@ export default function ResultPage() {
       });
   };
 
+  console.info("type:", type);
+
+  const getCarByType = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/announce/type/${type}`)
+      .then((response) => {
+        setCarType(response.data);
+        console.info(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
-    getCars();
-  }, []);
+    if (type === "all") {
+      setCarType([]);
+      getCars();
+    } else {
+      setCars([]);
+      getCarByType();
+    }
+  }, [type]);
+
+  const handleChange = (event) => {
+    setMotorisation(event.target.value);
+  };
+
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const handleKilometerChange = (event) => {
+    setKilometer(event.target.value);
+  };
+
+  const filteredCars = filterCars(cars, motorisation, price, kilometer);
+
+  const filteredCarType = filterCars(carType, motorisation, price, kilometer);
+
+  console.info(cars);
+  console.info(carType);
+
   return (
-    <div className="cards">
-      {cars.map((car) => (
-        <Cardcarresult key={car.id} car={car} />
+    <>
+      <div className="motorisation">
+        <Box sx={{ maxWidth: 140 }} className="box">
+          <FormControl fullWidth>
+            <InputLabel id="motor-select-label">Motorisation</InputLabel>
+            <Select
+              labelId="motor-select-label"
+              id="motor-select"
+              value={motorisation}
+              label="motorisation"
+              onChange={handleChange}
+            >
+              <MenuItem value="">--</MenuItem>
+              <MenuItem value="Diesel">Diesel</MenuItem>
+              <MenuItem value="Petrol">Petrol</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <br />
+        <Box sx={{ maxWidth: 140 }} className="box">
+          <FormControl fullWidth>
+            <InputLabel id="price-select-label">Price</InputLabel>
+            <Select
+              labelId="price-select-label"
+              id="price-select"
+              value={price}
+              label="price"
+              onChange={handlePriceChange}
+            >
+              <MenuItem value="">--</MenuItem>
+              <MenuItem value="9999">1000 - 10000</MenuItem>
+              <MenuItem value="19999">10000 - 20000</MenuItem>
+              <MenuItem value="29999">20000 - 30000</MenuItem>
+              <MenuItem value="30000">over 30000</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <br />
+        <Box sx={{ maxWidth: 140 }} className="box">
+          <FormControl fullWidth>
+            <InputLabel id="kilometer-select-label">Kilometer</InputLabel>
+            <Select
+              labelId="kilometer-select-label"
+              id="kilometer-select"
+              value={kilometer}
+              label="kilometer"
+              onChange={handleKilometerChange}
+            >
+              <MenuItem value="">--</MenuItem>
+              <MenuItem value="9999">1000 - 10000</MenuItem>
+              <MenuItem value="19999">10000 - 20000</MenuItem>
+              <MenuItem value="29999">20000 - 30000</MenuItem>
+              <MenuItem value="39999">30000 - 40000</MenuItem>
+              <MenuItem value="49999">40000 - 49999</MenuItem>
+              <MenuItem value="59999">49999 - 59999</MenuItem>
+              <MenuItem value="69999">over 60000</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
+      {cars.length > 0 && (
+        <div className="cards">
+          {filteredCars.map((car) => (
+            <Link key={car.announce_id} to={`/cardetails/${car.announce_id}`}>
+              <Cardcarresult key={car.announce_id} car={car} />
+            </Link>
+          ))}
+        </div>
+      )}
+      {/* {filteredCars.length === 0 && <p>Aucun résultat</p>} */}
+
+      {filteredCarType.map((car) => (
+        <Link key={car.announce_id} to={`/cardetails/${car.announce_id}`}>
+          <Cardcarresult key={car.announce_id} car={car} />
+        </Link>
       ))}
-    </div>
+
+      {/* {carType.length > 0 && carType[0].car_type_name === type && (
+        <div className="cards">
+          {filteredCarType.map((cartype) => (
+            <Link
+              key={cartype.announce_id}
+              to={`/cardetails/${cartype.announce_id}`}
+            >
+              <Cardcarresult key={cartype.announce_id} car={cartype} />
+            </Link>
+          ))}
+        </div>
+      )} */}
+    </>
   );
 }

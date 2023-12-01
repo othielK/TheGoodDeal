@@ -35,14 +35,14 @@ export default function CarBrandMenu() {
     <div className="car_brand_menu">
       {Object.keys(brandModels).map((brand) => (
         <div className="car_model_by_brand" key={brand}>
-          <Link to={`result/${brand}`}>
+          <Link to={`/result/${brand}`}>
             <h3>{brand}</h3>
           </Link>
           <div className="car_model_list">
             {brandModels[brand].map((model) => (
-              <div key={`${brand}`}>
+              <div key={`${brand}-${model}`}>
                 <h4 className="model_list">
-                  <Link to={`result/${model}`}>{model}</Link>
+                  <Link to={`/result/${model}`}>{model}</Link>
                 </h4>
               </div>
             ))}

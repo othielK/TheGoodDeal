@@ -1,0 +1,28 @@
+.text_avatar {
+  font-size: 20px;
+  margin: 0;
+}
+
+.separator-line {
+  width: calc(80% - 20px);
+  height: 2px;
+  border: none;
+  background-color: #999999;
+  margin: 20px auto;
+}
+.avatar {
+  margin-left: 2rem;
+  padding: 0.2rem;
+  margin-top: 0.5rem;
+}
+@media screen and (min-width: 680px) {
+  .avatar {
+    margin-left: 8rem;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+  .text_avatar {
+    font-size: 40px;
+    margin: 0;
+  }
+}
