@@ -11,6 +11,8 @@ import Messages from "../pages/Messages";
 import MessageDetails from "../pages/MessageDetails";
 import UpdateUser from "../pages/UpdateUser";
 import CarDetailPage from "../pages/CarDetailPage";
+import Contact from "./Contact";
+import MyFavorite from "../pages/MyFavorite";
 
 export default function Content() {
   return (
@@ -32,6 +34,10 @@ export default function Content() {
         <Route path="/updateUser" element={<UpdateUser />} />
         <Route path="/search/:userSearch" element={<CarbrandmodelResult />} />
         <Route path="/cardetails/:id" element={<CarDetailPage />} />
+        <Route path="/contact/:id" element={<Contact />} />
+        <Route path="/mesfavoris" element={<MyFavorite />} />
+
+        {/* <Route path="/cardetails/:id" element={<CarDetailPage />} /> */}
       </Routes>
     </section>
   );

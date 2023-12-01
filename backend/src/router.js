@@ -13,9 +13,23 @@ const carmodelControllers = require("./controllers/carmodelControllers");
 const cartypeControllers = require("./controllers/cartypeControllers");
 const imageControllers = require("./controllers/imageControllers");
 const messageControllers = require("./controllers/messageControllers");
+const favoriteControllers = require("./controllers/favoriteControllers");
 
 const auth = require("./middlewares/auth");
 const authannounce = require("./middlewares/authannounce");
+
+router.post("/favoris", auth.checkIfIsAllowed, favoriteControllers.add);
+router.get("/favoris/:id", favoriteControllers.readFavorite);
+router.get("/favoris", favoriteControllers.browse);
+router.get("/favorisbyuser/:userId", favoriteControllers.readFavoritebyUser);
+router.delete(
+  "/favoris/:userId/:announceId",
+  favoriteControllers.deleteFavorite
+);
+router.get(
+  "/favorischeck/:userId/:announceId",
+  favoriteControllers.favorisCheck
+);
 
 router.get("/carmodel", carmodelControllers.browse);
 router.get("/carmodellistbybrand/:id", carmodelControllers.listModelByBrand);
