@@ -18,7 +18,7 @@ export default function CarDetailCard({ details }) {
   };
 
   const carImages = [
-    details.image,
+    details.image_1,
     details.image_2,
     details.image_3,
     details.image_4,
@@ -28,13 +28,20 @@ export default function CarDetailCard({ details }) {
     <div className="card_details_car">
       <div className="car_detail_image">
         <div className="selected_image">
-          <img src={carImages[selectedImage]} alt="chat" />
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/uploads/${
+              carImages[selectedImage]
+            }`}
+            alt="car"
+          />
         </div>
         <div className="image_scroll">
           {carImages.map((carImage, index) => (
             <img
               key={carImage}
-              src={carImage}
+              src={`${
+                import.meta.env.VITE_BACKEND_URL
+              }/assets/images/uploads/${carImage}`}
               alt={`${carImage}`}
               role="presentation"
               onClick={() => handleImageClick(index)}
@@ -100,7 +107,7 @@ CarDetailCard.propTypes = {
     kilometer: PropTypes.number,
     transmission: PropTypes.string,
     description: PropTypes.string,
-    image: PropTypes.string,
+    image_1: PropTypes.string,
     image_2: PropTypes.string,
     image_3: PropTypes.string,
     image_4: PropTypes.string,
