@@ -2,6 +2,7 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
 import "../styles/profile.css";
+import { Link } from "react-router-dom";
 
 function Profile() {
   return (
@@ -12,7 +13,9 @@ function Profile() {
         </div>
         <div className="profile-details">
           <h1>Mon Profil</h1>
-          <p>Modifier mon profil</p>
+          <Link to="/updateUser">
+            <p>Modifier mon profil</p>
+          </Link>
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ export default function SignUpPage() {
       console.info("email", email);
       console.info("password", password);
       axios
-        .post("http://localhost:5008/user", {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/user`, {
           firstname,
           lastname,
           email,

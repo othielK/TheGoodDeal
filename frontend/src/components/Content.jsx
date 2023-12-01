@@ -9,6 +9,7 @@ import Backoffice from "../pages/Backoffice";
 import CarbrandmodelResult from "../pages/CarbrandmodelResult";
 import Messages from "../pages/Messages";
 import MessageDetails from "../pages/MessageDetails";
+import UpdateUser from "../pages/UpdateUser";
 import CarDetailPage from "../pages/CarDetailPage";
 import Contact from "./Contact";
 import MyFavorite from "../pages/MyFavorite";
@@ -29,6 +30,8 @@ export default function Content() {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/backoffice" element={<Backoffice />} />
         <Route path="/result/:userResearch" element={<CarbrandmodelResult />} />
+        <Route path="/result/type/:type" element={<ResultPage />} />
+        <Route path="/updateUser" element={<UpdateUser />} />
         <Route path="/search/:userSearch" element={<CarbrandmodelResult />} />
         <Route path="/cardetails/:id" element={<CarDetailPage />} />
         <Route path="/contact/:id" element={<Contact />} />
