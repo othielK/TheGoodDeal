@@ -13,6 +13,7 @@ const carmodelControllers = require("./controllers/carmodelControllers");
 const cartypeControllers = require("./controllers/cartypeControllers");
 const imageControllers = require("./controllers/imageControllers");
 const messageControllers = require("./controllers/messageControllers");
+const myannounceControllers = require("./controllers/myannounceControllers");
 
 const auth = require("./middlewares/auth");
 const authannounce = require("./middlewares/authannounce");
@@ -50,6 +51,15 @@ router.post(
   uploadMiddleware.uploadFile,
   authannounce.validateAnnounce,
   announceControllers.add
+);
+
+router.get(
+  "/myAnnouncebyuser/:userId",
+  myannounceControllers.readMyAnnouncebyUser
+);
+router.delete(
+  "/myAnnounce/:userId/:announceId",
+  myannounceControllers.deleteMyAnnounce
 );
 
 router.get("/image", imageControllers.read);
