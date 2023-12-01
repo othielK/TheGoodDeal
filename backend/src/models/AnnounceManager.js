@@ -8,10 +8,11 @@ class AnnounceManager extends AbstractManager {
   // SEARCHBAR
   searchBar(searchTerm) {
     return this.database.query(
-      `SELECT  a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      `SELECT  i.image_1, a.announce_id,b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
       FROM announce a
       JOIN car_brand b ON a.car_brand_id = b.car_brand_id
       JOIN car_model m ON a.car_model_id = m.car_model_id
+      JOIN images i ON i.announce_id = a.announce_id
       WHERE b.car_brand_name LIKE ? OR m.car_model_name LIKE ?`,
       [`%${searchTerm}%`, `%${searchTerm}%`]
     );
@@ -19,10 +20,11 @@ class AnnounceManager extends AbstractManager {
 
   selectAll(announce) {
     return this.database.query(
-      `SELECT  a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      `SELECT i.*, a.announce_id, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
       FROM announce a
       JOIN car_brand b ON a.car_brand_id = b.car_brand_id
-      JOIN car_model m ON a.car_model_id = m.car_model_id`,
+      JOIN car_model m ON a.car_model_id = m.car_model_id
+      JOIN images i ON i.announce_id = a.announce_id`,
       [announce]
     );
   }
@@ -62,9 +64,10 @@ class AnnounceManager extends AbstractManager {
   // searchbymodel
   findByModel(model) {
     return this.database.query(
-      `SELECT a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      `SELECT i.*, a.announce_id, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
       FROM announce a
       JOIN car_brand b ON a.car_brand_id = b.car_brand_id
+      JOIN images i ON i.announce_id = a.announce_id
       JOIN car_model m ON a.car_model_id = m.car_model_id WHERE m.car_model_name  = ?`,
       [model]
     );
@@ -73,24 +76,53 @@ class AnnounceManager extends AbstractManager {
   // searchbybrand
   findByBrand(brand) {
     return this.database.query(
-      `SELECT a.image, b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      `SELECT i.*, a.announce_id,b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
       FROM announce a
       JOIN car_model m ON a.car_model_id = m.car_model_id
+      JOIN images i ON i.announce_id = a.announce_id
       JOIN car_brand b ON a.car_brand_id = b.car_brand_id WHERE b.car_brand_name  = ?`,
       [brand]
     );
   }
 
+  // searchbytype
+  findByCarType(type) {
+    return this.database.query(
+      `SELECT i.*, a.announce_id, t.car_type_name,b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      FROM announce a
+      JOIN car_model m ON a.car_model_id = m.car_model_id
+      JOIN images i ON i.announce_id = a.announce_id
+      JOIN car_brand b ON a.car_brand_id = b.car_brand_id 
+      JOIN car_type t ON a.car_type_id = t.car_type_id
+      WHERE LOWER(t.car_type_name) = ?`,
+      [type]
+    );
+  }
+
+  // searchbyberline
+  // findByBerline(type) {
+  //   return this.database.query(
+  //     `SELECT i.*, a.announce_id, t.car_type_name,b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+  //       FROM announce a
+  //       JOIN car_model m ON a.car_model_id = m.car_model_id
+  //       JOIN images i ON i.announce_id = a.announce_id
+  //       JOIN car_brand b ON a.car_brand_id = b.car_brand_id
+  //       JOIN car_type t ON a.car_type_id = t.car_type_id
+  //       WHERE LOWER(t.car_type_name) LIKE '%berline%'`,
+  //     [type]
+  //   );
+  // }
+
   getCarDetailsAll(id) {
     return this.database.query(
-      `SELECT a.image, a.title, a.price, a.year, b.car_brand_name, m.car_model_name, a.motorisation, a.kilometer, a.transmission, a.city, a.postalcode, a.description, a.license, a.condition, a.power, t.car_type_name, u.firstname, LEFT(u.firstname, 1) AS first_letter_of_firstname
+      `SELECT i.*, a.title, a.price, a.year, b.car_brand_name, m.car_model_name, a.motorisation, a.kilometer, a.transmission, a.city, a.postalcode, a.description, a.license, a.state, a.power, t.car_type_name, u.firstname, LEFT(u.firstname, 1) AS first_letter_of_firstname
       FROM announce a
       JOIN car_brand b ON a.car_brand_id = b.car_brand_id
       JOIN car_model m ON a.car_model_id = m.car_model_id
       JOIN car_type t ON a.car_type_id = t.car_type_id
+      JOIN images i ON i.announce_id = a.announce_id
       JOIN user u ON a.user_id = u.user_id
-      WHERE a.announce_id = ?
-      `,
+      WHERE a.announce_id = ?`,
       [id]
     );
   }

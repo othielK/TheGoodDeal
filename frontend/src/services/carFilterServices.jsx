@@ -9,9 +9,7 @@ const filterCars = (cars, motorisation, price, kilometer) => {
       (price === "9999" && car.price <= 10000) ||
       (price === "19999" && car.price > 10000 && car.price <= 20000) ||
       (price === "29999" && car.price > 20000 && car.price <= 30000) ||
-      (price === "39999" && car.price > 30000 && car.price <= 40000) ||
-      (price === "49999" && car.price > 40000 && car.price <= 50000) ||
-      (price === "50000" && car.price > 50000) ||
+      (price === "30000" && car.price > 30000) ||
       price === "";
 
     const kilometerFilter =

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,9 +11,12 @@ import filterCars from "../services/carFilterServices";
 
 export default function ResultPage() {
   const [cars, setCars] = useState([]);
+  const [carType, setCarType] = useState([]);
   const [motorisation, setMotorisation] = useState("");
   const [price, setPrice] = useState("");
   const [kilometer, setKilometer] = useState("");
+  const { type } = useParams();
+  // const [viewType, setViewType] = useState("all");
 
   const getCars = () => {
     axios
@@ -23,9 +27,29 @@ export default function ResultPage() {
       });
   };
 
+  console.info("type:", type);
+
+  const getCarByType = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/announce/type/${type}`)
+      .then((response) => {
+        setCarType(response.data);
+        console.info(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
-    getCars();
-  }, []);
+    if (type === "all") {
+      setCarType([]);
+      getCars();
+    } else {
+      setCars([]);
+      getCarByType();
+    }
+  }, [type]);
 
   const handleChange = (event) => {
     setMotorisation(event.target.value);
@@ -40,6 +64,11 @@ export default function ResultPage() {
   };
 
   const filteredCars = filterCars(cars, motorisation, price, kilometer);
+
+  const filteredCarType = filterCars(carType, motorisation, price, kilometer);
+
+  console.info(cars);
+  console.info(carType);
 
   return (
     <>
@@ -75,9 +104,7 @@ export default function ResultPage() {
               <MenuItem value="9999">1000 - 10000</MenuItem>
               <MenuItem value="19999">10000 - 20000</MenuItem>
               <MenuItem value="29999">20000 - 30000</MenuItem>
-              <MenuItem value="39999">30000 - 40000</MenuItem>
-              <MenuItem value="49999">40000 - 49999</MenuItem>
-              <MenuItem value="50000">over 50000</MenuItem>
+              <MenuItem value="30000">over 30000</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -104,15 +131,35 @@ export default function ResultPage() {
           </FormControl>
         </Box>
       </div>
-
-      {filteredCars.map((car) => (
+      {cars.length > 0 && (
         <div className="cards">
-          {/* <Link key={car.id} to={`/cardetails/${car.id}`}> */}
-          <Cardcarresult key={car.id} car={car} />
-          {/* </Link> */}
+          {filteredCars.map((car) => (
+            <Link key={car.announce_id} to={`/cardetails/${car.announce_id}`}>
+              <Cardcarresult key={car.announce_id} car={car} />
+            </Link>
+          ))}
         </div>
+      )}
+      {/* {filteredCars.length === 0 && <p>Aucun résultat</p>} */}
+
+      {filteredCarType.map((car) => (
+        <Link key={car.announce_id} to={`/cardetails/${car.announce_id}`}>
+          <Cardcarresult key={car.announce_id} car={car} />
+        </Link>
       ))}
-      {filteredCars.length === 0 && <p>Aucun résultat</p>}
+
+      {/* {carType.length > 0 && carType[0].car_type_name === type && (
+        <div className="cards">
+          {filteredCarType.map((cartype) => (
+            <Link
+              key={cartype.announce_id}
+              to={`/cardetails/${cartype.announce_id}`}
+            >
+              <Cardcarresult key={cartype.announce_id} car={cartype} />
+            </Link>
+          ))}
+        </div>
+      )} */}
     </>
   );
 }
