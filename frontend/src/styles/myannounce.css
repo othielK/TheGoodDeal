@@ -1,53 +1,52 @@
 section.content {
-    margin: 10px;
+  margin: 10px;
 }
 .card {
-    position: relative;
+  position: relative;
 }
 
-.card> .carannounce{
-    margin-left: 20px;
+.card > .carannounce {
+  margin-left: 20px;
 }
-.myannouncecard> h1{
-    margin: 20px; 
+.myannouncecard > h1 {
+  margin: 20px;
 }
-.carcards{
-    border-top: 2px solid #ccc;
+.carcards {
+  border-top: 2px solid #ccc;
 }
-.card>.buttons{
-    display: flex;
-    position: absolute;
-    top: 82%;
+.card > .buttons {
+  display: flex;
+  position: absolute;
+  top: 82%;
 }
-.card> .carannounce{
-    padding-bottom: 40px;
-}
-
-.buttons>.modifier{
-    margin: 0px 30px;
-}
-.buttons>.modifier :hover {
-    cursor: pointer;
-    background-color:#89b803;
-    color:  white;
-  }
-
-.buttons>.supprimer :hover {
-    cursor: pointer;
-    background-color: #D73239;
-    color: white;
-  }
-
-.modifier> button {
-    background-color: white;
-    color: #89b803;
-    border: 2px solid  #89b803;
-    font-size: 12px;
-}
-.supprimer> button {
-    background-color: white;
-    color: #D73239;
-    border: 2px solid  #D73239 ;
-    font-size: 12px;
+.card > .carannounce {
+  padding-bottom: 40px;
 }
 
+.buttons > .modifier {
+  margin: 0px 30px;
+}
+.buttons > .modifier :hover {
+  cursor: pointer;
+  background-color: #89b803;
+  color: white;
+}
+
+.buttons > .supprimer :hover {
+  cursor: pointer;
+  background-color: #d73239;
+  color: white;
+}
+
+.modifier > button {
+  background-color: white;
+  color: #89b803;
+  border: 2px solid #89b803;
+  font-size: 12px;
+}
+.supprimer > button {
+  background-color: white;
+  color: #d73239;
+  border: 2px solid #d73239;
+  font-size: 12px;
+}

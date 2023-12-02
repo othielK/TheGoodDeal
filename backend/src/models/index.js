@@ -61,18 +61,13 @@ models.announce.setDatabase(pool);
 
 const ImageManager = require("./ImageManager");
 
-models.image = new ImageManager();
-models.image.setDatabase(pool);
+models.images = new ImageManager();
+models.images.setDatabase(pool);
 
 const MessageManager = require("./MessageManager");
 
 models.message = new MessageManager();
 models.message.setDatabase(pool);
-
-const MyannounceManager = require("./MyannounceManager");
-
-models.announce = new MyannounceManager();
-models.announce.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model

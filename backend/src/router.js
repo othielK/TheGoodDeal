@@ -13,7 +13,6 @@ const carmodelControllers = require("./controllers/carmodelControllers");
 const cartypeControllers = require("./controllers/cartypeControllers");
 const imageControllers = require("./controllers/imageControllers");
 const messageControllers = require("./controllers/messageControllers");
-const myannounceControllers = require("./controllers/myannounceControllers");
 
 const auth = require("./middlewares/auth");
 const authannounce = require("./middlewares/authannounce");
@@ -43,24 +42,21 @@ router.post(
 
 router.get("/announce", announceControllers.select);
 router.get("/listAnnounces", announceControllers.browse);
-// router.delete("/announce/:id", announceControllers.destroy);
-// router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
-// router.get("/announce/:id", announceControllers.read);
 router.post(
   "/announce",
   uploadMiddleware.uploadFile,
   authannounce.validateAnnounce,
   announceControllers.add
 );
-
 router.get(
   "/myAnnouncebyuser/:userId",
-  myannounceControllers.readMyAnnouncebyUser
+  announceControllers.readMyAnnouncebyUser
 );
 router.delete(
   "/myAnnounce/:userId/:announceId",
-  myannounceControllers.deleteMyAnnounce
+  announceControllers.destroyAnnonce
 );
+// router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
 
 router.get("/image", imageControllers.read);
 

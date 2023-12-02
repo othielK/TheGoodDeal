@@ -115,23 +115,6 @@ const selectNewAnnounce = (req, res) => {
   });
 };
 
-const destroy = (req, res) => {
-  const { id } = req.params;
-  models.announce
-    .delete(id)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
 // SELECTALL
 const select = (req, res) => {
   const { model } = req.params;
@@ -212,12 +195,54 @@ const getCarDetails = (req, res) => {
   });
 };
 
+// MyannouncePage
+
+const readMyAnnouncebyUser = (req, res) => {
+  const { userId } = req.params;
+  models.announce.findAllAnnouncesByUser(userId).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
+const myAnnounceCheck = (req, res) => {
+  const { userId, announceId } = req.params;
+  models.announce.myAnnounceCheck(userId, announceId).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
+const destroyAnnonce = (req, res) => {
+  const { userId, announceId } = req.params;
+  models.images
+    .deleteImage(announceId)
+    .then(() => models.announce.deleteAnnounce(userId, announceId))
+    .then(() => {
+      res
+        .status(200)
+        .json({ message: "Annonce supprimée de mes announces avec succès" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({
+        error: err.errno,
+      });
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
-  destroy,
+  destroyAnnonce,
   checkUpload,
   searchByModel,
   searchByBrand,
@@ -227,4 +252,6 @@ module.exports = {
   // addAnnounceWithImages,
   search,
   getCarDetails,
+  readMyAnnouncebyUser,
+  myAnnounceCheck,
 };
