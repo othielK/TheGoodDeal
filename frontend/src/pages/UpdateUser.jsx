@@ -16,9 +16,9 @@ export default function UpdateUser() {
 
   // const userId = localStorage.getItem("id");
   // eslint-disable-next-line prettier/prettier
-  const { infoUser} = useContext(ExportContext.Context);
+  const { infoUser } = useContext(ExportContext.Context);
   // eslint-disable-next-line prettier/prettier
-console.info("infouser",infoUser.id)
+  console.info("infouser", infoUser.id);
   const getUser = () => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/user/${infoUser.id}`, {
@@ -42,7 +42,10 @@ console.info("infouser",infoUser.id)
     e.preventDefault();
     axios
       // eslint-disable-next-line prettier/prettier
-      .put(`${import.meta.env.VITE_BACKEND_URL}/user/${infoUser.id}`, selectedUser)
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/user/${infoUser.id}`,
+        selectedUser
+      )
       .then((response) => {
         toast.success("User updated successfully!");
         console.info("Response from updateUser:", response.data);

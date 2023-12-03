@@ -10,11 +10,9 @@ export default function Contact({ details }) {
   }
 
   const { infoUser } = useContext(ExportContext.Context);
-  const [favorite, setFavorite] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [message, setMessage] = useState();
   const { id } = useParams();
-  // const refresh = () => window.location.reload(true);
 
   const getInitialFavoriteStatus = () => {
     axios
@@ -38,7 +36,7 @@ export default function Contact({ details }) {
   console.info(isFavorite);
 
   const addToFavorites = () => {
-    if (favorite) {
+    if (isFavorite) {
       console.info("L'annonce est déjà dans les favoris!");
       return;
     }
@@ -56,7 +54,7 @@ export default function Contact({ details }) {
       )
       .then((response) => {
         console.info(response.data);
-        setFavorite(true);
+        setIsFavorite(true);
         setMessage("Voiture ajoutée aux favoris avec succès!");
       })
       .catch((error) => {
@@ -91,7 +89,7 @@ export default function Contact({ details }) {
           Ajouter aux favoris
         </button>
       )}
-      <p>{message}</p>
+      <h3>{message}</h3>
 
       <button type="button" className="btn_2">
         Envoyer un message

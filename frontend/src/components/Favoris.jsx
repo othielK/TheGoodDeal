@@ -1,6 +1,7 @@
 // MesFavoris.js
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "../styles/favoris.css";
 
 function Favoris() {
@@ -12,7 +13,9 @@ function Favoris() {
         </div>
         <div className="favoris-details">
           <h1>Mes Favoris</h1>
-          <p>Gérer mes favoris</p>
+          <Link to="/mesfavoris">
+            <p>Gérer mes favoris</p>
+          </Link>
         </div>
       </div>
     </div>
