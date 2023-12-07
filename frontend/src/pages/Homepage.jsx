@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import CarCarousel from "../components/CarCarrousel";
 import "../styles/homepage.css";
@@ -18,14 +18,14 @@ export default function Homepage() {
             Venez parcourir les annonces de voitures et leur donner une seconde
             vie.
           </p>
-          <button type="button">
-            {/* <Link to="/AnnouncePage"> */}
-            Regarder les offres{" "}
-            <span className="iconWrapper">
-              <AiOutlineArrowRight />
-            </span>
-            {/* </Link> */}
-          </button>
+          <Link to="/result/type/all">
+            <button type="button">
+              Regarder les offres
+              <span className="iconWrapper">
+                <AiOutlineArrowRight />
+              </span>
+            </button>
+          </Link>
         </div>
       </div>
 

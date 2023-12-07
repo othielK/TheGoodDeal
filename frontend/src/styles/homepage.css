@@ -22,17 +22,17 @@
   font-size: 16px;
 }
 
-.contentContainer > button {
+.contentContainer button {
   margin-top: 40px;
   padding: 7px 15px;
-  border-color: var(--color-yellow);
+  border: 1px solid var(--color-yellow);
   color: white;
   background-color: transparent;
   display: flex;
   align-items: center;
 }
 
-.contentContainer > button > .iconWrapper {
+.contentContainer button .iconWrapper {
   font-size: 24px;
   font-weight: bold;
   color: var(--color-yellow);
