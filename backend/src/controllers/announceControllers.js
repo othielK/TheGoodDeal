@@ -57,10 +57,10 @@ const add = (req, res) => {
   const announce = req.body;
   // eslint-disable-next-line prefer-destructuring
   const files = req.files;
-  const image1 = files.image_1[0].path;
-  const image2 = files.image_2[0].path;
-  const image3 = files.image_3[0].path;
-  const image4 = files.image_4[0].path;
+  const image1 = files.image_1[0].filename;
+  const image2 = files.image_2[0].filename;
+  const image3 = files.image_3[0].filename;
+  const image4 = files.image_4[0].filename;
 
   models.announce.insert(announce).then(([result]) => {
     console.info(result);
@@ -167,6 +167,26 @@ const searchByBrand = (req, res) => {
     }
   });
 };
+const searchByType = (req, res) => {
+  const { type } = req.params;
+  models.announce.findByCarType(type).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+// const searchByBerline = (req, res) => {
+//   const { type } = req.params;
+//   models.announce.findByBerline(type).then(([rows]) => {
+//     if (rows[0] == null) {
+//       res.sendStatus(404);
+//     } else {
+//       res.send(rows);
+//     }
+//   });
+// };
 
 // SEARCHBAR
 const search = (req, res) => {
@@ -192,6 +212,17 @@ const getCarDetails = (req, res) => {
   });
 };
 
+const carDisplay = (req, res) => {
+  const { model } = req.params;
+  models.announce.randomCars(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
 module.exports = {
   browse,
   read,
@@ -201,9 +232,11 @@ module.exports = {
   checkUpload,
   searchByModel,
   searchByBrand,
+  searchByType,
   select,
   selectNewAnnounce,
   // addAnnounceWithImages,
   search,
   getCarDetails,
+  carDisplay,
 };

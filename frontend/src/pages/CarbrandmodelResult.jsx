@@ -1,6 +1,7 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable react/prop-types */
-import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/carbrandmodelresult.css";
 
@@ -12,7 +13,7 @@ import Select from "@mui/material/Select";
 import filterCars from "../services/carFilterServices";
 import Cardcarresult from "../components/Cardcarresult";
 
-export default function CarmodelResult() {
+export default function CarbrandmodelResult() {
   const [data, setData] = useState([]);
   const [dataModel, setDataModel] = useState([]);
   const [errorModel, setErrorModel] = useState(false);
@@ -93,6 +94,7 @@ export default function CarmodelResult() {
     searchModel();
     searchBrand();
   }, [userResearch]);
+
   return (
     <>
       <div className="motorisation">
@@ -127,9 +129,7 @@ export default function CarmodelResult() {
               <MenuItem value="9999">1000 - 10000</MenuItem>
               <MenuItem value="19999">10000 - 20000</MenuItem>
               <MenuItem value="29999">20000 - 30000</MenuItem>
-              <MenuItem value="39999">30000 - 40000</MenuItem>
-              <MenuItem value="49999">40000 - 49999</MenuItem>
-              <MenuItem value="50000">over 50000</MenuItem>
+              <MenuItem value="30000">over 30000</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -167,9 +167,12 @@ export default function CarmodelResult() {
           <div className="model_list">
             {!errorModel ? (
               filteredModelCars.map((car) => (
-                <div className="cards" key={car.id}>
-                  <Cardcarresult car={car} />
-                </div>
+                <Link
+                  key={car.announce_id}
+                  to={`/cardetails/${car.announce_id}`}
+                >
+                  <Cardcarresult key={car.announce_id} car={car} />
+                </Link>
               ))
             ) : (
               <p>Aucun résultat</p>
@@ -188,7 +191,12 @@ export default function CarmodelResult() {
           <div className="model_list">
             {!errorBrand ? (
               filteredBrandCars.map((brandCar) => (
-                <Cardcarresult key={brandCar.id} car={brandCar} />
+                <Link
+                  key={brandCar.announce_id}
+                  to={`/cardetails/${brandCar.announce_id}`}
+                >
+                  <Cardcarresult key={brandCar.id} car={brandCar} />
+                </Link>
               ))
             ) : (
               <p>Aucun résultat</p>
@@ -206,9 +214,9 @@ export default function CarmodelResult() {
           </h2>
           <div>
             {filteredSearchCars.map((car) => (
-              //   <Link key={car.id} to={`/result/${car.id}`}>
-              <Cardcarresult key={car.id} car={car} />
-              //   </Link>
+              <Link key={car.announce_id} to={`/cardetails/${car.announce_id}`}>
+                <Cardcarresult key={car.announce_id} car={car} />
+              </Link>
             ))}
           </div>
         </div>
