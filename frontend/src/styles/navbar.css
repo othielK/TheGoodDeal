@@ -15,9 +15,10 @@
 }
 
 nav > .logo > img {
-  height: 2rem;
-  width: 80px;
-  margin-left: 2rem;
+  width: 200px;
+  height: auto;
+  margin-left: 3rem;
+  object-fit: contain; 
 }
 
 .hamburger.active .bar:nth-child(2) {
@@ -94,6 +95,12 @@ nav > ul > li {
 }
 .navLink .login-icon img {
   margin: 8px;
+}
+
+.car-type {
+  display: inline-block;
+  padding: 0 20px;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 780px) {

@@ -28,11 +28,11 @@ export default function CarCarousel() {
           <h2>Vous pourriez aimer ces voitures...</h2>
         </div>
         <div className="header_nouveautés">
-          {cars.map((car, index) => (
-            <div className="details" key={index.n}>
+          {cars.map((car) => (
+            <div className="details">
               <Link
                 to={`/cardetails/${car.announce_id}`}
-                key={index.n}
+                key={car.id}
                 className="details"
               >
                 <img

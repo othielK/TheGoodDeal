@@ -8,7 +8,7 @@ export default function Footer() {
     <footer>
       <div className="footer">
         <div className="logo">
-          <img src="src/assets/logo-noir.png" alt="TheGoodDeal" />
+          <img src="/src/assets/logo-noir.png" alt="TheGoodDeal" />
         </div>
         {/* Partie 1 : Footer */}
         <div className="Firstpart">

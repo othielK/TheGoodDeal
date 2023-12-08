@@ -45,6 +45,12 @@ export default function ResultPage() {
       });
   };
 
+  const resetFilters = () => {
+    setMotorisation("");
+    setPrice("");
+    setKilometer("");
+  };
+
   useEffect(() => {
     if (type === "all") {
       setCarType([]); // making the array null
@@ -53,6 +59,7 @@ export default function ResultPage() {
       setCars([]);
       getCarByType();
     }
+    resetFilters();
   }, [type]);
 
   const handleChange = (event) => {

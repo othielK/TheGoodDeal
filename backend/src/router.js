@@ -38,6 +38,7 @@ router.get("/carmodellistbybrand/:id", carmodelControllers.listModelByBrand);
 router.get("/carbrand", carbrandControllers.browse);
 router.get("/carmodelbybrand", carbrandControllers.modelsFromBrand);
 router.get("/cartype", cartypeControllers.types);
+router.get("/cartypes", cartypeControllers.browse);
 
 router.get("/user", userControllers.browse);
 // router.post("/user", userControllers.add);
