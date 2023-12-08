@@ -13,7 +13,7 @@ export default function AnnouncePage() {
   const [success, setSuccess] = useState(false);
 
   const [annonce, setAnnonce] = useState({
-    user_id: 1,
+    user_id: infoUser.id,
     title: "",
     price: 0,
     image_1: "",
