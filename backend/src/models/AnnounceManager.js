@@ -126,5 +126,16 @@ class AnnounceManager extends AbstractManager {
       [id]
     );
   }
+
+  randomCars(announce) {
+    return this.database.query(
+      `SELECT a.announce_id, a.price, i.image_1
+       FROM announce a
+      JOIN images i ON a.announce_id = i.announce_id
+      ORDER BY RAND() LIMIT 5`,
+      [announce]
+    );
+  }
 }
+
 module.exports = AnnounceManager;

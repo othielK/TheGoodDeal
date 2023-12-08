@@ -212,6 +212,17 @@ const getCarDetails = (req, res) => {
   });
 };
 
+const carDisplay = (req, res) => {
+  const { model } = req.params;
+  models.announce.randomCars(model).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
 module.exports = {
   browse,
   read,
@@ -227,4 +238,5 @@ module.exports = {
   // addAnnounceWithImages,
   search,
   getCarDetails,
+  carDisplay,
 };

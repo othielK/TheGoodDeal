@@ -18,6 +18,8 @@ const favoriteControllers = require("./controllers/favoriteControllers");
 const auth = require("./middlewares/auth");
 const authannounce = require("./middlewares/authannounce");
 
+router.get("/announce/randomselection", announceControllers.carDisplay);
+
 router.post("/favoris", auth.checkIfIsAllowed, favoriteControllers.add);
 router.get("/favoris/:id", favoriteControllers.readFavorite);
 router.get("/favoris", favoriteControllers.browse);
