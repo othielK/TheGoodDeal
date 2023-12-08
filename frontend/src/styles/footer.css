@@ -39,7 +39,7 @@
   margin-top: 1rem;
 }
 
-.footer sul {
+.footer ul {
   display: flex;
   flex-direction: column;
 }

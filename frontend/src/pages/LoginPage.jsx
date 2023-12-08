@@ -47,6 +47,7 @@ export default function LoginPage() {
         setSuccess(response.data.message);
         setError(false);
         navigateToHomepage();
+        window.location.reload();
       })
       .catch((err) => {
         console.error(err);
