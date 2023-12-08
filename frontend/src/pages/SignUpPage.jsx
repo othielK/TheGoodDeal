@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/signuppage.css";
 import { AiOutlineCheckCircle, AiOutlineArrowRight } from "react-icons/ai";
 
@@ -11,6 +12,7 @@ export default function SignUpPage() {
   const [checkedPassword, setCheckedPassword] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleChangePrenom = (event) => {
     setLastname(event.target.value);
@@ -27,6 +29,11 @@ export default function SignUpPage() {
   };
   const handleChangeCheckedPassword = (event) => {
     setCheckedPassword(event.target.value);
+  };
+
+  const handleButtonClick = (event) => {
+    event.preventDefault();
+    navigate("/login");
   };
 
   const sendRegisterData = (event) => {
@@ -106,7 +113,12 @@ export default function SignUpPage() {
               Accédez à catalogue complet de véhicules de qualité et prenez la
               route en sécurité.
             </p>
-            <button className="btn_membre" type="button">
+
+            <button
+              className="btn_membre"
+              type="button"
+              onClick={handleButtonClick}
+            >
               Je suis déjà membre
               <AiOutlineArrowRight style={iconStyles} />
             </button>
@@ -180,7 +192,12 @@ export default function SignUpPage() {
                 </button>
 
                 <br />
-                <button className="btn-deja" type="submit">
+
+                <button
+                  className="btn-deja"
+                  type="submit"
+                  onClick={handleButtonClick}
+                >
                   Déjà membre
                 </button>
               </form>

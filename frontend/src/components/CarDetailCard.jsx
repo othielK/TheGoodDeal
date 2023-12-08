@@ -111,7 +111,6 @@ CarDetailCard.propTypes = {
     image_2: PropTypes.string,
     image_3: PropTypes.string,
     image_4: PropTypes.string,
-    contact: PropTypes.string,
     city: PropTypes.string,
     postalcode: PropTypes.number,
     images: PropTypes.arrayOf(PropTypes.string),

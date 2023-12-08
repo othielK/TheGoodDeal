@@ -23,16 +23,18 @@ export default function Content() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/messages" element={<Messages />} />
         <Route
-          path="/messages/:sender/:receiver"
+          path="/messages/:sender/:receiver/:announceId"
           element={<MessageDetails />}
         />
+        <Route path="/cardetails/:id" element={<CarDetailPage />} />
+
         <Route path="/announce" element={<AnnouncePage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/backoffice" element={<Backoffice />} />
         <Route path="/result/:userResearch" element={<CarbrandmodelResult />} />
         <Route path="/result/type/:type" element={<ResultPage />} />
         <Route path="/updateUser" element={<UpdateUser />} />
-        <Route path="/search/:userSearch" element={<CarbrandmodelResult />} />
+        {/* <Route path="/result/:userResearch" element={<CarbrandmodelResult />} /> */}
         <Route path="/cardetails/:id" element={<CarDetailPage />} />
         <Route path="/contact/:id" element={<Contact />} />
         <Route path="/mesfavoris" element={<MyFavorite />} />

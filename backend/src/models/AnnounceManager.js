@@ -115,7 +115,7 @@ class AnnounceManager extends AbstractManager {
 
   getCarDetailsAll(id) {
     return this.database.query(
-      `SELECT i.*, a.title, a.price, a.year, b.car_brand_name, m.car_model_name, a.motorisation, a.kilometer, a.transmission, a.city, a.postalcode, a.description, a.license, a.state, a.power, t.car_type_name, u.firstname, LEFT(u.firstname, 1) AS first_letter_of_firstname
+      `SELECT i.*, a.title, a.price, a.year, b.car_brand_name, m.car_model_name, a.motorisation, a.kilometer, a.transmission, a.city, a.postalcode, a.description, a.license, a.state, a.power, t.car_type_name, u.user_id, u.firstname, LEFT(u.firstname, 1) AS first_letter_of_firstname
       FROM announce a
       JOIN car_brand b ON a.car_brand_id = b.car_brand_id
       JOIN car_model m ON a.car_model_id = m.car_model_id
@@ -127,5 +127,4 @@ class AnnounceManager extends AbstractManager {
     );
   }
 }
-
 module.exports = AnnounceManager;
