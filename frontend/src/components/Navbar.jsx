@@ -42,7 +42,7 @@ export default function Navbar() {
         </div>
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li>
-            <NavLink to="/login" className="login-icon">
+            <NavLink to="/messages" className="login-icon">
               <div className="icon-text">
                 <img src="src/assets/images/message.png" alt="Messages" />
                 <span>Messages</span>
@@ -58,7 +58,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/login" className="login-icon">
+            <NavLink to="/announce" className="login-icon">
               <div className="icon-text">
                 <img
                   src="src/assets/images/annonce.png"

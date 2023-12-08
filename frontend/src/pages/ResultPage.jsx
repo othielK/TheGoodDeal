@@ -15,8 +15,8 @@ export default function ResultPage() {
   const [motorisation, setMotorisation] = useState("");
   const [price, setPrice] = useState("");
   const [kilometer, setKilometer] = useState("");
+  const [error, setError] = useState(false);
   const { type } = useParams();
-  // const [viewType, setViewType] = useState("all");
 
   const getCars = () => {
     axios
@@ -24,6 +24,10 @@ export default function ResultPage() {
       .then((response) => {
         setCars(response.data);
         console.info(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(true);
       });
   };
 
@@ -43,7 +47,7 @@ export default function ResultPage() {
 
   useEffect(() => {
     if (type === "all") {
-      setCarType([]);
+      setCarType([]); // making the array null
       getCars();
     } else {
       setCars([]);
@@ -133,11 +137,15 @@ export default function ResultPage() {
       </div>
       {cars.length > 0 && (
         <div className="cards">
-          {filteredCars.map((car) => (
-            <Link key={car.announce_id} to={`/cardetails/${car.announce_id}`}>
-              <Cardcarresult key={car.announce_id} car={car} />
-            </Link>
-          ))}
+          {!error ? (
+            filteredCars.map((car) => (
+              <Link key={car.announce_id} to={`/cardetails/${car.announce_id}`}>
+                <Cardcarresult key={car.announce_id} car={car} />
+              </Link>
+            ))
+          ) : (
+            <p>Aucun résultat</p>
+          )}
         </div>
       )}
       {/* {filteredCars.length === 0 && <p>Aucun résultat</p>} */}
@@ -147,19 +155,6 @@ export default function ResultPage() {
           <Cardcarresult key={car.announce_id} car={car} />
         </Link>
       ))}
-
-      {/* {carType.length > 0 && carType[0].car_type_name === type && (
-        <div className="cards">
-          {filteredCarType.map((cartype) => (
-            <Link
-              key={cartype.announce_id}
-              to={`/cardetails/${cartype.announce_id}`}
-            >
-              <Cardcarresult key={cartype.announce_id} car={cartype} />
-            </Link>
-          ))}
-        </div>
-      )} */}
     </>
   );
 }

@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import MessageCard from "../components/MessageCard";
 import "../styles/messages.css";
+import ExportContext from "../contexts/Context";
+// import MessageCard from "../components/MessageCard";
+// import MessageImage from "../components/MessageImage";
 
 export default function Messages() {
   const [data, setData] = useState([]);
+  const { infoUser } = useContext(ExportContext.Context);
 
-  const userId = localStorage.getItem("id");
+  // const userId = localStorage.getItem("id");
 
-  console.info("id", userId);
+  console.info("id", infoUser.id);
 
   const getAllConversations = () => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/messages/${userId}`, {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/messages/${infoUser.id}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -31,19 +34,34 @@ export default function Messages() {
   }, []);
 
   return (
-    <>
-      <h1>Liste des conversations</h1>
+    <div className="msg_list">
+      <h1>Mes Messages</h1>
       {data.map((contact) => (
         <div className="conversation_list">
-          <MessageCard contact={contact} />
+          <div className="carimage">
+            <img
+              src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/uploads/${
+                contact.Image
+              }`}
+              alt=""
+            />
+          </div>
+          <div className="cardetails">
+            <h5>{contact.AnnTitle}</h5>
+            <h5>€ {contact.Price}</h5>
+            <h5>
+              {contact.userFname} - {contact.lastMessageTime}
+            </h5>
+          </div>
+          {/* <MessageCard contact={contact} /> */}
           <Link
             key={contact.userId}
-            to={`/messages/${userId}/${contact.userId}`}
+            to={`/messages/${infoUser.id}/${contact.userId}/${contact.AnnounceId}`}
           >
             Voir la conversation
           </Link>
         </div>
       ))}
-    </>
+    </div>
   );
 }

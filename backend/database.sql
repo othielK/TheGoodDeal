@@ -246,40 +246,10 @@ VALUES ( '7',
   'coupe2.jpg'
 );
 
+-- INSERT INTO messages (announce_id, sender_user_id, receiver_user_id, content) 
+-- VALUES ('1', '2', '1', 'Coucou Sala');
 
 
-
-
-
--- INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
--- VALUES ( '1',
---   'https://media.istockphoto.com/id/502783184/photo/peugeot-207.jpg?s=612x612&w=0&k=20&c=J0wVPKGypKN2Ukr0IUKAAweFxFYMvnl0U2vA8e_kSTE=',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/70/ae/70/70ae702e23406bf0ceb28f1e9003da4e8be44147.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/f3/ba/ac/f3baac1b3b5e75364b4393b592f43a92aba944fa.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/90/ce/a1/90cea1b6e81bd53bb7a4753a5052c9b301eab438.jpg?rule=ad-large'
--- ),
--- ('2',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/55/c4/fd/55c4fd69ece05dd9996634cee5013cdd8c1c4a5f.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/df/e5/36/dfe5364f1a3b91bcb5ff74f6e4c3278619a8bea5.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/3f/8a/54/3f8a5446ce0f908eb7444b2d33f7d4fba794d577.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/ce/d1/d0/ced1d05c369076d0c2c01801b8db15d5343df467.jpg?rule=ad-large'
--- ),
--- ('3',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/97/9d/14/979d14ccdbf3ac5118e947b8af74e1c1c7d705a5.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/fc/ff/df/fcffdf14212dfd5a1d5561671ef441c14e9bce4a.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/37/41/d2/3741d2900188555373caa20a37c8c138d64bd774.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/37/41/d2/3741d2900188555373caa20a37c8c138d64bd774.jpg?rule=ad-large'
-
--- ),
--- ('4',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/a7/d6/be/a7d6be680ad48d064e58b9d0e98f84620531ae6e.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/97/15/ee/9715ee3b059d378c6f04d29ef4c5ef1b037672f8.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/a9/76/12/a976125fe6f921752781537fd3709bca924ae47b.jpg?rule=ad-large',
---   'https://img.leboncoin.fr/api/v1/lbcpb1/images/a9/76/12/a976125fe6f921752781537fd3709bca924ae47b.jpg?rule=ad-large'
--- )
-
-INSERT INTO messages (announce_id, sender_user_id, receiver_user_id, content) 
-VALUES ('1', '2', '3', 'Coucou Fatma');
 
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('othiel.leith@gmail.com');
 -- INSERT INTO `goodeal`.`newsletter` (`email`) VALUES ('saima.narat@gmail.com');
@@ -289,6 +259,3 @@ VALUES ('1', '2', '3', 'Coucou Fatma');
 
 -- INSERT INTO `goodeal`.`favorite` (`user_id`, `announce_id`) VALUES ('1', '1');
 
-
--- INSERT INTO `goodeal`.`message` (`announce_id`, `sender_user_id`, `receiver_user_id`, `message`) VALUES ('1', '1', '2', 'DJFKSDLLFSLDKMFJKSLDUILEZFLKHZDFHLNSDF');
--- INSERT INTO `goodeal`.`message` (`announce_id`, `sender_user_id`, `receiver_user_id`, `message`) VALUES ('1', '3', '4', 'IUITRITERIOVLKXNVNKFD');

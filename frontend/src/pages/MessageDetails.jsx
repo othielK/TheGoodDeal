@@ -1,24 +1,41 @@
-// "/messages/sender/:userId/receiver/:receiverId"
-// router.post("/send-message", messageControllers.sendMessageBetweenUsers);
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import SendIcon from "@mui/icons-material/Send";
+
 import MessageContent from "../components/MessageContent";
 import "../styles/messages.css";
+// import Cardcarresult from "../components/Cardcarresult";
 
 export default function MessageDetails() {
   const { sender, receiver } = useParams();
-
+  const [cars, setCars] = useState([]);
   const [data, setData] = useState([]);
   const [content, setContent] = useState("");
+  const { announceId } = useParams();
+
+  const getCars = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/announce/${announceId}`)
+      .then((response) => {
+        setCars(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
+  useEffect(() => {
+    getCars();
+  }, [announceId]);
+  console.info("announcdID:", announceId);
 
   const getConversation = () => {
     axios
       .get(
         `${
           import.meta.env.VITE_BACKEND_URL
-        }/messages/sender/${sender}/receiver/${receiver}`,
+        }/messages/sender/${sender}/receiver/${receiver}/${announceId}`,
         {
           withCredentials: true,
         }
@@ -40,6 +57,8 @@ export default function MessageDetails() {
       })
       .then((response) => {
         console.info(response);
+        setContent(""); // Reset the form after successful submission
+        console.info("Content cleared:", content);
       })
       .catch((error) => {
         console.error(error);
@@ -47,6 +66,7 @@ export default function MessageDetails() {
   };
 
   const handleMessage = (event) => {
+    event.preventDefault();
     setContent(event.target.value);
   };
 
@@ -57,7 +77,7 @@ export default function MessageDetails() {
   useEffect(() => {
     const interval = setInterval(() => {
       getConversation();
-    }, 5000);
+    }, 3000);
     return () => clearInterval(interval);
   });
 
@@ -65,13 +85,39 @@ export default function MessageDetails() {
 
   return (
     <>
-      <h1>Conversation</h1>
+      <div className="conversation">
+        <h1>Conversation</h1>
+        {cars.map((car) => (
+          <div className="conversation_user">
+            <div className="carimage">
+              <img
+                src={`${
+                  import.meta.env.VITE_BACKEND_URL
+                }/assets/images/uploads/${car.image_1}`}
+                alt=""
+              />
+            </div>
+            <div className="cardetails">
+              <h5>{car.title}</h5>
+              <h5>€ {car.price}</h5>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {data.map((message) => (
         <MessageContent message={message} />
       ))}
       <form className="message_text" onSubmit={sendMessage}>
-        <textarea onChange={handleMessage} />
-        <input type="submit" />
+        <input
+          type="text"
+          placeholder="Écrivez ici..."
+          onChange={handleMessage}
+        />
+        {/* <input type="submit" /> */}
+        <button id="sendmessage" type="submit">
+          <SendIcon />
+        </button>
       </form>
     </>
   );

@@ -80,6 +80,11 @@ router.get("/announce/search/:searchTerm", announceControllers.search);
 router.get("/announce/:id", announceControllers.getCarDetails);
 
 router.post("/sendmessage", messageControllers.sendMessageBetweenUsers);
+router.post("/sendautomaticmessage", messageControllers.sendAutomaticMessage);
+router.get(
+  "/messagecheck/:userId/:announceId",
+  messageControllers.messageCheck
+);
 router.get(
   "/messages/:userId",
   auth.checkIfIsAllowed,
@@ -87,7 +92,7 @@ router.get(
 );
 
 router.get(
-  "/messages/sender/:userId/receiver/:receiverId",
+  "/messages/sender/:userId/receiver/:receiverId/:announceId",
   messageControllers.listMessagesBetweenUsers
 );
 module.exports = router;
