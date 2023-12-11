@@ -119,6 +119,7 @@ export default function Navbar() {
           </li>
           <li className="hide-on-desktop">
             <NavLink to="/messages">Mes messages</NavLink>
+            <div className="separator" />
           </li>
           <li>
             <NavLink to="/">Accueil</NavLink>
@@ -136,6 +137,7 @@ export default function Navbar() {
                 {types.car_type_name}
               </NavLink>
             ))}
+            <div className="separator" />
           </li>
           <li className="hide-on-desktop">
             <NavLink
