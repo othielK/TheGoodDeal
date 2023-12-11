@@ -65,7 +65,14 @@ const checkEmailIfExist = (req, res, next) => {
   models.user.searchByEmail(email).then(([user]) => {
     if (user.length !== 0) {
       // eslint-disable-next-line prefer-destructuring
-      req.user = user[0];
+      req.user = {
+        user_id: user[0].user_id,
+        email: user[0].email,
+        firstname: user[0].firstname,
+        lastname: user[0].lastname,
+        role: "user",
+        hashedPassword: user[0].hashedPassword,
+      };
       next();
     } else {
       res.sendStatus(401);
@@ -94,10 +101,30 @@ const checkIfIsAllowed = (req, res, next) => {
   }
 };
 
+const checkIfGoodId = (req, res, next) => {
+  const { userId } = req.params;
+  console.info("Authenticated User ID:", req.user.id);
+  console.info("Requested User ID:", userId);
+
+  if (req.user.id !== parseInt(userId, 10)) {
+    res.status(401).send("Accès interdit");
+  } else {
+    next();
+  }
+};
+const checkIfUser = (req, res, next) => {
+  if (req.user.role !== "user") {
+    res.status(500).send("Tu n'es pas authorisé user");
+  } else {
+    next();
+  }
+};
 module.exports = {
   checkIfGoodUser,
   validateUser,
   hashPassword,
   checkEmailIfExist,
   checkIfIsAllowed,
+  checkIfUser,
+  checkIfGoodId,
 };

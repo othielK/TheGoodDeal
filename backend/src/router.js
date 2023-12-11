@@ -44,12 +44,19 @@ router.get("/user", userControllers.browse);
 // router.post("/user", userControllers.add);
 
 router.delete("/user/:id", userControllers.destroy);
-router.put("/user/:id", userControllers.edit);
+router.put(
+  "/user/:id",
+  // auth.checkIfIsAllowed,
+  // auth.checkIfUser,
+  // auth.checkIfGoodId,
+  userControllers.edit
+);
 router.get("/user/:id", userControllers.read);
 router.get("/avatar/:id", userControllers.avatar);
 
 router.post("/user", auth.validateUser, auth.hashPassword, userControllers.add);
 router.post("/login", auth.checkEmailIfExist, userControllers.verifyPassword);
+router.post("/logout", userControllers.deconnect);
 
 router.post(
   "/test",
@@ -66,6 +73,8 @@ router.post(
   "/announce",
   uploadMiddleware.uploadFile,
   authannounce.validateAnnounce,
+  // auth.checkIfUser,
+  // auth.checkIfGoodId,
   announceControllers.add
 );
 
@@ -89,11 +98,17 @@ router.get(
 router.get(
   "/messages/:userId",
   auth.checkIfIsAllowed,
+  auth.checkIfUser,
+  auth.checkIfGoodId,
   messageControllers.listUserMessage
 );
 
 router.get(
   "/messages/sender/:userId/receiver/:receiverId/:announceId",
+  auth.checkIfIsAllowed,
+  auth.checkIfUser,
+  auth.checkIfGoodId,
   messageControllers.listMessagesBetweenUsers
 );
+
 module.exports = router;
