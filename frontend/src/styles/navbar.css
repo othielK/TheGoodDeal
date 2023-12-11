@@ -1,17 +1,17 @@
+
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   padding: 10px;
-}
-.logo {
-  color: #d73239;
+ 
 }
 
 .nav > ul {
   display: flex;
   padding: 1rem 0;
+  
 }
 
 nav > .logo > img {
@@ -20,6 +20,12 @@ nav > .logo > img {
   margin-left: 3rem;
   object-fit: contain; 
 }
+a:link {
+  text-decoration: none;
+  color:#000000;
+  
+  }
+
 
 .hamburger.active .bar:nth-child(2) {
   opacity: 0;
@@ -56,6 +62,7 @@ nav > .logo > img {
   padding: 5px; /*gives lengthy highlingting */
   border-radius: 10px; /*curved borders*/
   background-color: var(--color-card-background);
+  
 }
 
 .hamburger {
@@ -77,6 +84,7 @@ nav > ul > li {
 }
 :link {
   text-decoration: none;
+  
 }
 .login-icon {
   display: flex;
@@ -101,18 +109,52 @@ nav > ul > li {
   display: inline-block;
   padding: 0 20px;
   text-decoration: none;
+  margin-left: 15px;
+}
+
+ .navMenu a {
+  color: inherit; 
 }
 
 @media screen and (max-width: 780px) {
+  body {
+    overflow: hidden; 
+  }
+  
+  .navMenu {
+    position: fixed;
+    right: -100%; 
+  }
+  
+  .navMenu.active {
+    right: 0; 
+  }
+
+  
   .hamburger {
     display: block;
     border: 1px;
-    background-color: transparent;
+    background-color: transparent; 
   }
   .nav {
     display: flex;
     justify-content: space-between;
+    
   }
+  
+
+  nav > .logo > img {
+    width: 100px;
+    height: auto;
+    margin-left: 3rem;
+    object-fit: contain;
+
+  }
+  .login-icon {
+    flex-direction: column;
+    color: inherit; 
+  }
+  
 
   .navMenu {
     position: absolute;
@@ -127,20 +169,30 @@ nav > ul > li {
     transition: 0.7s ease-in-out;
     background-color: white;
     transition: 0.7s ease-in-out;
-
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    width: 0; 
+    overflow: hidden; 
+    transition: 0.5s width;  
     z-index: 99;
-  }
+     }
+     
+  
   .navMenu.active {
     right: auto;
     left: 0;
     text-align: start;
+    width: 100vw;
+    height: 100vh;
   }
+  
+  
 
   .nav > ul.active {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
+  
 
   .search-section,
   .category-section {
@@ -159,9 +211,28 @@ nav > ul > li {
     justify-content: flex-start;
     align-items: flex-start;
   }
+  .category-section li {
+    margin-right: 0;
+  }
+
+  .car-type {
+    display: block; 
+    padding: 10px; 
+    text-decoration: none;
+    margin-left: 0px;
+  }
   input[type="text"] {
     font-size: 10px;
   }
+  .separator {
+    border-top: 1px solid #999999; 
+    margin-top: 15px; 
+    margin-bottom: 15px; 
+    width: calc(100% + 400px);
+    margin-left: -20px; 
+  }
+   
+  
 }
 
 @media screen and (min-width: 781px) {
