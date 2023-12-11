@@ -1,17 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/signuppage.css";
+import { useNavigate, Link } from "react-router-dom";
 import { AiOutlineCheckCircle, AiOutlineArrowRight } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUpPage() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkedPassword, setCheckedPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleChangePrenom = (event) => {
@@ -42,6 +43,7 @@ export default function SignUpPage() {
     if (password === checkedPassword) {
       console.info("email", email);
       console.info("password", password);
+
       axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/user`, {
           firstname,
@@ -49,62 +51,71 @@ export default function SignUpPage() {
           email,
           password,
         })
-
         .then((response) => {
-          setSuccess(response.data.message);
+          toast.success(response.data.message);
+          setSuccess(true);
           setError(false);
-          console.info(response);
         })
         .catch((err) => {
-          if (
-            err.response.data.error === `"firstname" is not allowed to be empty`
-          ) {
-            setError("Le Prenom ne peut pas être vide");
-          } else if (
-            err.response.data.error === `"firstname" must be a valid name`
-          ) {
-            setError("Mettre un prenom valide");
-          } else if (
-            err.response.data.error === `"lastname" is not allowed to be empty`
-          ) {
-            setError("Le Prenom ne peut pas être vide");
-          } else if (
-            err.response.data.error === `"lastname" must be a valid name`
-          ) {
-            setError("Mettre un nom valide");
-          } else if (
-            err.response.data.error === `"email" is not allowed to be empty`
-          ) {
-            setError("L'email ne peut pas être vide");
-          } else if (
-            err.response.data.error === `"email" must be a valid email`
-          ) {
-            setError("Mettre un email valide");
-          } else if (
-            err.response.data.error === `"password" is not allowed to be empty`
-          ) {
-            setError("Merci de donner un password");
-          } else if (
-            err.response.data.error ===
-            `"password" length must be at least 8 characters long`
-          ) {
-            setError("Le mot de passe doit faire au moins 8 caractères");
-          } else if (err.response.data.error === 1062) {
-            setError("L'email est déjà enregistré");
+          if (err.response) {
+            if (
+              err.response.data.error ===
+              `"firstname" is not allowed to be empty`
+            ) {
+              toast.error("Le Prenom ne peut pas être vide");
+            } else if (
+              err.response.data.error === `"firstname" must be a valid name`
+            ) {
+              toast.error("Mettre un prenom valide");
+            } else if (
+              err.response.data.error ===
+              `"lastname" is not allowed to be empty`
+            ) {
+              toast.error("Le Prenom ne peut pas être vide");
+            } else if (
+              err.response.data.error === `"lastname" must be a valid name`
+            ) {
+              toast.error("Mettre un nom valide");
+            } else if (
+              err.response.data.error === `"email" is not allowed to be empty`
+            ) {
+              toast.error("L'email ne peut pas être vide");
+            } else if (
+              err.response.data.error === `"email" must be a valid email`
+            ) {
+              toast.error("Mettre un email valide");
+            } else if (
+              err.response.data.error ===
+              `"password" is not allowed to be empty`
+            ) {
+              toast.error("Merci de donner un mot de passe");
+            } else if (
+              err.response.data.error ===
+              `"password" length must be at least 8 characters long`
+            ) {
+              toast.error("Le mot de passe doit faire au moins 8 caractères");
+            } else if (err.response.data.error === 1062) {
+              toast.error("L'email est déjà enregistré");
+            } else {
+              console.error(err.response.data.error);
+            }
           } else {
-            console.error(err.response.data.error);
+            console.error(err);
           }
           setSuccess(false);
+          setError(true);
         });
     } else {
-      setError("Les mots de passe ne correspondent pas");
+      toast.error("Les mots de passe ne correspondent pas");
       console.error("Les mots de passe ne correspondent pas");
+      setSuccess(false);
+      setError(true);
     }
   };
 
-  const iconStyles = { color: "#EBAF00", fontSize: "1.5em" };
   return (
     <>
+      <ToastContainer />
       <div className="signup_background">
         <div className="sign_up">
           <div className="signup_title">
@@ -113,15 +124,14 @@ export default function SignUpPage() {
               Accédez à catalogue complet de véhicules de qualité et prenez la
               route en sécurité.
             </p>
-
-            <button
-              className="btn_membre"
-              type="button"
-              onClick={handleButtonClick}
-            >
-              Je suis déjà membre
-              <AiOutlineArrowRight style={iconStyles} />
-            </button>
+            <Link className="btn_membre2" to="/login">
+              <button type="submit">
+                Je suis déjà membre
+                <span className="iconWrapper_login">
+                  <AiOutlineArrowRight />
+                </span>
+              </button>
+            </Link>
           </div>
           <div className="signup_header">
             <div className="signup_header_title">
@@ -130,29 +140,27 @@ export default function SignUpPage() {
                 Crée un compte gratuitement et rejoins notre communauté de
                 membres pour accéder à de nombreux avantages :
               </p>
-              {/* <p>Prise de contact simplifiée</p>
-            <p>Achetez sereinement</p>
-            <p>Déposer des annonces</p> */}
               <ul>
                 <li>
-                  <AiOutlineCheckCircle style={iconStyles} /> Prise de contact
-                  simplifiée
+                  <AiOutlineCheckCircle className="icon" />
+                  Prise de contact simplifiée
                 </li>
 
                 <li>
-                  <AiOutlineCheckCircle style={iconStyles} />
+                  <AiOutlineCheckCircle className="icon" />
                   Achetez sereinement
                 </li>
 
                 <li>
-                  <AiOutlineCheckCircle style={iconStyles} /> Déposer des
-                  annonces
+                  <AiOutlineCheckCircle className="icon" />
+                  Déposer des annonces
                 </li>
               </ul>
             </div>
             <div className="register_formulaire">
               <form onSubmit={sendRegisterData}>
                 <input
+                  className="my-input"
                   type="text"
                   placeholder="Prenom"
                   onChange={handleChangePrenom}
@@ -160,6 +168,7 @@ export default function SignUpPage() {
                 <br />
                 <br />
                 <input
+                  className="my-input"
                   type="text"
                   placeholder="Nom"
                   onChange={handleChangeNom}
@@ -167,6 +176,7 @@ export default function SignUpPage() {
                 <br />
                 <br />
                 <input
+                  className="email-input"
                   type="email"
                   placeholder="Adresse email"
                   onChange={handleChangeEmail}
@@ -174,6 +184,7 @@ export default function SignUpPage() {
                 <br />
                 <br />
                 <input
+                  className="password-input"
                   type="password"
                   placeholder="Mot de passe"
                   onChange={handleChangePassword}
@@ -181,8 +192,9 @@ export default function SignUpPage() {
                 <br />
                 <br />
                 <input
+                  className="password-input"
                   type="password"
-                  placeholder="confirmation du mot de password"
+                  placeholder="Confirmation du mot de passe"
                   onChange={handleChangeCheckedPassword}
                 />
                 <br />
@@ -205,8 +217,8 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
-      {success ? <p>{success}</p> : ""}
-      {error ? <p>{error}</p> : ""}
+      {success && <p>{success}</p>}
+      {error && <p>{error}</p>}
     </>
   );
 }
