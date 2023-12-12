@@ -14,9 +14,8 @@ body {
 
 section {
   margin: 0 auto;
-  min-height: 60vh;
-  max-width: 1200px;
-  /* padding: 2rem 4rem; */
+  /* min-height: 60vh; */
+
 }
 
 :root {
@@ -25,4 +24,13 @@ section {
   --color-blue: #3460d2;
   --color-green: #89b803;
   --color-grey: #606060;
+}
+
+
+@media (min-width: 700px) {
+  section {
+    max-width: 1200px;
+    padding: 2rem 4rem;
+  }
+
 }

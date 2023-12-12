@@ -194,7 +194,6 @@ export default function Navbar() {
             )}
           </li>
           <li className="hide-on-desktop">
-            <li className="hide-on-desktop">
               {infoUser.role === "user" ? (
                 <NavLink to="/messages" className="login-icon">
                   <div className="icon-text">
@@ -205,7 +204,6 @@ export default function Navbar() {
               ) : (
                 <NavLink to="/login">Mes messages</NavLink> // unauthorised user have to be logged in when they click messages
               )}
-            </li>
           </li>
           <li>
             <NavLink to="/">Accueil</NavLink>
@@ -223,6 +221,7 @@ export default function Navbar() {
                 {types.car_type_name}
               </NavLink>
             ))}
+            <div className="separator" />
           </li>
           <li className="hide-on-desktop">
             <NavLink
