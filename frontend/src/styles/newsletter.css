@@ -14,17 +14,21 @@
   margin: 10px 0px 10px 0px;
 }
 
-input[type="submit"] {
+.inscription > input[type="submit"] {
   background-color: black;
   color: white;
-  height: 25px;
+  height: 35px;
   width: 70px;
   cursor: pointer;
+  border: none;
+
 }
 
-input[type="email"] {
+.inscription > input[type="email"] {
   transition: 0.4s;
-  height: 25px;
+  height: 35px;
+  width: 50%;
+  border: none;
 }
 
 .inscription {
@@ -36,19 +40,6 @@ form.subscribe {
   margin-top: 10px;
 }
 
-p.messagesucces {
-  display: flex;
-  margin-left: 30px;
-  flex-wrap: wrap;
-  align-content: space-around;
-}
-
-p.messageerror {
-  display: flex;
-  margin-left: 30px;
-  flex-wrap: wrap;
-  align-content: space-around;
-}
 
 @media (max-width: 780px) {
   .propos {
