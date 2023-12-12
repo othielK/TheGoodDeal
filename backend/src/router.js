@@ -17,6 +17,7 @@ const favoriteControllers = require("./controllers/favoriteControllers");
 
 const auth = require("./middlewares/auth");
 const authannounce = require("./middlewares/authannounce");
+const authServices = require("./services/authServices");
 
 router.get("/announce/randomselection", announceControllers.carDisplay);
 
@@ -51,7 +52,19 @@ router.put(
   // auth.checkIfGoodId,
   userControllers.edit
 );
-router.get("/user/:id", userControllers.read);
+router.get(
+  "/user/:id",
+  // auth.checkIfIsAllowed,
+  // auth.checkIfGoodIdBody,
+  userControllers.read
+);
+// router.post(
+//   "/checkauthwithbody",
+//   auth.checkIfIsAllowed,
+//   auth.checkIfGoodIdBody,
+//   userControllers.allowAccess
+// );
+
 router.get("/avatar/:id", userControllers.avatar);
 
 router.post("/user", auth.validateUser, auth.hashPassword, userControllers.add);
@@ -71,12 +84,13 @@ router.get("/listAnnounces", announceControllers.browse);
 // router.get("/announce/:id", announceControllers.read);
 router.post(
   "/announce",
+  auth.checkIfIsAllowed,
   uploadMiddleware.uploadFile,
   authannounce.validateAnnounce,
-  // auth.checkIfUser,
-  // auth.checkIfGoodId,
   announceControllers.add
 );
+
+router.get("/checkauth", auth.checkIfIsAllowed, authServices.allowAccess); // checkifisallowed is a middleware, it has next so we need a endpoint allowaccess at last
 
 router.get("/image", imageControllers.read);
 

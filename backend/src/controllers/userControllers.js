@@ -52,13 +52,10 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const user = req.body;
-  console.info("user :: ", user);
-  // TODO validations (length, format...)
 
   models.user
     .insert(user)
-    .then(([result]) => {
-      console.info(result);
+    .then(() => {
       res.status(200).json({ message: "Utilisateur crée avec succès" });
     })
     .catch((err) => {

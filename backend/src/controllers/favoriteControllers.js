@@ -16,8 +16,7 @@ const add = (req, res) => {
   const favorite = req.body;
   models.favorite
     .insert(favorite)
-    .then(([result]) => {
-      console.info(result);
+    .then(() => {
       res.status(200).json({ message: "Annonce ajouté aux favoris" });
     })
     .catch((err) => {

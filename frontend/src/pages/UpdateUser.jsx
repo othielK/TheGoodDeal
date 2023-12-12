@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 import ExportContext from "../contexts/Context";
 import "../styles/backoffice.css";
 import Avatardashboard from "../components/Avatardashboard";
@@ -14,11 +15,33 @@ export default function UpdateUser() {
     email: "",
   });
 
-  // const userId = localStorage.getItem("id");
-  // eslint-disable-next-line prettier/prettier
+  const navigate = useNavigate();
+
   const { infoUser } = useContext(ExportContext.Context);
-  // eslint-disable-next-line prettier/prettier
+
   console.info("infouser", infoUser.id);
+
+  // useEffect(() => {
+  //   axios
+  //     .post(
+  //       `${import.meta.env.VITE_BACKEND_URL}/checkauthwithbody`,
+  //       {
+  //         userId: infoUser.id,
+  //       },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.info(response);
+  //       <h1>hello</h1>;
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       navigate("/"); // if unauthorised user then it goes to homepage
+  //     });
+  // }, []);
+
   const getUser = () => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/user/${infoUser.id}`, {
@@ -35,13 +58,13 @@ export default function UpdateUser() {
       })
       .catch((error) => {
         console.error("Error getting user:", error);
+        navigate("/"); // if unauthorised user then it goes to homepage
       });
   };
   console.info("id", infoUser.id);
   const onSubmit = (e) => {
     e.preventDefault();
     axios
-      // eslint-disable-next-line prettier/prettier
       .put(
         `${import.meta.env.VITE_BACKEND_URL}/user/${infoUser.id}`,
         selectedUser

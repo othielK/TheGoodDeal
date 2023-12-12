@@ -26,13 +26,7 @@ const hashPassword = (req, res, next) => {
   argon2
     .hash(req.body.password, hashingOptions)
     .then((hashedPassword) => {
-      console.info("Mot de passe du body :", req.body.password);
-      console.info("Résultat de hashedPassword : ", hashedPassword);
       req.body.hashedPassword = hashedPassword;
-      console.info(
-        "Resultat de mon req.body.hashedPassword :",
-        req.body.hashedPassword
-      );
       delete req.body.password;
       next();
     })
@@ -50,8 +44,6 @@ const userSchema = Joi.object({
 
 const validateUser = (req, res, next) => {
   const { error } = userSchema.validate(req.body);
-  console.info(error);
-
   if (error) {
     res.status(400).json({ error: error.details[0].message });
   } else {
@@ -83,7 +75,6 @@ const checkEmailIfExist = (req, res, next) => {
 const checkIfIsAllowed = (req, res, next) => {
   try {
     const { authToken } = req.cookies;
-    console.info("token de checkIfIsAllowed: ", authToken);
 
     if (!authToken) {
       return res.status(401).send("Désolé, mais c'est ciao !");
@@ -92,7 +83,6 @@ const checkIfIsAllowed = (req, res, next) => {
     const payload = jwt.verify(authToken, process.env.JWT_SECRET);
 
     req.user = payload;
-    console.info(payload);
 
     return next();
   } catch (error) {
@@ -103,10 +93,18 @@ const checkIfIsAllowed = (req, res, next) => {
 
 const checkIfGoodId = (req, res, next) => {
   const { userId } = req.params;
-  console.info("Authenticated User ID:", req.user.id);
-  console.info("Requested User ID:", userId);
-
   if (req.user.id !== parseInt(userId, 10)) {
+    res.status(401).send("Accès interdit");
+  } else {
+    next();
+  }
+};
+const checkIfGoodIdBody = (req, res, next) => {
+  const userId = req.body.user_id;
+  console.info("userID", userId);
+  console.info("user_id", req.body);
+
+  if (req.user.user_id !== parseInt(userId, 10)) {
     res.status(401).send("Accès interdit");
   } else {
     next();
@@ -127,4 +125,5 @@ module.exports = {
   checkIfIsAllowed,
   checkIfUser,
   checkIfGoodId,
+  checkIfGoodIdBody,
 };
