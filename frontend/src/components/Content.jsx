@@ -12,6 +12,7 @@ import MessageDetails from "../pages/MessageDetails";
 import UpdateUser from "../pages/UpdateUser";
 import CarDetailPage from "../pages/CarDetailPage";
 import MyAnnouncePage from "../pages/MyAnnouncePage";
+import UpdateAnnounce from "../pages/UpdateAnnounce";
 
 export default function Content() {
   return (
@@ -34,6 +35,10 @@ export default function Content() {
         <Route path="/search/:userSearch" element={<CarbrandmodelResult />} />
         <Route path="/cardetails/:id" element={<CarDetailPage />} />
         <Route path="/myannounce/:id" element={<MyAnnouncePage />} />
+        <Route
+          path="/updateAnnounce/:id/:announceId"
+          element={<UpdateAnnounce />}
+        />
       </Routes>
     </section>
   );

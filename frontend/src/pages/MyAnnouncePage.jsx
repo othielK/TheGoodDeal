@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import ExportContext from "../contexts/Context";
 import Cardcarresult from "../components/Cardcarresult";
 
@@ -54,12 +55,14 @@ export default function MyAnnounce() {
             <Cardcarresult car={car} />
             <div className="buttons">
               <div className="modifier">
-                <button
-                  type="button"
-                  onClick={() => getMyannounce(car.announce_id)}
-                >
-                  Modifier
-                </button>
+                <Link to={`/updateAnnounce/${infoUser.id}/${car.announce_id}`}>
+                  <button
+                    type="button"
+                    onClick={() => getMyannounce(car.announce_id)}
+                  >
+                    Modifier
+                  </button>
+                </Link>
               </div>
               <div className="supprimer">
                 <button

@@ -28,26 +28,37 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
-  // const id = req.params;
+const editAnnounce = (req, res) => {
   const announce = req.body;
+  // eslint-disable-next-line prefer-destructuring
+  const files = req.files;
+  const image1 = files.image_1[0].filename;
+  const image2 = files.image_2[0].filename;
+  const image3 = files.image_3[0].filename;
+  const image4 = files.image_4[0].filename;
+  const announceId = parseInt(req.params.announceId, 10);
+  const userId = parseInt(req.params.userId, 10);
 
-  // TODO validations (length, format...)
+  announce.announce_id = announceId;
+  announce.user_id = userId;
 
-  announce.id = parseInt(req.params.id, 10);
+  console.info("req.body:", req.body);
+  console.info("req.files:", req.files);
 
   models.announce
     .update(announce)
     .then(([result]) => {
       if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
+        res
+          .status(404)
+          .send("Aucune modification effectuée. Annonce non trouvée.");
       }
+      models.announce.updateImage(image1, image2, image3, image4, announceId);
     })
+    .then(() => res.status(200).send("Modification effectuée avec succès."))
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("Erreur lors de la modification de l'annonce.");
     });
 };
 
@@ -72,7 +83,8 @@ const add = (req, res) => {
         res.status(200).send("Créée avec succés");
       })
       .catch((err) => {
-        res.status(500).send(err);
+        console.error("Error during announce update:", err);
+        res.status(500).send("Erreur lors de la création de l'annonce.");
       });
   });
 };
@@ -160,6 +172,18 @@ const searchByType = (req, res) => {
     }
   });
 };
+
+const readMyAnnounceIdbyUserId = (req, res) => {
+  const { userId, announceId } = req.params;
+  models.announce.findAnnounceIdByUserId(userId, announceId).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
 // const searchByBerline = (req, res) => {
 //   const { type } = req.params;
 //   models.announce.findByBerline(type).then(([rows]) => {
@@ -237,10 +261,26 @@ const destroyAnnonce = (req, res) => {
     });
 };
 
+const readbyUser = (req, res) => {
+  models.announce
+    .find(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
-  edit,
+  editAnnounce,
   add,
   destroyAnnonce,
   checkUpload,
@@ -254,4 +294,6 @@ module.exports = {
   getCarDetails,
   readMyAnnouncebyUser,
   myAnnounceCheck,
+  readbyUser,
+  readMyAnnounceIdbyUserId,
 };

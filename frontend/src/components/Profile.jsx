@@ -13,6 +13,7 @@ function Profile() {
         </div>
         <div className="profile-details">
           <h1>Mon Profil</h1>
+          <div className="imageuser"> </div>
           <Link to="/updateUser">
             <p>Modifier mon profil</p>
           </Link>

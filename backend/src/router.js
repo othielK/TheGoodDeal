@@ -52,6 +52,16 @@ router.get(
   "/myAnnouncebyuser/:userId",
   announceControllers.readMyAnnouncebyUser
 );
+router.get(
+  "/myAnnounceidbyuserid/:userId/:announceId",
+  uploadMiddleware.uploadFile,
+  announceControllers.readMyAnnounceIdbyUserId
+);
+router.put(
+  "/myAnnouncebyuser/:userId/:announceId",
+  uploadMiddleware.uploadFile,
+  announceControllers.editAnnounce
+);
 router.delete(
   "/myAnnounce/:userId/:announceId",
   announceControllers.destroyAnnonce
