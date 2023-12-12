@@ -5,20 +5,22 @@
   align-items: center;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   padding: 10px;
- 
 }
 
-.nav > ul {
+.logo {
+  color: #d73239;
+
+.nav>ul {
   display: flex;
   padding: 1rem 0;
   
 }
 
-nav > .logo > img {
+nav>.logo>img {
   width: 200px;
   height: auto;
   margin-left: 3rem;
-  object-fit: contain; 
+  object-fit: contain;
 }
 a:link {
   text-decoration: none;
@@ -51,16 +53,20 @@ a:link {
 
 /* Pour espacer les éléments de la liste */
 .category-section li {
-  margin-right: 35px; /* Espacement entre les éléments */
+  margin-right: 35px;
+  /* Espacement entre les éléments */
 }
 
 /* Pour enlever les puces des éléments de la liste */
 .category-section li::before {
   content: "";
 }
+
 .navLink:not(.active):hover {
-  padding: 5px; /*gives lengthy highlingting */
-  border-radius: 10px; /*curved borders*/
+  padding: 5px;
+  /*gives lengthy highlingting */
+  border-radius: 10px;
+  /*curved borders*/
   background-color: var(--color-card-background);
   
 }
@@ -79,13 +85,15 @@ a:link {
   transition: 0.3s ease-in-out;
 }
 
-nav > ul > li {
+nav>ul>li {
   margin: 0 2rem;
 }
+
 :link {
   text-decoration: none;
   
 }
+
 .login-icon {
   display: flex;
   align-items: center;
@@ -95,13 +103,52 @@ nav > ul > li {
   display: flex;
   align-items: center;
 }
+
 .login-icon img {
-  margin-right: 8px; /* Espacement entre l'icône et le texte */
+  margin-right: 8px;
+  /* Espacement entre l'icône et le texte */
 }
+
 .navMenu .login-icon {
-  margin: 8px; /* Ajustez la valeur selon vos préférences */
+  margin: 8px;
+  /* Ajustez la valeur selon vos préférences */
 }
+
 .navLink .login-icon img {
+  margin: 8px;
+}
+
+/* logout */
+.hide-on-mobile {
+
+  display: flex;
+  flex-direction: row;
+
+}
+
+.logout-icon {
+  display: inline-block;
+  align-items: center;
+  color: #d73239;
+  font-size: larger;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+}
+
+.logout-icon img {
+  margin-right: 8px;
+  /* Espacement entre l'icône et le texte */
+}
+
+.navMenu .logout-icon {
+  margin: 8px;
+  /* Ajustez la valeur selon vos préférences */
+}
+
+.navLink .logout-icon img {
   margin: 8px;
 }
 
@@ -136,6 +183,7 @@ nav > ul > li {
     border: 1px;
     background-color: transparent; 
   }
+
   .nav {
     display: flex;
     justify-content: space-between;
@@ -174,9 +222,8 @@ nav > ul > li {
     overflow: hidden; 
     transition: 0.5s width;  
     z-index: 99;
-     }
-     
-  
+  }
+
   .navMenu.active {
     right: auto;
     left: 0;
@@ -187,7 +234,7 @@ nav > ul > li {
   
   
 
-  .nav > ul.active {
+  .nav>ul.active {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -196,7 +243,8 @@ nav > ul > li {
 
   .search-section,
   .category-section {
-    width: 100%; /* 100% de la largeur disponible */
+    width: 100%;
+    /* 100% de la largeur disponible */
   }
 
   .navMenu li {
@@ -206,11 +254,13 @@ nav > ul > li {
   }
 
   .category-section ul {
-    flex-direction: column; /* Empilez les éléments verticalement */
+    flex-direction: column;
+    /* Empilez les éléments verticalement */
     gap: 15px;
     justify-content: flex-start;
     align-items: flex-start;
   }
+
   .category-section li {
     margin-right: 0;
   }
@@ -221,6 +271,7 @@ nav > ul > li {
     text-decoration: none;
     margin-left: 0px;
   }
+
   input[type="text"] {
     font-size: 10px;
   }

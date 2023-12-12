@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/messages.css";
 import ExportContext from "../contexts/Context";
@@ -9,6 +9,7 @@ import ExportContext from "../contexts/Context";
 export default function Messages() {
   const [data, setData] = useState([]);
   const { infoUser } = useContext(ExportContext.Context);
+  const navigate = useNavigate();
 
   // const userId = localStorage.getItem("id");
 
@@ -24,6 +25,7 @@ export default function Messages() {
       })
       .catch((err) => {
         console.error(err);
+        navigate("/"); // if unauthorised user then it goes to homepage
       });
   };
 

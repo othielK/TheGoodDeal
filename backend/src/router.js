@@ -17,6 +17,7 @@ const favoriteControllers = require("./controllers/favoriteControllers");
 
 const auth = require("./middlewares/auth");
 const authannounce = require("./middlewares/authannounce");
+const authServices = require("./services/authServices");
 
 router.get("/announce/randomselection", announceControllers.carDisplay);
 
@@ -44,12 +45,31 @@ router.get("/user", userControllers.browse);
 // router.post("/user", userControllers.add);
 
 router.delete("/user/:id", userControllers.destroy);
-router.put("/user/:id", userControllers.edit);
-router.get("/user/:id", userControllers.read);
+router.put(
+  "/user/:id",
+  // auth.checkIfIsAllowed,
+  // auth.checkIfUser,
+  // auth.checkIfGoodId,
+  userControllers.edit
+);
+router.get(
+  "/user/:id",
+  // auth.checkIfIsAllowed,
+  // auth.checkIfGoodIdBody,
+  userControllers.read
+);
+// router.post(
+//   "/checkauthwithbody",
+//   auth.checkIfIsAllowed,
+//   auth.checkIfGoodIdBody,
+//   userControllers.allowAccess
+// );
+
 router.get("/avatar/:id", userControllers.avatar);
 
 router.post("/user", auth.validateUser, auth.hashPassword, userControllers.add);
 router.post("/login", auth.checkEmailIfExist, userControllers.verifyPassword);
+router.post("/logout", userControllers.deconnect);
 
 router.post(
   "/test",
@@ -64,10 +84,13 @@ router.get("/listAnnounces", announceControllers.browse);
 // router.get("/announce/:id", announceControllers.read);
 router.post(
   "/announce",
+  auth.checkIfIsAllowed,
   uploadMiddleware.uploadFile,
   authannounce.validateAnnounce,
   announceControllers.add
 );
+
+router.get("/checkauth", auth.checkIfIsAllowed, authServices.allowAccess); // checkifisallowed is a middleware, it has next so we need a endpoint allowaccess at last
 
 router.get("/image", imageControllers.read);
 
@@ -89,11 +112,17 @@ router.get(
 router.get(
   "/messages/:userId",
   auth.checkIfIsAllowed,
+  auth.checkIfUser,
+  auth.checkIfGoodId,
   messageControllers.listUserMessage
 );
 
 router.get(
   "/messages/sender/:userId/receiver/:receiverId/:announceId",
+  auth.checkIfIsAllowed,
+  auth.checkIfUser,
+  auth.checkIfGoodId,
   messageControllers.listMessagesBetweenUsers
 );
+
 module.exports = router;

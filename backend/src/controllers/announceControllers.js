@@ -63,12 +63,10 @@ const add = (req, res) => {
   const image4 = files.image_4[0].filename;
 
   models.announce.insert(announce).then(([result]) => {
-    console.info(result);
     const announceId = result.insertId;
     models.announce
       .insertImage(image1, image2, image3, image4, announceId)
-      .then(([result2]) => {
-        console.info(result2);
+      .then(() => {
         res.status(200).send("Créée avec succés");
       })
       .catch((err) => {
@@ -81,28 +79,6 @@ const add = (req, res) => {
 const checkUpload = (req, res) => {
   res.status(200).send("fichier téléchargé");
 };
-
-// const addAnnounceWithImages = (req, res) => {
-//   const { announce, images } = req.body;
-
-//   models.announce
-//     .insert(announce)
-//     .then((announceId) => {
-//       console.info(`Announce créée avec succés: ${announceId}`);
-//       res.status(200).json({ message: "Announce créée avec succès" });
-//       return models.announce.insertImage(images, announceId);
-//     })
-//     .then(() => {
-//       console.info("Images insérées avec succés");
-//       res.status(200).json({ message: "Annonce et images créés avec succès" });
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       res.status(500).json({
-//         error: err.errno,
-//       });
-//     });
-// };
 
 const selectNewAnnounce = (req, res) => {
   const { model } = req.params;

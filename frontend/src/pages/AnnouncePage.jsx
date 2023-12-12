@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../styles/announcepage.css";
 import { Alert, AlertTitle } from "@mui/material";
 import ExportContext from "../contexts/Context";
@@ -11,6 +12,22 @@ export default function AnnouncePage() {
   const [types, setTypes] = useState([]);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/checkauth`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.info(response);
+        <h1>hello</h1>;
+      })
+      .catch((err) => {
+        console.error(err);
+        navigate("/"); // if unauthorised user then it goes to homepage
+      });
+  }, []);
 
   const [annonce, setAnnonce] = useState({
     user_id: infoUser.id,

@@ -1,17 +1,43 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/navbar.css";
 import { CgProfile } from "react-icons/cg";
 import { TbMessage } from "react-icons/tb";
 import { FiPlusSquare } from "react-icons/fi";
+import { AiOutlineLogout } from "react-icons/ai";
 import SearchBar from "./SearchBar";
 import ExportContext from "../contexts/Context";
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const [carType, setCarType] = useState([]);
-  const { infoUser, setIsLoggedIn } = useContext(ExportContext.Context);
+  const { infoUser, setIsLoggedIn, resetInfoUser } = useContext(
+    ExportContext.Context
+  );
+
+  console.info("infouserrole:", infoUser.role);
+
+  const deconnecter = () => {
+    console.info("Before logout:", infoUser);
+    axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        console.info(response);
+        resetInfoUser();
+        console.info("After logout:", infoUser);
+        useNavigate("/");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -59,7 +85,7 @@ export default function Navbar() {
         </Link>
         <li className="hide-on-desktop">
           <div className="hide-on-desktop">
-            {infoUser.id ? (
+            {infoUser.role === "user" ? (
               <Link to="/backoffice" className="login-icon">
                 <CgProfile />
                 <span>Mon profil</span>
@@ -71,26 +97,49 @@ export default function Navbar() {
                 <span>Se connecter</span>
                 <div className="icon-text" />
               </Link>
+            )}
+            {infoUser.role === "user" && (
+              <li>
+                <Link to="/" className="logout-icon" onClick={deconnecter}>
+                  <AiOutlineLogout />
+                  {/* <span>Déconnecter</span> */}
+                  <div className="icon-text" />
+                </Link>
+              </li>
             )}
           </div>
         </li>
 
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li>
-            <NavLink to="/messages" className="login-icon">
-              <div className="icon-text">
-                <TbMessage />
-                <span>Messages</span>
-              </div>
-            </NavLink>
+            {infoUser.role === "user" ? (
+              <NavLink to="/messages" className="login-icon">
+                <div className="icon-text">
+                  <TbMessage />
+                  <span>Messages</span>
+                </div>
+              </NavLink>
+            ) : (
+              // unauthorised user have to be logged in when they click messages
+
+              <NavLink to="/login" className="login-icon">
+                <div className="icon-text">
+                  <TbMessage />
+                  <span>Messages</span>
+                </div>
+              </NavLink>
+            )}
           </li>
+
           <li className="hide-on-mobile">
-            {infoUser.id ? (
-              <Link to="/backoffice" className="login-icon">
-                <CgProfile />
-                <span>Mon profil</span>
-                <div className="icon-text" />
-              </Link>
+            {infoUser.role === "user" ? (
+              <li>
+                <Link to="/backoffice" className="login-icon">
+                  <CgProfile />
+                  <span>Mon profil</span>
+                  <div className="icon-text" />
+                </Link>
+              </li>
             ) : (
               <Link to="/login" className="login-icon" onClick={handleLogin}>
                 <CgProfile />
@@ -100,13 +149,31 @@ export default function Navbar() {
             )}
           </li>
           <li>
-            <NavLink to="/announce" className="login-icon">
-              <div className="icon-text">
-                <FiPlusSquare />
-                <span> Déposer une annonce </span>
-              </div>
-            </NavLink>
+            {infoUser.role === "user" ? (
+              <NavLink to="/announce" className="login-icon">
+                <div className="icon-text">
+                  <FiPlusSquare />
+                  <span> Déposer une annonce </span>
+                </div>
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="login-icon">
+                <div className="icon-text">
+                  <FiPlusSquare />
+                  <span> Déposer une annonce </span>
+                </div>
+              </NavLink>
+            )}
           </li>
+          {infoUser.role === "user" && (
+            <li>
+              <Link to="/" className="logout-icon" onClick={deconnecter}>
+                <AiOutlineLogout />
+                {/* <span>Déconnecter</span> */}
+                <div className="icon-text" />
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
 
@@ -115,11 +182,28 @@ export default function Navbar() {
       <div className="category-section">
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li className="hide-on-desktop">
-            <NavLink to="/announce">Déposer une annonce</NavLink>
+            {infoUser.role === "user" ? (
+              <NavLink to="/announce" className="login-icon">
+                <div className="icon-text">
+                  <FiPlusSquare />
+                  <span> Déposer une annonce </span>
+                </div>
+              </NavLink>
+            ) : (
+              <NavLink to="/login">Déposer une annonce</NavLink> // unauthorised user have to be logged in when they click deposer announces
+            )}
           </li>
           <li className="hide-on-desktop">
-            <NavLink to="/messages">Mes messages</NavLink>
-            <div className="separator" />
+              {infoUser.role === "user" ? (
+                <NavLink to="/messages" className="login-icon">
+                  <div className="icon-text">
+                    <TbMessage />
+                    <span>Messages</span>
+                  </div>
+                </NavLink>
+              ) : (
+                <NavLink to="/login">Mes messages</NavLink> // unauthorised user have to be logged in when they click messages
+              )}
           </li>
           <li>
             <NavLink to="/">Accueil</NavLink>

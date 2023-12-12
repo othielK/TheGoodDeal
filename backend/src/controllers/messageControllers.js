@@ -5,8 +5,7 @@ const sendMessageBetweenUsers = (req, res) => {
 
   models.message
     .sendMessage(messages)
-    .then(([result]) => {
-      console.info(result);
+    .then(() => {
       res.status(200).json({ message: "Message envoyé avec succès" });
     })
     .catch((err) => {
@@ -27,8 +26,7 @@ const sendAutomaticMessage = (req, res) => {
   };
   models.message
     .sendMessage(messages)
-    .then(([result]) => {
-      console.info(result);
+    .then(() => {
       res.status(200).json({ message: "Message envoyé avec succès" });
     })
     .catch((err) => {
