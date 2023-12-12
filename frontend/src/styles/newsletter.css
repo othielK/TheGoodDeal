@@ -21,7 +21,6 @@
   width: 70px;
   cursor: pointer;
   border: none;
-
 }
 
 .inscription > input[type="email"] {
@@ -39,7 +38,6 @@
 form.subscribe {
   margin-top: 10px;
 }
-
 
 @media (max-width: 780px) {
   .propos {

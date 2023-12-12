@@ -13,7 +13,7 @@
   margin-right: 100px;
   width: 35%;
 
-  &:nth-child(2n+1) {
+  &:nth-child(2n + 1) {
     flex-direction: row-reverse;
     margin-left: 200px;
     background-color: rgb(206, 222, 251);
@@ -36,7 +36,7 @@
   flex-direction: row;
 }
 
-.message_text>input {
+.message_text > input {
   padding: 10px;
   border: 1px solid rgb(186, 184, 184);
   border-radius: 10px;
@@ -49,7 +49,7 @@
   /* margin-right: 100px; */
 }
 
-.message_text>input[type="submit"] {
+.message_text > input[type="submit"] {
   background-color: black;
   text-align: center;
   color: white;
@@ -60,18 +60,18 @@
   transition: 0.3s;
 }
 
-.message_text>input[type="submit"]:hover {
+.message_text > input[type="submit"]:hover {
   background-color: lightgray;
 }
 
-.conversation_list>a {
+.conversation_list > a {
   background-color: var(--color-blue);
   color: white;
   padding: 1rem 2rem;
   border-radius: 300px;
 }
 
-.msg_list>h1 {
+.msg_list > h1 {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -89,14 +89,13 @@
   width: 100%;
 }
 
-
 .carimage {
   width: 9rem;
   /* height: 10rem; */
   height: 120px;
 }
 
-.carimage>img {
+.carimage > img {
   max-width: 100%;
   height: 100%;
   border-radius: 5px;
@@ -106,11 +105,11 @@
   padding: 10px;
 }
 
-.cardetails>h5 {
+.cardetails > h5 {
   margin: 10px 0;
 }
 
-.cardetails>p {
+.cardetails > p {
   margin: 10px 0;
 }
 
@@ -124,25 +123,24 @@
   width: 100%;
 }
 
-.conversation>h1 {
+.conversation > h1 {
   margin-top: 30px;
   text-align: center;
-
 }
 
-.conversation>.conversation_user>.carimage>img {
+.conversation > .conversation_user > .carimage > img {
   margin-top: 30px;
   max-width: 50%;
   height: 50%;
   border-radius: 5px;
 }
 
-.conversation>.conversation_user {
+.conversation > .conversation_user {
   border-bottom: 2px solid #ccc;
   border-radius: 5px;
 }
 
-.conversation>.conversation_user>.cardetails>h5 {
+.conversation > .conversation_user > .cardetails > h5 {
   margin: 10px 0;
 }
 
@@ -160,7 +158,7 @@
         max-width: 1000px;   */
   }
 
-  .cardetails>h6 {
+  .cardetails > h6 {
     display: inline-block;
     margin: 5px 0 3px;
     padding: 5px 5px;
@@ -168,15 +166,13 @@
     text-align: center;
   }
 
-
-
   .cardetails {
     width: 30rem;
   }
 
   /* conversation page */
 
-  .conversation>.conversation_user {
+  .conversation > .conversation_user {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -184,7 +180,6 @@
     margin-right: 100px;
     width: 80%;
   }
-
 
   /*  message details */
 
@@ -196,12 +191,11 @@
     margin-right: 100px;
     width: 35%;
 
-    &:nth-child(2n+1) {
+    &:nth-child(2n + 1) {
       flex-direction: row-reverse;
       margin-left: 500px;
       background-color: rgb(206, 222, 251);
       color: rgb(17, 96, 244);
     }
   }
-
 }

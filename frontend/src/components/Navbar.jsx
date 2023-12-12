@@ -194,16 +194,16 @@ export default function Navbar() {
             )}
           </li>
           <li className="hide-on-desktop">
-              {infoUser.role === "user" ? (
-                <NavLink to="/messages" className="login-icon">
-                  <div className="icon-text">
-                    <TbMessage />
-                    <span>Messages</span>
-                  </div>
-                </NavLink>
-              ) : (
-                <NavLink to="/login">Mes messages</NavLink> // unauthorised user have to be logged in when they click messages
-              )}
+            {infoUser.role === "user" ? (
+              <NavLink to="/messages" className="login-icon">
+                <div className="icon-text">
+                  <TbMessage />
+                  <span>Messages</span>
+                </div>
+              </NavLink>
+            ) : (
+              <NavLink to="/login">Mes messages</NavLink> // unauthorised user have to be logged in when they click messages
+            )}
           </li>
           <li>
             <NavLink to="/">Accueil</NavLink>
