@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import SendIcon from "@mui/icons-material/Send";
 
@@ -43,7 +43,9 @@ export default function MessageDetails() {
       .then((response) => {
         setData(response.data.result);
       })
-      .catch();
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const sendMessage = (event) => {
@@ -66,8 +68,12 @@ export default function MessageDetails() {
   };
 
   const handleMessage = (event) => {
-    event.preventDefault();
-    setContent(event.target.value);
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendMessage(event);
+    } else {
+      setContent(event.target.value);
+    }
   };
 
   useEffect(() => {
@@ -79,7 +85,7 @@ export default function MessageDetails() {
       getConversation();
     }, 3000);
     return () => clearInterval(interval);
-  });
+  }, [announceId]);
 
   console.info(data);
 
@@ -88,33 +94,38 @@ export default function MessageDetails() {
       <div className="conversation">
         <h1>Conversation</h1>
         {cars.map((car) => (
-          <div className="conversation_user">
-            <div className="carimage">
-              <img
-                src={`${
-                  import.meta.env.VITE_BACKEND_URL
-                }/assets/images/uploads/${car.image_1}`}
-                alt=""
-              />
+          <Link to={`/cardetails/${car.announce_id}`}>
+            <div key={car.id} className="conversation_user">
+              <div className="carimage">
+                <img
+                  src={`${
+                    import.meta.env.VITE_BACKEND_URL
+                  }/assets/images/uploads/${car.image_1}`}
+                  alt=""
+                />
+              </div>
+              <div className="cardetails">
+                <h5>{car.title}</h5>
+                <h5>€ {car.price}</h5>
+              </div>
             </div>
-            <div className="cardetails">
-              <h5>{car.title}</h5>
-              <h5>€ {car.price}</h5>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
 
       {data.map((message) => (
-        <MessageContent message={message} />
+        <div key={message.id}>
+          <MessageContent key={message.id} message={message} sender={sender} />
+        </div>
       ))}
       <form className="message_text" onSubmit={sendMessage}>
         <input
           type="text"
           placeholder="Écrivez ici..."
+          value={content}
           onChange={handleMessage}
         />
-        {/* <input type="submit" /> */}
+
         <button id="sendmessage" type="submit">
           <SendIcon />
         </button>

@@ -3,8 +3,6 @@
 .message_content {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* width: 100%; */
   background-color: whitesmoke;
   margin-bottom: 1rem;
   padding: 0.5rem;
@@ -13,12 +11,20 @@
   margin-right: 100px;
   width: 35%;
 
-  &:nth-child(2n + 1) {
-    flex-direction: row-reverse;
-    margin-left: 200px;
-    background-color: rgb(206, 222, 251);
-    color: rgb(17, 96, 244);
-  }
+}
+
+.sent_message {
+  flex-direction: row-reverse;
+  background-color: rgb(206, 222, 251);
+  color: rgb(17, 96, 244);
+  margin-left: 200px;
+}
+
+.received_message {
+  flex-direction: row;
+  background-color: lightgray;
+  color: black;
+  margin-right: 200px;
 }
 
 #sendmessage {
@@ -27,8 +33,8 @@
   background-color: #3460d2;
   color: #fff;
   border: none;
-  border-radius: 50%;
-  /* margin-left: 10px; */
+  border-radius: 40%;
+  margin-left: 10px;
 }
 
 .message_content {
@@ -36,12 +42,12 @@
   flex-direction: row;
 }
 
-.message_text > input {
+.message_text>input {
   padding: 10px;
   border: 1px solid rgb(186, 184, 184);
   border-radius: 10px;
   background-color: white;
-  width: 80%;
+  width: 60%;
   height: 50px;
   font-size: 16px;
   padding: 1rem;
@@ -49,29 +55,20 @@
   /* margin-right: 100px; */
 }
 
-.message_text > input[type="submit"] {
-  background-color: black;
-  text-align: center;
-  color: white;
-  width: 25%;
-  padding: 1rem 0;
-  margin-top: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
+
+
+.message_text>input:hover {
+  background-color: whitesmoke;
 }
 
-.message_text > input[type="submit"]:hover {
-  background-color: lightgray;
-}
-
-.conversation_list > a {
+.conversation_list>a {
   background-color: var(--color-blue);
   color: white;
   padding: 1rem 2rem;
   border-radius: 300px;
 }
 
-.msg_list > h1 {
+.msg_list>h1 {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -95,7 +92,7 @@
   height: 120px;
 }
 
-.carimage > img {
+.carimage>img {
   max-width: 100%;
   height: 100%;
   border-radius: 5px;
@@ -105,11 +102,11 @@
   padding: 10px;
 }
 
-.cardetails > h5 {
+.cardetails>h5 {
   margin: 10px 0;
 }
 
-.cardetails > p {
+.cardetails>p {
   margin: 10px 0;
 }
 
@@ -121,30 +118,41 @@
   align-items: center;
   padding: 10px;
   width: 100%;
+
 }
 
-.conversation > h1 {
+.conversation>h1 {
   margin-top: 30px;
   text-align: center;
 }
 
-.conversation > .conversation_user > .carimage > img {
+.carimage>img {
   margin-top: 30px;
   max-width: 50%;
   height: 50%;
   border-radius: 5px;
 }
 
-.conversation > .conversation_user {
+.conversation_user {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* width: 80%; */
+  width: 100%;
   border-bottom: 2px solid #ccc;
   border-radius: 5px;
 }
 
-.conversation > .conversation_user > .cardetails > h5 {
+
+.cardetails>h5 {
   margin: 10px 0;
 }
 
-@media (min-width: 700px) {
+
+@media (min-width: 600px) {
   .conversation_list {
     display: flex;
     flex-direction: row;
@@ -152,13 +160,9 @@
     margin-left: 100px;
     margin-right: 100px;
 
-    /* CSS FOR CENTER */
-    /* margin: 0 auto;
-        min-height: 30vh;
-        max-width: 1000px;   */
   }
 
-  .cardetails > h6 {
+  .cardetails>h6 {
     display: inline-block;
     margin: 5px 0 3px;
     padding: 5px 5px;
@@ -172,13 +176,11 @@
 
   /* conversation page */
 
-  .conversation > .conversation_user {
+  .conversation_user {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 100px;
-    margin-right: 100px;
-    width: 80%;
+    width: 900px;
   }
 
   /*  message details */
@@ -191,11 +193,24 @@
     margin-right: 100px;
     width: 35%;
 
-    &:nth-child(2n + 1) {
-      flex-direction: row-reverse;
-      margin-left: 500px;
-      background-color: rgb(206, 222, 251);
-      color: rgb(17, 96, 244);
-    }
   }
+
+  .sent_message {
+    flex-direction: row-reverse;
+    background-color: rgb(206, 222, 251);
+    color: rgb(17, 96, 244);
+    margin-left: auto
+  }
+
+  .received_message {
+    flex-direction: row;
+    background-color: lightgray;
+    color: black;
+    margin-right: auto;
+  }
+
+  .message_text>input {
+    width: 80%;
+  }
+
 }
