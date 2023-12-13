@@ -11,6 +11,8 @@ import Messages from "../pages/Messages";
 import MessageDetails from "../pages/MessageDetails";
 import UpdateUser from "../pages/UpdateUser";
 import CarDetailPage from "../pages/CarDetailPage";
+import MyAnnouncePage from "../pages/MyAnnouncePage";
+import UpdateAnnounce from "../pages/UpdateAnnounce";
 import Page404 from "../pages/Page404";
 import Contact from "./Contact";
 import MyFavorite from "../pages/MyFavorite";
@@ -63,6 +65,11 @@ export default function Content() {
           }
         />
         <Route path="/cardetails/:id" element={<CarDetailPage />} />
+        <Route path="/myannounce/:id" element={<MyAnnouncePage />} />
+        <Route
+          path="/updateAnnounce/:id/:announceId"
+          element={<UpdateAnnounce />}
+        />
         <Route path="/*" element={<Page404 />} />
         <Route path="/contact/:id" element={<Contact />} />
         <Route path="/mesfavoris" element={<MyFavorite />} />

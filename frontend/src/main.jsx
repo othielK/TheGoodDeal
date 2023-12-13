@@ -6,6 +6,7 @@ import "./styles/cardetailcard.css";
 import "./styles/specs.css";
 import "./styles/contact.css";
 import "./styles/cardetailpage.css";
+import "./styles/myannounce.css";
 import "./styles/myfavorite.css";
 import "./styles/cardcarresult.css";
 import "./styles/signuppage.css";

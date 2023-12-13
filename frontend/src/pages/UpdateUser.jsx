@@ -15,31 +15,9 @@ export default function UpdateUser() {
     email: "",
   });
 
-  const navigate = useNavigate();
-
+  // eslint-disable-next-line prettier/prettier
   const { infoUser } = useContext(ExportContext.Context);
-
-  console.info("infouser", infoUser.id);
-
-  // useEffect(() => {
-  //   axios
-  //     .post(
-  //       `${import.meta.env.VITE_BACKEND_URL}/checkauthwithbody`,
-  //       {
-  //         userId: infoUser.id,
-  //       },
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.info(response);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       navigate("/"); // if unauthorised user then it goes to homepage
-  //     });
-  // }, []);
+  const navigate = useNavigate();
 
   const getUser = () => {
     axios
@@ -60,10 +38,11 @@ export default function UpdateUser() {
         navigate("/"); // if unauthorised user then it goes to homepage
       });
   };
-  console.info("id", infoUser.id);
-  const onSubmit = (e) => {
+
+const onSubmit = (e) => {
     e.preventDefault();
     axios
+      // eslint-disable-next-line prettier/prettier
       .put(
         `${import.meta.env.VITE_BACKEND_URL}/user/${infoUser.id}`,
         selectedUser
