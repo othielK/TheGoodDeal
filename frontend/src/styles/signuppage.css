@@ -46,7 +46,6 @@
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-
 }
 
 .btn-create {
@@ -67,7 +66,7 @@
   width: 90%;
   padding: 8px 0;
 }
-.icon{
+.icon {
   color: #ebaf00;
   margin-right: 10px;
 }
@@ -99,6 +98,6 @@
     font-weight: 100;
   }
   .signup_title > p {
-margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 }

@@ -112,7 +112,7 @@ CarDetailCard.propTypes = {
     image_3: PropTypes.string,
     image_4: PropTypes.string,
     city: PropTypes.string,
-    postalcode: PropTypes.number,
+    postalcode: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
 };

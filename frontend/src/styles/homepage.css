@@ -30,7 +30,6 @@
   background-color: transparent;
   display: flex;
   align-items: center;
-
 }
 
 .contentContainer > a > button > .iconWrapper {
@@ -46,5 +45,4 @@
   .welcomeComponent {
     display: flex;
   }
-
 }

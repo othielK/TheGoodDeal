@@ -54,15 +54,15 @@ router.put(
 );
 router.get(
   "/user/:id",
-  // auth.checkIfIsAllowed,
-  // auth.checkIfGoodIdBody,
+  auth.checkIfIsAllowed,
+  auth.checkIfGoodIdBody,
   userControllers.read
 );
 // router.post(
 //   "/checkauthwithbody",
 //   auth.checkIfIsAllowed,
 //   auth.checkIfGoodIdBody,
-//   userControllers.allowAccess
+//   authServices.allowAccess
 // );
 
 router.get("/avatar/:id", userControllers.avatar);
@@ -79,9 +79,6 @@ router.post(
 
 router.get("/announce", announceControllers.select);
 router.get("/listAnnounces", announceControllers.browse);
-// router.delete("/announce/:id", announceControllers.destroy);
-// router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
-// router.get("/announce/:id", announceControllers.read);
 router.post(
   "/announce",
   auth.checkIfIsAllowed,
@@ -89,6 +86,23 @@ router.post(
   authannounce.validateAnnounce,
   announceControllers.add
 );
+router.get(
+  "/myAnnouncebyuser/:userId",
+  announceControllers.readMyAnnouncebyUser
+);
+router.get(
+  "/myAnnounceidbyuserid/:userId/:announceId",
+  announceControllers.readMyAnnounceIdbyUserId
+);
+router.put(
+  "/myAnnouncebyuser/:userId/:announceId",
+  announceControllers.editAnnounce
+);
+router.delete(
+  "/myAnnounce/:userId/:announceId",
+  announceControllers.destroyAnnonce
+);
+// router.put("/announce/:id", auth.hashPassword, announceControllers.edit);
 
 router.get("/checkauth", auth.checkIfIsAllowed, authServices.allowAccess); // checkifisallowed is a middleware, it has next so we need a endpoint allowaccess at last
 

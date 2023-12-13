@@ -28,26 +28,29 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
-  // const id = req.params;
+const editAnnounce = (req, res) => {
   const announce = req.body;
 
-  // TODO validations (length, format...)
+  const announceId = parseInt(req.params.announceId, 10);
+  const userId = parseInt(req.params.userId, 10);
 
-  announce.id = parseInt(req.params.id, 10);
+  announce.announce_id = announceId;
+  announce.user_id = userId;
 
   models.announce
     .update(announce)
     .then(([result]) => {
       if (result.affectedRows === 0) {
-        res.sendStatus(404);
+        res
+          .status(404)
+          .send("Aucune modification effectuée. Annonce non trouvée.");
       } else {
-        res.sendStatus(204);
+        res.status(200).send("Modification effectuée avec succès.");
       }
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("Erreur lors de la modification de l'annonce.");
     });
 };
 
@@ -70,7 +73,8 @@ const add = (req, res) => {
         res.status(200).send("Créée avec succés");
       })
       .catch((err) => {
-        res.status(500).send(err);
+        console.error("Error during announce update:", err);
+        res.status(500).send("Erreur lors de la création de l'annonce.");
       });
   });
 };
@@ -89,23 +93,6 @@ const selectNewAnnounce = (req, res) => {
       res.send(rows);
     }
   });
-};
-
-const destroy = (req, res) => {
-  const { id } = req.params;
-  models.announce
-    .delete(id)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
 };
 
 // SELECTALL
@@ -153,16 +140,17 @@ const searchByType = (req, res) => {
     }
   });
 };
-// const searchByBerline = (req, res) => {
-//   const { type } = req.params;
-//   models.announce.findByBerline(type).then(([rows]) => {
-//     if (rows[0] == null) {
-//       res.sendStatus(404);
-//     } else {
-//       res.send(rows);
-//     }
-//   });
-// };
+
+const readMyAnnounceIdbyUserId = (req, res) => {
+  const { userId, announceId } = req.params;
+  models.announce.findAnnounceIdByUserId(userId, announceId).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
 
 // SEARCHBAR
 const search = (req, res) => {
@@ -188,6 +176,62 @@ const getCarDetails = (req, res) => {
   });
 };
 
+const readMyAnnouncebyUser = (req, res) => {
+  const { userId } = req.params;
+  models.announce.findAllAnnouncesByUser(userId).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
+const myAnnounceCheck = (req, res) => {
+  const { userId, announceId } = req.params;
+  models.announce.myAnnounceCheck(userId, announceId).then(([rows]) => {
+    if (rows[0] == null) {
+      res.sendStatus(404);
+    } else {
+      res.send(rows);
+    }
+  });
+};
+
+const destroyAnnonce = (req, res) => {
+  const { userId, announceId } = req.params;
+  models.images
+    .deleteImage(announceId)
+    .then(() => models.announce.deleteAnnounce(userId, announceId))
+    .then(() => {
+      res
+        .status(200)
+        .json({ message: "Annonce supprimée de mes announces avec succès" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({
+        error: err.errno,
+      });
+    });
+};
+
+const readbyUser = (req, res) => {
+  models.announce
+    .find(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const carDisplay = (req, res) => {
   const { model } = req.params;
   models.announce.randomCars(model).then(([rows]) => {
@@ -202,17 +246,20 @@ const carDisplay = (req, res) => {
 module.exports = {
   browse,
   read,
-  edit,
+  editAnnounce,
   add,
-  destroy,
+  destroyAnnonce,
   checkUpload,
   searchByModel,
   searchByBrand,
   searchByType,
   select,
   selectNewAnnounce,
-  // addAnnounceWithImages,
   search,
   getCarDetails,
+  readMyAnnouncebyUser,
+  myAnnounceCheck,
+  readbyUser,
+  readMyAnnounceIdbyUserId,
   carDisplay,
 };

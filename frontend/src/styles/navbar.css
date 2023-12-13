@@ -6,6 +6,10 @@
   padding: 2rem 4rem;
 }
 
+.logo {
+  color: #d73239;
+}
+
 .nav > ul {
   display: flex;
   padding: 1rem 0;
@@ -148,16 +152,31 @@ nav > ul > li {
 .navMenu a {
   color: inherit;
 }
+
 .deposer-annonce {
   background-color: #d73239;
   padding: 5px 20px; 
   border-radius: 5px;
 }
+
 .deposer-annonce .logout-icon {
   color: #fff; 
 }
-@media screen and (max-width: 1244px) {
 
+
+@media screen and (max-width: 780px) {
+  body {
+    overflow: hidden;
+  }
+
+  .navMenu {
+    position: fixed;
+    right: -100%;
+  }
+
+  .navMenu.active {
+    right: 0;
+  }
 
   .hamburger {
     display: block;
@@ -201,9 +220,10 @@ nav > ul > li {
     transition: 0.7s ease-in-out;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     width: 0;
-    transition: 0.5s width;
     padding: 100px;
-   
+    overflow: hidden;
+    transition: 0.5s width;
+    z-index: 99;
   }
 
   .navMenu.active {

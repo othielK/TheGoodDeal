@@ -70,6 +70,6 @@ Cardcarresult.propTypes = {
     motorisation: PropTypes.string,
     transmission: PropTypes.string,
     city: PropTypes.string,
-    postalcode: PropTypes.number,
+    postalcode: PropTypes.string,
   }).isRequired,
 };
