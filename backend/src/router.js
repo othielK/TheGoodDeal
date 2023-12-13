@@ -54,15 +54,15 @@ router.put(
 );
 router.get(
   "/user/:id",
-  // auth.checkIfIsAllowed,
-  // auth.checkIfGoodIdBody,
+  auth.checkIfIsAllowed,
+  auth.checkIfGoodIdBody,
   userControllers.read
 );
 // router.post(
 //   "/checkauthwithbody",
 //   auth.checkIfIsAllowed,
 //   auth.checkIfGoodIdBody,
-//   userControllers.allowAccess
+//   authServices.allowAccess
 // );
 
 router.get("/avatar/:id", userControllers.avatar);

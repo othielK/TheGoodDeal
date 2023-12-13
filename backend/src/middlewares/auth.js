@@ -100,11 +100,10 @@ const checkIfGoodId = (req, res, next) => {
   }
 };
 const checkIfGoodIdBody = (req, res, next) => {
-  const userId = req.body.user_id;
+  const userId = req.params.id;
   console.info("userID", userId);
-  console.info("user_id", req.body);
-
-  if (req.user.user_id !== parseInt(userId, 10)) {
+  console.info("user_id", req.user.id);
+  if (req.user.id !== parseInt(userId, 10)) {
     res.status(401).send("Accès interdit");
   } else {
     next();

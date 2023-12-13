@@ -34,7 +34,6 @@ export default function UpdateUser() {
   //     )
   //     .then((response) => {
   //       console.info(response);
-  //       <h1>hello</h1>;
   //     })
   //     .catch((err) => {
   //       console.error(err);

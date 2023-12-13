@@ -38,7 +38,6 @@ export default function Contact({ details }) {
       .then((response) => {
         console.info(response);
         setIsMsgSent(true);
-        // localStorage.setItem(`isMsgSent_${id}`, "true");
       })
       .catch((error) => {
         setIsMsgSent(false);
@@ -132,9 +131,7 @@ export default function Contact({ details }) {
         </span>
         {details.firstname}
       </h3>
-
-      {console.info("infoUser.id:", infoUser.id)}
-      {console.info("details.user_id:", details.user_id)}
+      {console.info("parseint", parseInt(details.user_id, 10))}
 
       {infoUser.id !== parseInt(details.user_id, 10) ? (
         <div className="part3">
@@ -172,11 +169,8 @@ export default function Contact({ details }) {
 Contact.propTypes = {
   details: PropTypes.shape({
     user_id: PropTypes.number,
-
     announce_id: PropTypes.number,
-
     first_letter_of_firstname: PropTypes.string,
-
     firstname: PropTypes.string,
   }).isRequired,
 };

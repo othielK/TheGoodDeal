@@ -12,6 +12,7 @@ import ExportContext from "../contexts/Context";
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const [carType, setCarType] = useState([]);
+  const navigate = useNavigate();
   const { infoUser, setIsLoggedIn, resetInfoUser } = useContext(
     ExportContext.Context
   );
@@ -32,7 +33,7 @@ export default function Navbar() {
         console.info(response);
         resetInfoUser();
         console.info("After logout:", infoUser);
-        useNavigate("/");
+        navigate("/");
       })
       .catch((err) => {
         console.error(err);
@@ -83,35 +84,35 @@ export default function Navbar() {
             alt="TheGoodDeal"
           />
         </Link>
-        <li className="hide-on-desktop">
-          <div className="hide-on-desktop">
-            {infoUser.role === "user" ? (
-              <Link to="/backoffice" className="login-icon">
-                <CgProfile />
-                <span>Mon profil</span>
+        <li className="hide-on-desktop" key="backoffice">
+          {/* <div className="hide-on-desktop"> */}
+          {infoUser.role === "user" ? (
+            <Link to="/backoffice" className="login-icon">
+              <CgProfile />
+              <span>Mon profil</span>
+              <div className="icon-text" />
+            </Link>
+          ) : (
+            <Link to="/login" className="login-icon" onClick={handleLogin}>
+              <CgProfile />
+              <span>Se connecter</span>
+              <div className="icon-text" />
+            </Link>
+          )}
+          {infoUser.role === "user" && (
+            <div>
+              <Link to="/" className="logout-icon" onClick={deconnecter}>
+                <AiOutlineLogout />
+                {/* <span>Déconnecter</span> */}
                 <div className="icon-text" />
               </Link>
-            ) : (
-              <Link to="/login" className="login-icon" onClick={handleLogin}>
-                <CgProfile />
-                <span>Se connecter</span>
-                <div className="icon-text" />
-              </Link>
-            )}
-            {infoUser.role === "user" && (
-              <li>
-                <Link to="/" className="logout-icon" onClick={deconnecter}>
-                  <AiOutlineLogout />
-                  {/* <span>Déconnecter</span> */}
-                  <div className="icon-text" />
-                </Link>
-              </li>
-            )}
-          </div>
+            </div>
+          )}
+          {/* </div> */}
         </li>
 
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
-          <li>
+          <li key="messages">
             {infoUser.role === "user" ? (
               <NavLink to="/messages" className="login-icon">
                 <div className="icon-text">
@@ -131,15 +132,15 @@ export default function Navbar() {
             )}
           </li>
 
-          <li className="hide-on-mobile">
+          <li className="hide-on-mobile" key="profile">
             {infoUser.role === "user" ? (
-              <li>
+              <div>
                 <Link to="/backoffice" className="login-icon">
                   <CgProfile />
                   <span>Mon profil</span>
                   <div className="icon-text" />
                 </Link>
-              </li>
+              </div>
             ) : (
               <Link to="/login" className="login-icon" onClick={handleLogin}>
                 <CgProfile />
@@ -166,13 +167,13 @@ export default function Navbar() {
             )}
           </li>
           {infoUser.role === "user" && (
-            <li>
+            <div>
               <Link to="/" className="logout-icon" onClick={deconnecter}>
                 <AiOutlineLogout />
                 {/* <span>Déconnecter</span> */}
                 <div className="icon-text" />
               </Link>
-            </li>
+            </div>
           )}
         </ul>
       </nav>
@@ -214,8 +215,8 @@ export default function Navbar() {
           <li>
             {carType.map((types) => (
               <NavLink
-                className="car-type"
                 key={types.id}
+                className="car-type"
                 to={`/result/type/${types.car_type_name}`}
               >
                 {types.car_type_name}
