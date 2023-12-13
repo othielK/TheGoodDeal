@@ -21,7 +21,6 @@ export default function AnnouncePage() {
       })
       .then((response) => {
         console.info(response);
-        <h1>hello</h1>;
       })
       .catch((err) => {
         console.error(err);
@@ -74,17 +73,26 @@ export default function AnnouncePage() {
       });
     }
   };
-
   const handleFileChange = (event) => {
-    setAnnonce((prevData) => ({
-      ...prevData,
-      image_1: event.target.files[0],
-      image_2: event.target.files[0],
-      image_3: event.target.files[0],
-      image_4: event.target.files[0],
-    }));
-    // setAnnonce((prevData) => ({ ...prevData, image_1,: event.target.files[0] }));
+    const file = event.target.files[0];
+    const { name } = event.target;
+
+    setAnnonce((prevData) => {
+      const updatedAnnonce = { ...prevData, [name]: file };
+
+      if (updatedAnnonce.image_1) {
+        // eslint-disable-next-line no-plusplus
+        for (let i = 2; i <= 4; i++) {
+          if (!updatedAnnonce[`image_${i}`]) {
+            updatedAnnonce[`image_${i}`] = updatedAnnonce.image_1;
+          }
+        }
+      }
+
+      return updatedAnnonce;
+    });
   };
+
   console.info("user_id,", infoUser.id);
 
   const sendFormData = (event) => {
