@@ -84,6 +84,7 @@ export default function Navbar() {
             alt="TheGoodDeal"
           />
         </Link>
+
         <li className="hide-on-desktop" key="backoffice">
           {/* <div className="hide-on-desktop"> */}
           {infoUser.role === "user" ? (
@@ -122,7 +123,6 @@ export default function Navbar() {
               </NavLink>
             ) : (
               // unauthorised user have to be logged in when they click messages
-
               <NavLink to="/login" className="login-icon">
                 <div className="icon-text">
                   <TbMessage />
@@ -151,14 +151,14 @@ export default function Navbar() {
           </li>
           <li>
             {infoUser.role === "user" ? (
-              <NavLink to="/announce" className="login-icon">
+              <NavLink to="/announce" className="login-icon deposer-annonce">
                 <div className="icon-text">
                   <FiPlusSquare />
                   <span> Déposer une annonce </span>
                 </div>
               </NavLink>
             ) : (
-              <NavLink to="/login" className="login-icon">
+              <NavLink to="/login" className="login-icon deposer-annonce">
                 <div className="icon-text">
                   <FiPlusSquare />
                   <span> Déposer une annonce </span>
@@ -179,7 +179,6 @@ export default function Navbar() {
       </nav>
 
       <SearchBar />
-
       <div className="category-section">
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li className="hide-on-desktop">
@@ -243,6 +242,31 @@ export default function Navbar() {
             >
               INFORMATIONS LEGALES
             </NavLink>
+          </li>
+          <li className="hide-on-desktop">
+            <div className="hide-on-desktop">
+              {infoUser.role === "user" ? (
+                <Link to="/backoffice" className="login-icon">
+                  <CgProfile />
+                  <span>Mon profil</span>
+                  <div className="icon-text" />
+                </Link>
+              ) : (
+                <Link to="/login" className="login-icon" onClick={handleLogin}>
+                  <CgProfile />
+                  <span>Se connecter</span>
+                  <div className="icon-text" />
+                </Link>
+              )}
+              {infoUser.role === "user" && (
+                <li>
+                  <Link to="/" className="logout-icon" onClick={deconnecter}>
+                    <AiOutlineLogout />
+                    <div className="icon-text" />
+                  </Link>
+                </li>
+              )}
+            </div>
           </li>
         </ul>
       </div>
