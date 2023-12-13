@@ -41,12 +41,14 @@ export default function LoginPage() {
       .then((response) => {
         console.info(response);
         localStorage.setItem("id", response.data.id);
-        localStorage.setItem("email", response.data.email);
         localStorage.setItem("firstname", response.data.firstname);
         localStorage.setItem("lastname", response.data.lastname);
+        localStorage.setItem("email", response.data.email);
+        localStorage.setItem("role", response.data.role);
         setSuccess(response.data.message);
         setError(false);
         navigateToHomepage();
+        window.location.reload();
       })
       .catch((err) => {
         console.error(err);
@@ -67,8 +69,8 @@ export default function LoginPage() {
             Accedez à un catalaogue complet de <br />
             véhicule de qualité et prenez la route en sécurité.
           </p>
-          <Link to="/signup">
-            <button className="btn_membre" type="submit">
+          <Link className="btn_membre2" to="/signup">
+            <button type="submit">
               Je veux être membre
               <span className="iconWrapper_login">
                 <AiOutlineArrowRight />

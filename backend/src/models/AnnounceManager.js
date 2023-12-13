@@ -99,23 +99,9 @@ class AnnounceManager extends AbstractManager {
     );
   }
 
-  // searchbyberline
-  // findByBerline(type) {
-  //   return this.database.query(
-  //     `SELECT i.*, a.announce_id, t.car_type_name,b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
-  //       FROM announce a
-  //       JOIN car_model m ON a.car_model_id = m.car_model_id
-  //       JOIN images i ON i.announce_id = a.announce_id
-  //       JOIN car_brand b ON a.car_brand_id = b.car_brand_id
-  //       JOIN car_type t ON a.car_type_id = t.car_type_id
-  //       WHERE LOWER(t.car_type_name) LIKE '%berline%'`,
-  //     [type]
-  //   );
-  // }
-
   getCarDetailsAll(id) {
     return this.database.query(
-      `SELECT i.*, a.title, a.price, a.year, b.car_brand_name, m.car_model_name, a.motorisation, a.kilometer, a.transmission, a.city, a.postalcode, a.description, a.license, a.state, a.power, t.car_type_name, u.firstname, LEFT(u.firstname, 1) AS first_letter_of_firstname
+      `SELECT i.*, a.title, a.price, a.year, b.car_brand_name, m.car_model_name, a.motorisation, a.kilometer, a.transmission, a.city, a.postalcode, a.description, a.license, a.state, a.power, t.car_type_name, u.user_id, u.firstname, LEFT(u.firstname, 1) AS first_letter_of_firstname
       FROM announce a
       JOIN car_brand b ON a.car_brand_id = b.car_brand_id
       JOIN car_model m ON a.car_model_id = m.car_model_id
@@ -126,8 +112,6 @@ class AnnounceManager extends AbstractManager {
       [id]
     );
   }
-
-  // MyannouncePage
 
   findAllAnnouncesByUser(userId) {
     return this.database.query(
@@ -167,18 +151,20 @@ class AnnounceManager extends AbstractManager {
     );
   }
 
-  // updateImage(picture1, picture2, picture3, picture4, announceId) {
-  //   return this.database.query(
-  //     `UPDATE images set image_1 = ?, image_2 = ?, image_3 = ?, image_4 = ?
-  //     WHERE announce_id = ?`,
-  //     [picture1, picture2, picture3, picture4, announceId]
-  //   );
-  // }
-
   deleteAnnounce(userId, announceId) {
     return this.database.query(
       `DELETE FROM announce WHERE user_id = ? AND announce_id = ?`,
       [userId, announceId]
+    );
+  }
+
+  randomCars(announce) {
+    return this.database.query(
+      `SELECT a.announce_id, a.price, i.image_1
+       FROM announce a
+      JOIN images i ON a.announce_id = i.announce_id
+      ORDER BY RAND() LIMIT 5`,
+      [announce]
     );
   }
 }

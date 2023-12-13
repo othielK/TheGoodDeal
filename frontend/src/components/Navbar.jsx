@@ -1,10 +1,48 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/navbar.css";
+import { CgProfile } from "react-icons/cg";
+import { TbMessage } from "react-icons/tb";
+import { FiPlusSquare } from "react-icons/fi";
+import { AiOutlineLogout } from "react-icons/ai";
 import SearchBar from "./SearchBar";
+import ExportContext from "../contexts/Context";
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
+  const [carType, setCarType] = useState([]);
+  const navigate = useNavigate();
+  const { infoUser, setIsLoggedIn, resetInfoUser } = useContext(
+    ExportContext.Context
+  );
+
+  console.info("infouserrole:", infoUser.role);
+
+  const deconnecter = () => {
+    console.info("Before logout:", infoUser);
+    axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        console.info(response);
+        resetInfoUser();
+        console.info("After logout:", infoUser);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
   const toggleActiveClass = () => {
     setIsActive(!isActive);
@@ -13,6 +51,20 @@ export default function Navbar() {
   const removeActive = () => {
     setIsActive(false);
   };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/cartypes`)
+      .then((response) => {
+        setCarType(response.data);
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la récupération des types de voiture :",
+          error
+        );
+      });
+  }, []);
 
   return (
     <div className="navbar">
@@ -28,46 +80,101 @@ export default function Navbar() {
         </button>
         <Link to="/" className="logo">
           <img
-            src="src/assets/images/logo_the_good_deal.png"
+            src="/src/assets/images/logo_the_good_deal.png"
             alt="TheGoodDeal"
           />
         </Link>
-        <div className="hide-on-desktop">
-          <Link to="/login" className="login-icon">
-            <span>Se connecter</span>
-            <div className="icon-text">
-              <img src="src/assets/images/connecter.png" alt="Se connecter" />
+        <li className="hide-on-desktop" key="backoffice">
+          {/* <div className="hide-on-desktop"> */}
+          {infoUser.role === "user" ? (
+            <Link to="/backoffice" className="login-icon">
+              <CgProfile />
+              <span>Mon profil</span>
+              <div className="icon-text" />
+            </Link>
+          ) : (
+            <Link to="/login" className="login-icon" onClick={handleLogin}>
+              <CgProfile />
+              <span>Se connecter</span>
+              <div className="icon-text" />
+            </Link>
+          )}
+          {infoUser.role === "user" && (
+            <div>
+              <Link to="/" className="logout-icon" onClick={deconnecter}>
+                <AiOutlineLogout />
+                {/* <span>Déconnecter</span> */}
+                <div className="icon-text" />
+              </Link>
             </div>
-          </Link>
-        </div>
+          )}
+          {/* </div> */}
+        </li>
+
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
-          <li>
-            <NavLink to="/login" className="login-icon">
-              <div className="icon-text">
-                <img src="src/assets/images/message.png" alt="Messages" />
-                <span>Messages</span>
-              </div>
-            </NavLink>
+          <li key="messages">
+            {infoUser.role === "user" ? (
+              <NavLink to="/messages" className="login-icon">
+                <div className="icon-text">
+                  <TbMessage />
+                  <span>Messages</span>
+                </div>
+              </NavLink>
+            ) : (
+              // unauthorised user have to be logged in when they click messages
+
+              <NavLink to="/login" className="login-icon">
+                <div className="icon-text">
+                  <TbMessage />
+                  <span>Messages</span>
+                </div>
+              </NavLink>
+            )}
           </li>
-          <li>
-            <NavLink to="/login" className="login-icon">
-              <div className="icon-text">
-                <img src="src/assets/images/connecter.png" alt="Se connecter" />
+
+          <li className="hide-on-mobile" key="profile">
+            {infoUser.role === "user" ? (
+              <div>
+                <Link to="/backoffice" className="login-icon">
+                  <CgProfile />
+                  <span>Mon profil</span>
+                  <div className="icon-text" />
+                </Link>
+              </div>
+            ) : (
+              <Link to="/login" className="login-icon" onClick={handleLogin}>
+                <CgProfile />
                 <span>Se connecter</span>
-              </div>
-            </NavLink>
+                <div className="icon-text" />
+              </Link>
+            )}
           </li>
           <li>
-            <NavLink to="/login" className="login-icon">
-              <div className="icon-text">
-                <img
-                  src="src/assets/images/annonce.png"
-                  alt="Déposer une annonce"
-                />
-                <span> Déposer une annonce </span>
-              </div>
-            </NavLink>
+            {infoUser.role === "user" ? (
+              <NavLink to="/announce" className="login-icon">
+                <div className="icon-text">
+                  <FiPlusSquare />
+                  <span> Déposer une annonce </span>
+                </div>
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="login-icon">
+                <div className="icon-text">
+                  <FiPlusSquare />
+                  <span> Déposer une annonce </span>
+                </div>
+              </NavLink>
+            )}
           </li>
+          {infoUser.role === "user" && (
+            <div>
+              <Link to="/" className="logout-icon" onClick={deconnecter}>
+                <AiOutlineLogout />
+                {/* <span>Déconnecter</span> */}
+                <div className="icon-text" />
+              </Link>
+            </div>
+          )}
         </ul>
       </nav>
 
@@ -76,93 +183,46 @@ export default function Navbar() {
       <div className="category-section">
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li className="hide-on-desktop">
-            <NavLink to="/login" className="login-icon">
-              <div className="icon-text">
-                <img
-                  src="src/assets/images/annonce.png"
-                  alt="Déposer une annonce"
-                />
-                <span> Déposer une annonce </span>
-              </div>
-            </NavLink>
+            {infoUser.role === "user" ? (
+              <NavLink to="/announce" className="login-icon">
+                <div className="icon-text">
+                  <FiPlusSquare />
+                  <span> Déposer une annonce </span>
+                </div>
+              </NavLink>
+            ) : (
+              <NavLink to="/login">Déposer une annonce</NavLink> // unauthorised user have to be logged in when they click deposer announces
+            )}
           </li>
           <li className="hide-on-desktop">
-            <NavLink to="/login" className="login-icon">
-              <div className="icon-text">
-                <img src="src/assets/images/message.png" alt="Messages" />
-                <span>Messages</span>
-              </div>
-            </NavLink>
+            {infoUser.role === "user" ? (
+              <NavLink to="/messages" className="login-icon">
+                <div className="icon-text">
+                  <TbMessage />
+                  <span>Messages</span>
+                </div>
+              </NavLink>
+            ) : (
+              <NavLink to="/login">Mes messages</NavLink> // unauthorised user have to be logged in when they click messages
+            )}
           </li>
           <li>
             <NavLink to="/">Accueil</NavLink>
           </li>
           <li>
-            <NavLink onClick="window.location.reload()" to="/result/type/all">
-              Toutes les catégories
-            </NavLink>
+            <NavLink to="/result/type/all">Toutes les catégories</NavLink>
           </li>
           <li>
-            <NavLink
-              onClick="window.location.reload()"
-              to="/result/type/citadines"
-            >
-              Citadines
-            </NavLink>
-          </li>
-          {/* <li>
-            <NavLink to="/result/type/citadines">Citadines</NavLink>
-          </li> */}
-          <li>
-            <NavLink
-              onClick="window.location.reload()"
-              to="/result/type/berlines"
-            >
-              Berlines
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              onClick="window.location.reload()"
-              to="/result/type/4x4, suv, crossover"
-            >
-              4x4 SUV Crossover
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              onClick="window.location.reload()"
-              to="/result/type/sans permis"
-            >
-              Sans permis
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              onClick="window.location.reload()"
-              to="/result/type/breaks"
-            >
-              Breaks
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              onClick="window.location.reload()"
-              to="/result/type/cabriolets"
-            >
-              Cabriolet
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              onClick="window.location.reload()"
-              to="/result/type/coupés"
-            >
-              Coupés
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/backoffice">Backoffice</NavLink>
+            {carType.map((types) => (
+              <NavLink
+                key={types.id}
+                className="car-type"
+                to={`/result/type/${types.car_type_name}`}
+              >
+                {types.car_type_name}
+              </NavLink>
+            ))}
+            <div className="separator" />
           </li>
           <li className="hide-on-desktop">
             <NavLink

@@ -94,7 +94,6 @@ const announceSchema = Joi.object({
 
 const validateAnnounce = (req, res, next) => {
   const { error } = announceSchema.validate(req.body);
-  console.info(error);
 
   if (error) {
     res.status(400).json({ error: error.details[0].message });

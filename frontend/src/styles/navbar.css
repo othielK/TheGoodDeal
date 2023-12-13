@@ -5,6 +5,7 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   padding: 10px;
 }
+
 .logo {
   color: #d73239;
 }
@@ -15,9 +16,14 @@
 }
 
 nav > .logo > img {
-  height: 2rem;
-  width: 80px;
-  margin-left: 2rem;
+  width: 200px;
+  height: auto;
+  margin-left: 3rem;
+  object-fit: contain;
+}
+a:link {
+  text-decoration: none;
+  color: #000000;
 }
 
 .hamburger.active .bar:nth-child(2) {
@@ -44,16 +50,20 @@ nav > .logo > img {
 
 /* Pour espacer les éléments de la liste */
 .category-section li {
-  margin-right: 35px; /* Espacement entre les éléments */
+  margin-right: 35px;
+  /* Espacement entre les éléments */
 }
 
 /* Pour enlever les puces des éléments de la liste */
 .category-section li::before {
   content: "";
 }
+
 .navLink:not(.active):hover {
-  padding: 5px; /*gives lengthy highlingting */
-  border-radius: 10px; /*curved borders*/
+  padding: 5px;
+  /*gives lengthy highlingting */
+  border-radius: 10px;
+  /*curved borders*/
   background-color: var(--color-card-background);
 }
 
@@ -74,9 +84,11 @@ nav > .logo > img {
 nav > ul > li {
   margin: 0 2rem;
 }
+
 :link {
   text-decoration: none;
 }
+
 .login-icon {
   display: flex;
   align-items: center;
@@ -86,25 +98,98 @@ nav > ul > li {
   display: flex;
   align-items: center;
 }
+
 .login-icon img {
-  margin-right: 8px; /* Espacement entre l'icône et le texte */
+  margin-right: 8px;
+  /* Espacement entre l'icône et le texte */
 }
+
 .navMenu .login-icon {
-  margin: 8px; /* Ajustez la valeur selon vos préférences */
+  margin: 8px;
+  /* Ajustez la valeur selon vos préférences */
 }
+
 .navLink .login-icon img {
   margin: 8px;
 }
 
+/* logout */
+.hide-on-mobile {
+  display: flex;
+  flex-direction: row;
+}
+
+.logout-icon {
+  display: inline-block;
+  align-items: center;
+  color: #d73239;
+  font-size: larger;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+}
+
+.logout-icon img {
+  margin-right: 8px;
+  /* Espacement entre l'icône et le texte */
+}
+
+.navMenu .logout-icon {
+  margin: 8px;
+  /* Ajustez la valeur selon vos préférences */
+}
+
+.navLink .logout-icon img {
+  margin: 8px;
+}
+
+.car-type {
+  display: inline-block;
+  padding: 0 20px;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.navMenu a {
+  color: inherit;
+}
+
 @media screen and (max-width: 780px) {
+  body {
+    overflow: hidden;
+  }
+
+  .navMenu {
+    position: fixed;
+    right: -100%;
+  }
+
+  .navMenu.active {
+    right: 0;
+  }
+
   .hamburger {
     display: block;
     border: 1px;
     background-color: transparent;
   }
+
   .nav {
     display: flex;
     justify-content: space-between;
+  }
+
+  nav > .logo > img {
+    width: 100px;
+    height: auto;
+    margin-left: 3rem;
+    object-fit: contain;
+  }
+  .login-icon {
+    flex-direction: column;
+    color: inherit;
   }
 
   .navMenu {
@@ -120,13 +205,19 @@ nav > ul > li {
     transition: 0.7s ease-in-out;
     background-color: white;
     transition: 0.7s ease-in-out;
-
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    width: 0;
+    overflow: hidden;
+    transition: 0.5s width;
     z-index: 99;
   }
+
   .navMenu.active {
     right: auto;
     left: 0;
     text-align: start;
+    width: 100vw;
+    height: 100vh;
   }
 
   .nav > ul.active {
@@ -137,7 +228,8 @@ nav > ul > li {
 
   .search-section,
   .category-section {
-    width: 100%; /* 100% de la largeur disponible */
+    width: 100%;
+    /* 100% de la largeur disponible */
   }
 
   .navMenu li {
@@ -147,13 +239,33 @@ nav > ul > li {
   }
 
   .category-section ul {
-    flex-direction: column; /* Empilez les éléments verticalement */
+    flex-direction: column;
+    /* Empilez les éléments verticalement */
     gap: 15px;
     justify-content: flex-start;
     align-items: flex-start;
   }
+
+  .category-section li {
+    margin-right: 0;
+  }
+
+  .car-type {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    margin-left: 0px;
+  }
+
   input[type="text"] {
     font-size: 10px;
+  }
+  .separator {
+    border-top: 1px solid #999999;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: calc(100% + 400px);
+    margin-left: -20px;
   }
 }
 

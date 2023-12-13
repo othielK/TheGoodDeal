@@ -26,9 +26,6 @@ const searchBymodelAnnounce = (req, res) => {
 
 const listModelByBrand = (req, res) => {
   const { id } = req.params;
-  // const id = req.params;
-  // const modelId = parseInt(id, 10);
-  console.info(id);
   models.carmodel.findModelsFromBrand(id).then(([rows]) => {
     if (rows[0] == null) {
       res.sendStatus(404);

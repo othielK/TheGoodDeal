@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import React from "react";
-import "../styles/cardcarresult.css";
 import { PiRoadHorizonFill } from "react-icons/pi";
 import { BsFillFuelPumpFill } from "react-icons/bs";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
@@ -18,30 +17,39 @@ export default function Cardcarresult({ car }) {
             alt=""
           />
         </div>
-        <div className="cardetails">
+        <div className="cardetails1">
           <h5>
             {car.car_brand_name}
             <span> {car.car_model_name}</span>
           </h5>
           <h5>€ {car.price}</h5>
-          <div className="tag_card_car">
-            <h6>
-              <LiaBirthdayCakeSolid />
-              <span> {car.year} </span>
-            </h6>
+          <div className="tag_card_car1">
+            <div className="tag_car_details1">
+              <span>
+                {" "}
+                <LiaBirthdayCakeSolid />{" "}
+              </span>{" "}
+              <h6>{car.year}</h6>
+            </div>
 
-            <h6>
-              <PiRoadHorizonFill />
-              <span> {car.kilometer}</span>
-            </h6>
-            <h6>
-              <BsFillFuelPumpFill />
-              <span> {car.motorisation}</span>
-            </h6>
-            <h6>
-              <TbManualGearbox />
-              <span> {car.transmission}</span>
-            </h6>
+            <div className="tag_car_details1">
+              <span>
+                <PiRoadHorizonFill />
+              </span>{" "}
+              <h6>{car.kilometer}</h6>
+            </div>
+            <div className="tag_car_details1">
+              <span>
+                <BsFillFuelPumpFill />
+              </span>
+              <h6>{car.motorisation}</h6>
+            </div>
+            <div className="tag_car_details1">
+              <span>
+                <TbManualGearbox />
+              </span>{" "}
+              <h6>{car.transmission}</h6>
+            </div>
           </div>
           <h5>
             {car.city} {car.postalcode}
@@ -62,6 +70,6 @@ Cardcarresult.propTypes = {
     motorisation: PropTypes.string,
     transmission: PropTypes.string,
     city: PropTypes.string,
-    postalcode: PropTypes.number,
+    postalcode: PropTypes.string,
   }).isRequired,
 };

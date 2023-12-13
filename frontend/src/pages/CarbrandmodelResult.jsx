@@ -23,7 +23,8 @@ export default function CarbrandmodelResult() {
   const [price, setPrice] = useState("");
   const [kilometer, setKilometer] = useState("");
   const { userResearch } = useParams();
-  const { userSearch } = useParams();
+  // const { userSearch } = useParams();
+  // const [searchType, setSearchType] = useState("");
 
   const handleChange = (event) => {
     setMotorisation(event.target.value);
@@ -55,6 +56,7 @@ export default function CarbrandmodelResult() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/announce/model/${userResearch}`)
       .then((response) => {
+        console.info(response.data);
         setDataModel(response.data);
       })
       .catch((err) => {
@@ -66,6 +68,7 @@ export default function CarbrandmodelResult() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/announce/brand/${userResearch}`)
       .then((response) => {
+        console.info(response.data);
         setDataBrand(response.data);
       })
       .catch((err) => {
@@ -76,7 +79,9 @@ export default function CarbrandmodelResult() {
 
   const searchCars = () => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/announce/search/${userSearch}`)
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/announce/search/${userResearch}`
+      )
       .then((response) => {
         console.info(response.data);
         setData(response.data);
@@ -85,15 +90,24 @@ export default function CarbrandmodelResult() {
         console.error(err);
       });
   };
+  console.info("userResearch:", userResearch);
 
   useEffect(() => {
-    searchCars();
-  }, [userSearch]);
-
-  useEffect(() => {
-    searchModel();
-    searchBrand();
+    if (userResearch === "") {
+      searchModel();
+    }
+    if (userResearch === "") {
+      searchBrand();
+    } else {
+      searchCars();
+    }
   }, [userResearch]);
+
+  // useEffect(() => {
+  //   searchModel();
+  //   searchBrand();
+  //   searchCars();
+  // }, [userResearch]);
 
   return (
     <>
@@ -156,7 +170,7 @@ export default function CarbrandmodelResult() {
           </FormControl>
         </Box>
       </div>
-
+      {console.info("filteredModelCars:", filteredModelCars.length)}
       {dataModel.length > 0 && dataModel[0].car_model_name === userResearch && (
         <div className="model_results">
           <h2>
@@ -209,8 +223,8 @@ export default function CarbrandmodelResult() {
         <div className="car_results">
           <h2>
             {filteredSearchCars.length > 0
-              ? `Nous avons trouvé ${data.length} résultat pour ${userSearch}`
-              : `Nous avons trouvé ${filteredSearchCars.length} résultats pour ${userSearch}`}
+              ? `Nous avons trouvé ${data.length} résultat pour ${userResearch}`
+              : `Nous avons trouvé ${filteredSearchCars.length} résultats pour ${userResearch}`}
           </h2>
           <div>
             {filteredSearchCars.map((car) => (
@@ -221,6 +235,29 @@ export default function CarbrandmodelResult() {
           </div>
         </div>
       )}
+      {/* {data.length > 0 && (
+        <div className="car_results">
+          <h2>
+            {filteredSearchCars.length > 0
+              ? `Nous avons trouvé ${data.length} résultat pour ${userResearch}`
+              : `Nous avons trouvé ${filteredSearchCars.length} résultats pour ${userResearch}`}
+          </h2>
+          <div className="car_list">
+            {!error ? (
+              filteredSearchCars.map((car) => (
+                <Link
+                  key={car.announce_id}
+                  to={`/cardetails/${car.announce_id}`}
+                >
+                  <Cardcarresult key={car.announce_id} car={car} />
+                </Link>
+              ))
+            ) : (
+              <p>Aucun résultat</p>
+            )}
+          </div>
+        </div>
+      )} */}
     </>
   );
 }

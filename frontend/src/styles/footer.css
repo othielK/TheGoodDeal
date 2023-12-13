@@ -10,26 +10,29 @@
   text-decoration: none;
 }
 
-.Firstpart {
+.footer > .Firstpart {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: center;
+
   cursor: pointer;
-  width: auto;
   margin-top: 15px;
 }
 
-.propos {
+.Firstpart > .propos {
   text-align: left;
   margin-right: 30px;
 }
 
-.legales {
+.Firstpart > .legales {
   text-align: left;
   margin-right: 25px;
 }
 
-.footer h3 {
+.propos > h3 {
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+}
+.legales > h3 {
   padding: 10px 0;
   border-bottom: 1px solid black;
 }
@@ -39,11 +42,11 @@
   margin-top: 1rem;
 }
 
-.footer sul {
+.ul-list {
   display: flex;
   flex-direction: column;
 }
-.copyright {
+.footer > .copyright {
   margin-top: 2rem;
   font-size: 0.7rem;
   display: flex;
