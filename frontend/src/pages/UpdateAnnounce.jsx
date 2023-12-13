@@ -8,19 +8,18 @@ import ExportContext from "../contexts/Context";
 import Cardcarresult from "../components/Cardcarresult";
 
 export default function updateAnnounce() {
+  const { infoUser } = useContext(ExportContext.Context);
+  // console.info("infouser", infoUser.id);
+
   const [selectedAnnounce, setSelectedAnnounce] = useState({
+    user_id: "",
     kilometer: "",
     price: "",
     description: "",
-    image_1: "",
-    image_2: "",
-    image_3: "",
-    image_4: "",
   });
 
   const [data, setData] = useState([]);
 
-  const { infoUser } = useContext(ExportContext.Context);
   const { announceId } = useParams();
 
   const getMyCar = () => {
@@ -47,15 +46,12 @@ export default function updateAnnounce() {
         }
       )
       .then((response) => {
+        console.info(response);
         setSelectedAnnounce({
-          // id: response.data.id || null,
-          kilometer: response.data.kilometer || "",
-          price: response.data.price || "",
-          description: response.data.description || "",
-          image_1: response.data.image_1 || "",
-          image_2: response.data.image_2 || "",
-          image_3: response.data.image_3 || "",
-          image_4: response.data.image_4 || "",
+          user_id: response.data[0].user_id,
+          kilometer: response.data[0].kilometer || "",
+          price: response.data[0].price || "",
+          description: response.data[0].description || "",
         });
       })
       .catch((error) => {
@@ -63,25 +59,20 @@ export default function updateAnnounce() {
       });
   };
 
-  console.info("id", infoUser.id);
-
   const sendFormData = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("kilometer", selectedAnnounce.kilometer);
-    formData.append("price", selectedAnnounce.price);
-    formData.append("description", selectedAnnounce.description);
-    formData.append("image_1", selectedAnnounce.image_1);
-    formData.append("image_2", selectedAnnounce.image_2);
-    formData.append("image_3", selectedAnnounce.image_3);
-    formData.append("image_4", selectedAnnounce.image_4);
-
     axios
       .put(
         `${import.meta.env.VITE_BACKEND_URL}/myAnnouncebyuser/${
           infoUser.id
-        }$/${announceId}`,
-        formData,
+        }/${announceId}`,
+        selectedAnnounce,
+        {
+          user_id: selectedAnnounce.id,
+          kilometer: selectedAnnounce.kilometer,
+          price: selectedAnnounce.price,
+          description: selectedAnnounce.description,
+        },
         {
           withCredentials: true,
           headers: {
@@ -98,15 +89,11 @@ export default function updateAnnounce() {
         console.error("Erreur lors de la mise à jour de l'annonce:", error);
       });
   };
+  console.info(data[0]);
 
   useEffect(() => {
-    console.info(infoUser.id);
     getMyannounce();
   }, [infoUser.id, announceId]);
-
-  useEffect(() => {
-    console.info(selectedAnnounce);
-  }, [selectedAnnounce]);
 
   useEffect(() => {
     getMyCar();
@@ -168,49 +155,7 @@ export default function updateAnnounce() {
               />
             </div>
           </div>
-          <div className="pictures">
-            <p>Les photos de votre véhicule</p>
-            <input
-              type="file"
-              name="image_1"
-              onChange={(event) =>
-                setSelectedAnnounce({
-                  ...selectedAnnounce,
-                  image_1: event.target.files[0],
-                })
-              }
-            />
-            <input
-              type="file"
-              name="image_2"
-              onChange={(event) =>
-                setSelectedAnnounce({
-                  ...selectedAnnounce,
-                  image_2: event.target.files[0],
-                })
-              }
-            />
-            <input
-              type="file"
-              name="image_3"
-              onChange={(event) =>
-                setSelectedAnnounce({
-                  ...selectedAnnounce,
-                  image_3: event.target.files[0],
-                })
-              }
-            />
-            <input
-              type="file"
-              name="image_4"
-              onChange={(event) =>
-                setSelectedAnnounce({
-                  ...selectedAnnounce,
-                  image_4: event.target.files[0],
-                })
-              }
-            />
-          </div>
+          {/* <button type="submit"> Enregistrer les modifications </button> */}
           <div className="button">
             <input
               type="submit"

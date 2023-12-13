@@ -54,12 +54,10 @@ router.get(
 );
 router.get(
   "/myAnnounceidbyuserid/:userId/:announceId",
-  uploadMiddleware.uploadFile,
   announceControllers.readMyAnnounceIdbyUserId
 );
 router.put(
   "/myAnnouncebyuser/:userId/:announceId",
-  uploadMiddleware.uploadFile,
   announceControllers.editAnnounce
 );
 router.delete(

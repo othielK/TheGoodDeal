@@ -131,7 +131,7 @@ class AnnounceManager extends AbstractManager {
 
   findAllAnnouncesByUser(userId) {
     return this.database.query(
-      `SELECT user_id, i.*, a.announce_id,b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode
+      `SELECT user_id, i.*, a.announce_id,b.car_brand_name, m.car_model_name, a.price, a.year, a.kilometer, a.motorisation, a.transmission, a.city, a.postalcode, a.description, a.user_id
       FROM announce a
       JOIN car_model m ON a.car_model_id = m.car_model_id
       JOIN images i ON i.announce_id = a.announce_id
@@ -167,13 +167,13 @@ class AnnounceManager extends AbstractManager {
     );
   }
 
-  updateImage(picture1, picture2, picture3, picture4, announceId) {
-    return this.database.query(
-      `UPDATE images set image_1 = ?, image_2 = ?, image_3 = ?, image_4 = ?
-      WHERE announce_id = ?`,
-      [picture1, picture2, picture3, picture4, announceId]
-    );
-  }
+  // updateImage(picture1, picture2, picture3, picture4, announceId) {
+  //   return this.database.query(
+  //     `UPDATE images set image_1 = ?, image_2 = ?, image_3 = ?, image_4 = ?
+  //     WHERE announce_id = ?`,
+  //     [picture1, picture2, picture3, picture4, announceId]
+  //   );
+  // }
 
   deleteAnnounce(userId, announceId) {
     return this.database.query(
