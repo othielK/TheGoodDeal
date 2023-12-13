@@ -39,7 +39,7 @@ export default function UpdateUser() {
       });
   };
 
-const onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     axios
       // eslint-disable-next-line prettier/prettier
