@@ -14,6 +14,8 @@ export default function Contact({ details }) {
   const { id } = useParams();
   const [isMsgSent, setIsMsgSent] = useState(false);
 
+  // console.info("KevinNNN CG:", typeof(infoUser.id));
+
   console.info("isfavorite:", isFavorite);
   const getInitialFavoriteStatus = () => {
     axios
@@ -133,7 +135,7 @@ export default function Contact({ details }) {
       </h3>
       {console.info("parseint", parseInt(details.user_id, 10))}
 
-      {infoUser.id !== parseInt(details.user_id, 10) ? (
+      {parseInt(infoUser.id, 10) !== details.user_id ? (
         <div className="part3">
           {isFavorite === true ? (
             ""
@@ -143,7 +145,7 @@ export default function Contact({ details }) {
             </button>
           )}
 
-          <p>{message}</p>
+          <h4>{message}</h4>
 
           {isMsgSent === true ? (
             <Link

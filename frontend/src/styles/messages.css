@@ -27,13 +27,20 @@
 }
 
 #sendmessage {
-  padding: 12px 12px;
-  font-size: 15px;
+  padding: 10px;
+  font-size: 10px;
   background-color: #3460d2;
-  color: #fff;
+  color: white;
   border: none;
-  border-radius: 40%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   margin-left: 10px;
+}
+.message_text {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .message_content {
@@ -41,12 +48,12 @@
   flex-direction: row;
 }
 
-.message_text > input {
+.message_text > input[type="text"] {
   padding: 10px;
   border: 1px solid rgb(186, 184, 184);
   border-radius: 10px;
   background-color: white;
-  width: 60%;
+  width: 1000%;
   height: 50px;
   font-size: 16px;
   padding: 1rem;
@@ -79,32 +86,27 @@
   align-items: center;
   border-bottom: 2px solid #ccc;
   border-radius: 5px;
-  padding: 10px;
-  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  /* width: 100%; */
 }
 
 .carimage {
-  width: 9rem;
-  /* height: 10rem; */
-  height: 120px;
+  width: 200px;
 }
-
-.carimage > img {
-  max-width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-
-.cardetails {
+.cardetails-messages {
   padding: 10px;
 }
-
-.cardetails > h5 {
-  margin: 10px 0;
+.conversation > a {
+  color: inherit;
 }
 
-.cardetails > p {
-  margin: 10px 0;
+.cardetails-messages > h5 {
+  padding: 2px 0;
+}
+
+.cardetails-messages > p {
+  padding: 10px 0;
 }
 
 /* conversation page */
@@ -141,28 +143,28 @@
   border-radius: 5px;
 }
 
-.cardetails > h5 {
+.cardetails-messages > h5 {
   margin: 10px 0;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .conversation_list {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 100px;
-    margin-right: 100px;
+    justify-content: center;
+    /* margin-left: 100px;
+    margin-right: 100px; */
   }
 
-  .cardetails > h6 {
+  .cardetails-messages > h6 {
     display: inline-block;
     margin: 5px 0 3px;
-    padding: 5px 5px;
     width: 80px;
     text-align: center;
   }
 
-  .cardetails {
+  .cardetails-messages {
     width: 30rem;
   }
 
@@ -201,6 +203,6 @@
   }
 
   .message_text > input {
-    width: 80%;
+    width: 60%;
   }
 }

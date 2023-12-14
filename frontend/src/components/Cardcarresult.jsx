@@ -9,7 +9,7 @@ export default function Cardcarresult({ car }) {
   return (
     car && (
       <div className="carannounce">
-        <div className="carimage">
+        <div className="carimage-result">
           <img
             src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/uploads/${
               car.image_1

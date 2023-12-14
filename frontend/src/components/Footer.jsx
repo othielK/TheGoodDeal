@@ -17,11 +17,15 @@ export default function Footer() {
 
             <div className="liens">
               <ul className="ul-list">
-                <Link to="/Qui sommes-nous">Qui sommes-nous ?</Link>
-
-                <Link to="/Nous rejoindre">Nous rejoindre</Link>
-
-                <Link to="/Nos engagements">Nos engagements</Link>
+                <Link to="/Qui sommes-nous" className="footer-link">
+                  Qui sommes-nous ?
+                </Link>
+                <Link to="/Nous rejoindre" className="footer-link">
+                  Nous rejoindre
+                </Link>
+                <Link to="/Nos engagements" className="footer-link">
+                  Nos engagements
+                </Link>
               </ul>
             </div>
           </div>

@@ -1,13 +1,13 @@
 .footer {
   background-color: var(--color-yellow);
   padding: 2rem 4rem;
-  color: black;
+
   max-width: auto;
 }
 
-.footer a {
-  color: black;
+.ul-list > a {
   text-decoration: none;
+  color: inherit;
 }
 
 .footer > .Firstpart {

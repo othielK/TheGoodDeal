@@ -28,6 +28,7 @@
 .details > h3 {
   padding: 10px;
   text-align: center;
+  color: black;
 }
 
 .header_nouveautés::-webkit-scrollbar {

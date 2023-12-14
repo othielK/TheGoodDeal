@@ -277,7 +277,7 @@ export default function AnnouncePage() {
                   onChange={handleChangeValues}
                 />
               </div>
-              <div className="main">
+              <div className="mains">
                 <p>Première main</p>
                 <select name="state" onChange={handleChangeValues}>
                   <option value="yes">Oui</option>

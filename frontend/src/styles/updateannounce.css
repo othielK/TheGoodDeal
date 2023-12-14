@@ -1,12 +1,10 @@
 form.announce-form {
   padding: 30px;
 }
-.update_announce {
-  margin: 35px 10px;
-}
 .update_announce > h1 {
   padding: 20px 0px;
-  border-bottom: 2px solid #ccc;
+
+  text-align: center;
 }
 
 .mydescription > textarea {

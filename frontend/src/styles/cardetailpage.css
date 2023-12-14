@@ -1,13 +1,16 @@
 @media only screen and (min-width: 1100px) {
-  .first_element {
+  .card_section {
     display: flex;
     gap: 20px;
+  }
+  .first_element {
+    width: 50%;
   }
 
   .second_element {
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
   }
 }

@@ -11,6 +11,8 @@ import "./styles/myfavorite.css";
 import "./styles/cardcarresult.css";
 import "./styles/signuppage.css";
 import "./styles/newsletter.css";
+import "./styles/backoffice.css";
+import "./styles/messages.css";
 
 import App from "./App";
 
