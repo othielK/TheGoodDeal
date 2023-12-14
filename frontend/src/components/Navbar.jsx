@@ -78,39 +78,12 @@ export default function Navbar() {
           <span className="bar" />
           <span className="bar" />
         </button>
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" onClick={removeActive}>
           <img
             src="/src/assets/images/logo_the_good_deal.png"
             alt="TheGoodDeal"
           />
         </Link>
-
-        <li className="hide-on-desktop" key="backoffice">
-          {/* <div className="hide-on-desktop"> */}
-          {infoUser.role === "user" ? (
-            <Link to="/backoffice" className="login-icon">
-              <CgProfile />
-              <span>Mon profil</span>
-              <div className="icon-text" />
-            </Link>
-          ) : (
-            <Link to="/login" className="login-icon" onClick={handleLogin}>
-              <CgProfile />
-              <span>Se connecter</span>
-              <div className="icon-text" />
-            </Link>
-          )}
-          {infoUser.role === "user" && (
-            <div>
-              <Link to="/" className="logout-icon" onClick={deconnecter}>
-                <AiOutlineLogout />
-                {/* <span>Déconnecter</span> */}
-                <div className="icon-text" />
-              </Link>
-            </div>
-          )}
-          {/* </div> */}
-        </li>
 
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li key="messages">
@@ -131,7 +104,6 @@ export default function Navbar() {
               </NavLink>
             )}
           </li>
-
           <li className="hide-on-mobile" key="profile">
             {infoUser.role === "user" ? (
               <div>
@@ -183,33 +155,49 @@ export default function Navbar() {
         <ul className={`navMenu ${isActive ? "active" : ""}`}>
           <li className="hide-on-desktop">
             {infoUser.role === "user" ? (
-              <NavLink to="/announce" className="login-icon">
+              <NavLink
+                to="/announce"
+                className="login-icon"
+                onClick={removeActive}
+              >
                 <div className="icon-text">
                   <FiPlusSquare />
                   <span> Déposer une annonce </span>
                 </div>
               </NavLink>
             ) : (
-              <NavLink to="/login">Déposer une annonce</NavLink> // unauthorised user have to be logged in when they click deposer announces
+              <NavLink to="/login" onClick={removeActive}>
+                Déposer une annonce
+              </NavLink>
             )}
           </li>
           <li className="hide-on-desktop">
             {infoUser.role === "user" ? (
-              <NavLink to="/messages" className="login-icon">
+              <NavLink
+                to="/messages"
+                className="login-icon"
+                onClick={removeActive}
+              >
                 <div className="icon-text">
                   <TbMessage />
                   <span>Messages</span>
                 </div>
               </NavLink>
             ) : (
-              <NavLink to="/login">Mes messages</NavLink> // unauthorised user have to be logged in when they click messages
+              <NavLink to="/login" onClick={removeActive}>
+                Mes messages
+              </NavLink> // unauthorised user have to be logged in when they click messages
             )}
           </li>
           <li>
-            <NavLink to="/">Accueil</NavLink>
+            <NavLink to="/" onClick={removeActive}>
+              Accueil
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/result/type/all">Toutes les catégories</NavLink>
+            <NavLink to="/result/type/all" onClick={removeActive}>
+              Toutes les catégories
+            </NavLink>
           </li>
           <li>
             {carType.map((types) => (
@@ -217,6 +205,7 @@ export default function Navbar() {
                 key={types.id}
                 className="car-type"
                 to={`/result/type/${types.car_type_name}`}
+                onClick={removeActive}
               >
                 {types.car_type_name}
               </NavLink>
@@ -246,7 +235,11 @@ export default function Navbar() {
           <li className="hide-on-desktop">
             <div className="hide-on-desktop">
               {infoUser.role === "user" ? (
-                <Link to="/backoffice" className="login-icon">
+                <Link
+                  to="/backoffice"
+                  className="login-icon"
+                  onClick={removeActive}
+                >
                   <CgProfile />
                   <span>Mon profil</span>
                   <div className="icon-text" />

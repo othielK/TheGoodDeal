@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 
-import "../styles/messages.css";
-
 export default function MessageContent({ message, sender }) {
   const isSentMessage = String(message.sender_user_id) === String(sender);
 

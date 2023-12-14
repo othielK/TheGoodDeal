@@ -14,7 +14,7 @@ form {
   justify-content: center;
   justify-items: center;
   padding: 20px 0px;
-  margin-top: 20px;
+  margin: 10px 0 40px;
 }
 
 .contentpartform > .secoundpartform {
@@ -96,7 +96,7 @@ form > .button {
 .brand select:hover,
 .model select:hover,
 .motorisations select:hover,
-.main select:hover,
+.mains select:hover,
 .transmission select:hover,
 .permis select:hover,
 .type select:hover {

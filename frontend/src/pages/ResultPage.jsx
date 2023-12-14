@@ -143,7 +143,7 @@ export default function ResultPage() {
         </Box>
       </div>
       {cars.length > 0 && (
-        <div className="cards">
+        <div className="cards-result">
           {!error ? (
             filteredCars.map((car) => (
               <Link key={car.announce_id} to={`/cardetails/${car.announce_id}`}>

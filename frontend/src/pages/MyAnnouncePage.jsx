@@ -2,6 +2,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ImBin } from "react-icons/im";
+import { CiEdit } from "react-icons/ci";
 import ExportContext from "../contexts/Context";
 import Cardcarresult from "../components/Cardcarresult";
 
@@ -49,27 +51,29 @@ export default function MyAnnounce() {
   return (
     <div className="myannouncecard">
       <h1>Mes Annonces</h1>
-      <div className="carcards">
+      <div className="carcards-mes-annonces">
         {myannounce.map((car, index) => (
-          <div className="card" key={index}>
+          <div className="card-annonces" key={index}>
             <Cardcarresult car={car} />
-            <div className="buttons">
-              <div className="modifier">
+            <div className="buttons-annonce">
+              <div className="modifier-annonce">
                 <Link to={`/updateAnnounce/${infoUser.id}/${car.announce_id}`}>
                   <button
                     type="button"
                     onClick={() => getMyannounce(car.announce_id)}
                   >
                     Modifier
+                    <CiEdit />
                   </button>
                 </Link>
               </div>
-              <div className="supprimer">
+              <div className="supprimer-annonce">
                 <button
                   type="button"
                   onClick={() => deleteMyannounce(car.announce_id)}
                 >
                   Supprimer
+                  <ImBin />
                 </button>
               </div>
             </div>

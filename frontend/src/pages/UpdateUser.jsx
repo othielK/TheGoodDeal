@@ -15,7 +15,6 @@ export default function UpdateUser() {
     email: "",
   });
 
-  // eslint-disable-next-line prettier/prettier
   const { infoUser } = useContext(ExportContext.Context);
   const navigate = useNavigate();
 
@@ -35,14 +34,14 @@ export default function UpdateUser() {
       })
       .catch((error) => {
         console.error("Error getting user:", error);
-        navigate("/"); // if unauthorised user then it goes to homepage
+        navigate("/");
       });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     axios
-      // eslint-disable-next-line prettier/prettier
+
       .put(
         `${import.meta.env.VITE_BACKEND_URL}/user/${infoUser.id}`,
         selectedUser

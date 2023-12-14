@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import SendIcon from "@mui/icons-material/Send";
-
 import MessageContent from "../components/MessageContent";
-import "../styles/messages.css";
 // import Cardcarresult from "../components/Cardcarresult";
 
 export default function MessageDetails() {
@@ -104,7 +102,7 @@ export default function MessageDetails() {
                   alt=""
                 />
               </div>
-              <div className="cardetails">
+              <div className="cardetails-messages">
                 <h5>{car.title}</h5>
                 <h5>€ {car.price}</h5>
               </div>

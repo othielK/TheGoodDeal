@@ -28,10 +28,10 @@ export default function CarDetailPage() {
     <div className="card_section">
       <div key={cars.id} className="first_element">
         <CarDetailCard key={cars.id} details={cars} />
-        <div key={cars.id} className="second_element">
-          <Contact key={cars.id} details={cars} />
-          <Specs details={cars} />
-        </div>
+      </div>
+      <div key={cars.id} className="second_element">
+        <Contact key={cars.id} details={cars} />
+        <Specs details={cars} />
       </div>
     </div>
   );

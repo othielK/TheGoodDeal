@@ -5,16 +5,11 @@
   padding: 0;
   box-sizing: border-box;
   list-style-type: none;
-  /* border: 1px solid red; */
 }
 
 body {
   font-family: "DM Sans", sans-serif;
-}
-
-section {
-  margin: 0 auto;
-  /* min-height: 60vh; */
+  color: var(--color-black);
 }
 
 :root {
@@ -23,11 +18,16 @@ section {
   --color-blue: #3460d2;
   --color-green: #89b803;
   --color-grey: #606060;
+  --color-black: black;
+}
+
+section {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (min-width: 700px) {
   section {
-    max-width: 1200px;
     padding: 2rem 4rem;
   }
 }

@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/messages.css";
 import ExportContext from "../contexts/Context";
 // import MessageCard from "../components/MessageCard";
 // import MessageImage from "../components/MessageImage";
@@ -48,7 +47,7 @@ export default function Messages() {
               alt=""
             />
           </div>
-          <div className="cardetails">
+          <div className="cardetails-messages">
             <h5>{contact.AnnTitle}</h5>
             <h5>€ {contact.Price}</h5>
             <h5>

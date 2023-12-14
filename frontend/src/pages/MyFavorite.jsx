@@ -45,16 +45,16 @@ export default function MyFavorite() {
   return (
     <div className="main">
       <h1>Mes Favoris</h1>
-      <div className="card_section">
+      <div className="card_section_favoris">
         {favoris.map((car, index) => (
           <div className="card" key={index}>
-            <Cardcarresult car={car} />
             <div className="coeur">
               <FaHeart
                 className="heart-icon"
                 onClick={() => deleteAnnounce(car.announce_id)}
               />
             </div>
+            <Cardcarresult car={car} />
           </div>
         ))}
       </div>

@@ -6,21 +6,12 @@
   padding: 2rem 4rem;
 }
 
-.logo {
-  color: #d73239;
-}
-
 .nav > ul {
   display: flex;
+  align-items: center;
   padding: 1rem 0;
 }
 
-nav > .logo > img {
-  width: 200px;
-  height: auto;
-  margin-left: 3rem;
-  object-fit: contain;
-}
 a:link {
   text-decoration: none;
   color: #000000;
@@ -47,10 +38,8 @@ a:link {
   padding-top: 10px;
 }
 
-
 .category-section li {
-  margin-right: 35px;
-  
+  margin-left: 45px;
 }
 
 .category-section li::before {
@@ -93,6 +82,7 @@ nav > ul > li {
 .icon-text {
   display: flex;
   align-items: center;
+  gap: 5px;
 }
 .navMenu a.deposer-annonce {
   color: #ffffff;
@@ -104,6 +94,7 @@ nav > ul > li {
 
 .navMenu .login-icon {
   margin: 8px;
+  gap: 5px;
 }
 
 .navLink .login-icon img {
@@ -117,11 +108,10 @@ nav > ul > li {
 
 .logout-icon {
   color: #d73239 !important;
-  font-size: larger;
   display: inline-block;
   vertical-align: middle;
+  font-size: 30px;
 }
-
 
 .icon-text {
   display: flex;
@@ -155,20 +145,15 @@ nav > ul > li {
 
 .deposer-annonce {
   background-color: #d73239;
-  padding: 5px 20px; 
+  padding: 5px 20px;
   border-radius: 5px;
 }
 
 .deposer-annonce .logout-icon {
-  color: #fff; 
+  color: #fff;
 }
 
-
-@media screen and (max-width: 780px) {
-  body {
-    overflow: hidden;
-  }
-
+@media screen and (max-width: 1244px) {
   .navMenu {
     position: fixed;
     right: -100%;
@@ -187,7 +172,7 @@ nav > ul > li {
   .nav {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    /* padding: 1rem 2rem; */
   }
 
   nav > .logo > img {
@@ -197,8 +182,9 @@ nav > ul > li {
     object-fit: contain;
   }
   .login-icon {
-    flex-direction: column;
-    color: inherit;
+    flex-direction: row;
+    gap: 5px;
+    /* color: inherit; */
   }
 
   .navMenu {
@@ -229,7 +215,7 @@ nav > ul > li {
   .navMenu.active {
     right: auto;
     left: 0;
-    margin-top: 10px;
+    margin-top: 30px;
     text-align: start;
     width: 110vw;
     height: 100vh;
@@ -244,18 +230,16 @@ nav > ul > li {
   .search-section,
   .category-section {
     width: 100%;
-    /* 100% de la largeur disponible */
   }
 
-  .navMenu li {
+  .navMenu > li {
     margin: 0;
     font-size: 15px;
     padding-left: 15px;
   }
 
-  .category-section ul {
+  .category-section > ul {
     flex-direction: column;
-    /* Empilez les éléments verticalement */
     gap: 15px;
     justify-content: flex-start;
     align-items: flex-start;
@@ -271,6 +255,9 @@ nav > ul > li {
     text-decoration: none;
     margin-left: 0px;
   }
+  .logout-icon {
+    font-size: 20px;
+  }
 
   input[type="text"] {
     font-size: 10px;
@@ -284,7 +271,7 @@ nav > ul > li {
   }
 }
 
-@media screen and (min-width: 781px) {
+@media screen and (min-width: 1244px) {
   .hide-on-desktop {
     display: none;
     border-top: sold;
