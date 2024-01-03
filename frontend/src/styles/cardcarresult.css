@@ -14,8 +14,9 @@
 } */
 
 .carimage-result > img {
-  width: 15rem;
-  height: auto;
+  width: 180px;
+  height: 140px;
+  object-fit: cover;
   margin-right: 5px;
   cursor: pointer;
 }

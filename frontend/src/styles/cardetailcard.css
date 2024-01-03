@@ -9,8 +9,9 @@
 }
 
 .image_scroll > img {
-  width: 100%;
-  height: auto;
+  width: 18O px;
+  height: 140px;
+  object-fit: cover;
   margin-right: 5px;
 }
 /* PARTIE CONTENT */
@@ -69,7 +70,7 @@
 
   .image_scroll > img {
     width: calc(25%);
-    height: auto;
+    height: 140px;
     margin-right: 5px;
     cursor: pointer;
   }

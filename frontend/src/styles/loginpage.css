@@ -51,6 +51,10 @@
   color: white;
 }
 
+.login_header > .login_formulaire .btn-signup {
+  color: white;
+}
+
 @media (min-width: 800px) {
   .login_background {
     background-image: url("/src/assets/images/signup.png");

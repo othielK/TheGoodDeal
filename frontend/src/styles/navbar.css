@@ -88,7 +88,7 @@ nav > ul > li {
   color: #ffffff;
 }
 
-.login-icon img {
+.login-icon > img {
   margin-right: 8px;
 }
 
@@ -97,7 +97,7 @@ nav > ul > li {
   gap: 5px;
 }
 
-.navLink .login-icon img {
+.navLink .login-icon > img {
   margin: 8px;
 }
 
@@ -118,7 +118,7 @@ nav > ul > li {
   align-items: center;
 }
 
-.logout-icon img {
+.logout-icon > img {
   margin-right: 8px;
   /* Espacement entre l'icône et le texte */
 }
@@ -128,7 +128,7 @@ nav > ul > li {
   /* Ajustez la valeur selon vos préférences */
 }
 
-.navLink .logout-icon img {
+.navLink .logout-icon > img {
   margin: 8px;
 }
 
