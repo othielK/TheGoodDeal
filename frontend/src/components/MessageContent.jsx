@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import "../styles/messages.css";
+export default function MessageContent({ message, sender }) {
+  const isSentMessage = String(message.sender_user_id) === String(sender);
 
-export default function MessageContent({ message }) {
+  const messageClass = isSentMessage ? "sent_message" : "received_message";
+
   return (
-    <div className="message_content">
-      <p>{message.sender_email}</p>
+    <div className={`message_content ${messageClass}`}>
       <p>{message.content}</p>
     </div>
   );

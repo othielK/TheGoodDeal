@@ -8,7 +8,7 @@ export default function Footer() {
     <footer>
       <div className="footer">
         <div className="logo">
-          <img src="src/assets/logo-noir.png" alt="TheGoodDeal" />
+          <img src="/src/assets/logo-noir.png" alt="TheGoodDeal" />
         </div>
         {/* Partie 1 : Footer */}
         <div className="Firstpart">
@@ -16,12 +16,16 @@ export default function Footer() {
             <h3>A PROPOS DE THEGOODDEAL</h3>
 
             <div className="liens">
-              <ul>
-                <Link to="/Qui sommes-nous">Qui sommes-nous ?</Link>
-
-                <Link to="/Nous rejoindre">Nous rejoindre</Link>
-
-                <Link to="/Nos engagements">Nos engagements</Link>
+              <ul className="ul-list">
+                <Link to="/Qui sommes-nous" className="footer-link">
+                  Qui sommes-nous ?
+                </Link>
+                <Link to="/Nous rejoindre" className="footer-link">
+                  Nous rejoindre
+                </Link>
+                <Link to="/Nos engagements" className="footer-link">
+                  Nos engagements
+                </Link>
               </ul>
             </div>
           </div>
@@ -29,7 +33,7 @@ export default function Footer() {
           <div className="legales">
             <h3>INFORMATIONS LEGALES</h3>
             <div className="liens">
-              <ul>
+              <ul className="ul-list">
                 <Link to="/Conditions générales">
                   Conditions générales d'utilisations
                 </Link>

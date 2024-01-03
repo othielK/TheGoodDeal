@@ -2,13 +2,10 @@ const models = require("../models");
 
 const add = (req, res) => {
   const newsletter = req.body;
-  console.info("newsletter :: ", newsletter);
-  // TODO validations (length, format...)
 
   models.newsletter
     .insert(newsletter)
-    .then(([result]) => {
-      console.info(result);
+    .then(() => {
       res
         .status(200)
         .json({ message: "Merci de vous être inscrit à notre Newsletter" });

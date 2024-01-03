@@ -33,9 +33,6 @@ const read = (req, res) => {
 const edit = (req, res) => {
   // const id = req.params;
   const user = req.body;
-
-  // TODO validations (length, format...)
-
   user.id = parseInt(req.params.id, 10);
 
   models.user
@@ -55,13 +52,10 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const user = req.body;
-  console.info("user :: ", user);
-  // TODO validations (length, format...)
 
   models.user
     .insert(user)
-    .then(([result]) => {
-      console.info(result);
+    .then(() => {
       res.status(200).json({ message: "Utilisateur crée avec succès" });
     })
     .catch((err) => {
@@ -96,14 +90,15 @@ const verifyPassword = (req, res) => {
       if (isVerified) {
         const payload = {
           sub: req.user.user_id,
-          email: req.user.email,
           id: req.user.user_id,
           firstname: req.user.firstname,
           lastname: req.user.lastname,
+          email: req.user.email,
+          role: req.user.role,
         };
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
-          expiresIn: "1h",
+          expiresIn: "3h",
         });
 
         res.cookie("authToken", token);
@@ -111,15 +106,25 @@ const verifyPassword = (req, res) => {
         res.status(200).json({
           message: "Connexion réussie",
           id: req.user.user_id,
-          email: req.user.email,
           firstname: req.user.firstname,
           lastname: req.user.lastname,
+          email: req.user.email,
+          role: req.user.role,
         });
       } else {
         res.sendStatus(401);
       }
     });
 };
+
+const deconnect = (req, res) => {
+  res.clearCookie("authToken").sendStatus(200);
+};
+
+const allowAccess = (req, res) => {
+  res.status(200).json("Accès autorisé");
+};
+
 const avatar = (req, res) => {
   models.user
     .selectAvatar(req.params.id)
@@ -144,4 +149,6 @@ module.exports = {
   destroy,
   avatar,
   verifyPassword,
+  allowAccess,
+  deconnect,
 };

@@ -29,6 +29,11 @@ pool.getConnection().catch(() => {
 
 const models = {};
 
+const FavoriteManager = require("./FavoriteManager");
+
+models.favorite = new FavoriteManager();
+models.favorite.setDatabase(pool);
+
 const CarmodelManager = require("./CarmodelManager");
 
 models.carmodel = new CarmodelManager();
@@ -61,8 +66,8 @@ models.announce.setDatabase(pool);
 
 const ImageManager = require("./ImageManager");
 
-models.image = new ImageManager();
-models.image.setDatabase(pool);
+models.images = new ImageManager();
+models.images.setDatabase(pool);
 
 const MessageManager = require("./MessageManager");
 

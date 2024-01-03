@@ -14,7 +14,7 @@ form {
   justify-content: center;
   justify-items: center;
   padding: 20px 0px;
-  margin-top: 20px;
+  margin: 10px 0 40px;
 }
 
 .contentpartform > .secoundpartform {
@@ -30,7 +30,8 @@ form {
   padding: 0px 30px;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="number"] {
   margin: 10px 0px;
   height: 40px;
   width: 100%;
@@ -95,7 +96,7 @@ form > .button {
 .brand select:hover,
 .model select:hover,
 .motorisations select:hover,
-.main select:hover,
+.mains select:hover,
 .transmission select:hover,
 .permis select:hover,
 .type select:hover {
@@ -105,7 +106,7 @@ form > .button {
   border-color: #ebaf00;
 }
 
-.content > .alerte{
+.content > .alerte {
   margin: 20px;
 }
 

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import "../styles/newsletter.css";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
-  const [success, setSucces] = useState(false);
-  const [error, setError] = useState(false);
 
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -18,25 +17,19 @@ export default function Newsletter() {
       .post(`${import.meta.env.VITE_BACKEND_URL}/newsletter`, {
         email,
       })
-
       .then((response) => {
-        setSucces(response.data.message);
-        setError(false);
-        console.info(response);
+        const actualResponse = response.data;
+        toast.success(actualResponse.message);
       })
       .catch((err) => {
-        if (err.response.data.error === `"email" is not allowed to be empty`) {
-          setError("L'email ne peut pas être vide");
-        } else if (
-          err.response.data.error === `"email" must be a valid email`
-        ) {
-          setError("Merci de mettre un email valide");
-        } else if (err.response.data.error === 1062) {
-          setError("L'email est déjà enregistré");
+        const actualError = err.response ? err.response.data : err;
+        if (actualError.error === '"email" is not allowed to be empty') {
+          toast.error("L'email ne peut pas être vide");
+        } else if (actualError.error === 1062) {
+          toast.error("L'email est déjà enregistré");
         } else {
-          console.error(err.response.data.error);
+          console.error(actualError.error);
         }
-        setSucces(false);
       });
   };
 
@@ -65,8 +58,7 @@ export default function Newsletter() {
           </div>
         </form>
       </div>
-      {success ? <p className="messagesucces">{success}</p> : ""}
-      {error ? <p className="messageerror">{error}</p> : ""}
+      <ToastContainer />
     </>
   );
 }

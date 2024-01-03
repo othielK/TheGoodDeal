@@ -8,7 +8,8 @@ export default function SearchBar() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate(`/search/${userResearch}`);
+    navigate(`/result/${userResearch}`);
+    setUserResearch(""); // clear the input value after submitting
   };
 
   const handleSearch = (event) => {
@@ -19,11 +20,11 @@ export default function SearchBar() {
     <form className="search_bar" onSubmit={handleSubmit}>
       <input
         type="text"
+        value={userResearch}
         placeholder="Chercher un véhicule..."
         onChange={handleSearch}
       />
       <button type="submit">Rechercher</button>
-      {/* <input type="submit" value="Rechercher" /> */}
     </form>
   );
 }
