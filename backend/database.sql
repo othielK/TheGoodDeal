@@ -179,72 +179,92 @@ INSERT INTO car_type (`car_type_name`) VALUES ('Cabriolets');
 INSERT INTO car_type (`car_type_name`) VALUES ('Coupés');
 
 
-INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('SALA', 'sala', 'sala@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
-INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('fatma', 'itchir', 'fatmaitchir@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
-INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('saima', 'NORAT', 'sAIMA@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('SALA', 'SALA', 'sala@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('FATMA', 'ITCHIR', 'fatmaitchir@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('SAIMA', 'NORAT', 'SAIMA@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$HR/lNvZ6zWRH4ObyGrlMtw$7wAqMGtpdJaSFYCmTPnV+gTaX7dwy0KC4cXhVyC5/Ks');
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('OTHIEL', 'KANAGARAJ', 'OTHIEL@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
 INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('KEVIN', 'PESET', 'KEVIN@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
-INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('kkk', 'KKK', 'KKK@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
-INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('jjj', 'JJJ', 'JJJ@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('BEEBI', 'HAJRA', 'beebi@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('Mamou', 'SKN', 'mamou@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('Populo', 'Maurane', 'maurane@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
+INSERT INTO user (`firstname`, `lastname`, `email`, `hashedPassword`) VALUES ('Joëlle', 'Kounde', 'djo@gmail.com', '$argon2id$v=19$m=65536,t=5,p=1$lnatfSXFrBSkZWyIiUpuVg$jmgjxwAIsYzB3rHP4IQMCOeBnBUVcn8HZPTCP8/WKZw');
 
-
-INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description`,`contact` , `city`,`postalcode`) VALUES ('1', 'A vendre magnifique 207.. super occasion', '21000', '2000', '4', '24', 'Diesel', '50000','Manuelle', '1', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur','435345345','PARIS','75014');
-INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` ,`contact`, `city`,`postalcode`) VALUES ('2', 'Dernier Mercedes amg', '25000', '2022', '2', '7', 'Petrol', '50000', 'Automatic', '2', '200', 'Non', 'Avec permis', 'Voiture en bon etat','435345345','PARIS','75014');
-INSERT INTO announce (`user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `state`,`license`, `description`, `contact`, `city`,`postalcode`) VALUES ('3', '2022 Audi A4 Premium', '19000', '2022', '5', '26', 'Diesel',' 15000', 'Automatic', '3', '220', 'Non', 'Avec permis', 'Brand new Audi A4 Premium with low mileage.', '12345678', 'PARIS','75014');
-INSERT INTO announce (`user_id`, `title`, `price`, `year`, `car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`, `power`, `state`, `license`, `description`, `contact`, `city`,`postalcode`) VALUES ('4','2021 Volkswagen Polo TSI', '20000', '2021', '1', '2', 'Diesel','18000', 'Automatic', '4', '110', 'yes', 'Avec permis','Well-maintained Volkswagen Polo TSI for sale.', '78833032', 'PARIS', '75014');
-INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description`,`contact` , `city`,`postalcode`) VALUES ('5', 'A vendre magnifique 207.. super occasion', '20000', '2000', '4', '24', 'Diesel', '50000','Manuelle', '5', '75', 'Non', 'Sans permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur','435345345','PARIS','75014');
-INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` ,`contact`, `city`,`postalcode`) VALUES ('6', 'BENZ A3', '31000', '2022', '2', '7', 'Petrol', '50000', 'Automatic', '6', '200', 'Non', 'Avec permis', 'Voiture en bon etat','435345345','PARIS','75014');
-INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` ,`contact`, `city`,`postalcode`) VALUES ('7', 'OPEL', '10000', '2022', '7', '37', 'Diesel', '50000', 'Automatic', '7', '200', 'Non', 'Avec permis', 'Voiture en bon etat','435345345','PARIS','75014');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('1', 'A vendre magnifique 207.. super occasion', '21000', '2000', '4', '24', 'Diesel', '50000','Manuelle', '1', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur, prix négociable','0611555234','PARIS','75014');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('2', 'Dernier Mercedes classe A', '31900', '2019', '2', '8', 'Diesel', '50000', 'Automatic', '1', '200', 'Non', 'Avec permis', 'Voiture en bon etat, roule parfaitement, pas de frais à prévoir','0645222890','PARIS','75014');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('3', '2022 Audi A4 Premium', '19000', '2022', '5', '26', 'Diesel',' 75000', 'Automatic', '5', '105', 'Non', 'Avec permis', 'Brand new Audi A4 Premium with low mileage.', '0623546789', 'PARIS','75014');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('4', '2021 Volkswagen Polo TSI', '22990', '2021', '1', '2', 'Petrol','46000', 'Automatic', '1', '110', 'yes', 'Avec permis','Well-maintained Volkswagen Polo TSI for sale.', '0623546789', 'PARIS', '75014');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('5', 'BMW serie 3.. super occasion', '21000', '2020', '3', '13', 'Diesel', '80000','Manuelle', '2', '75', 'Non', 'Avec permis', 'Voiture en bon etat.  Jamais accidentée. Non fumeur','0623546789','PARIS','75014');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('6', 'Voiture opel cabriolet', '14900', '2015', '7', '42', 'Petrol', '120000', 'Manuelle', '6', '170', 'Non', 'Avec permis', 'VEND OPEL CABRIOLET CASCADA COSMO PACK. véhicule couché dans un garage ','0623546789','PARIS','75014');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('7', 'FORD Kuga', '8900', '2014', '9', '51', 'Petrol', '120000', 'Manuelle', '3', '170', 'Non', 'Avec permis', 'Ford Kuga 2.0 TDCi 140 AWD powershift 4x4 5 portes. Contrôle technique ok Révision ok distribution pompe à eau 04/2022 vidange filtre 11/2023 5 places','0623546789','PARIS','75014');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('8', 'Voiture Mégane 3 coupe', '2500', '2001', '6', '32', 'Diesel', '300000','Manuelle', '7', '110', 'Non', 'Avec permis', 'Vend Mégane 2500€ roulante mais claquement niveau moteur a froid et siège avant un peut abîmé plus carrosserie un peut a voir','0623546789','PARIS','75003');
+INSERT INTO announce (`user_id`, `title`, `price`, `year`,`car_brand_id`, `car_model_id`, `motorisation`, `kilometer`, `transmission`, `car_type_id`,`power`, `state`, `license`, `description` , `contact`, `city`,`postalcode`) VALUES ('9', 'voiture sans permis', '8900', '2014', '8', '48', 'Diesel', '75000', 'Manuelle', '4', '170', 'Non', 'Avec permis', 'Moteur refait à neuf courroie révision complète poste Bluetooth CARTE GRISE ET LIVRAISON OFFERTE','0623546789','PARIS','75014');
 
 INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
 VALUES ( '1',
-  'announce-b0967ebd-5237-43e3-b33a-3811cfb18de8.webp',
-  'announce-1e1dd694-a0c4-4c04-b431-79db38fa3c60.jpeg',
-  'announce-1e1dd694-a0c4-4c04-b431-79db38fa3c60.jpeg',
-  'announce-1e1dd694-a0c4-4c04-b431-79db38fa3c60.jpeg'
+  'peugeot207-1.jpg',
+  'peugeot207-2.jpg',
+  'peugeot207-3.jpg',
+  'peugeot207-4.jpg'
 );
 INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
 VALUES ( '2',
-  'announce-206fce8e-a430-4b40-97d4-713c829f47fd.jpeg',
-  'announce-1e1dd694-a0c4-4c04-b431-79db38fa3c60.jpeg',
-  'announce-206fce8e-a430-4b40-97d4-713c829f47fd.jpeg',
-  'announce-206fce8e-a430-4b40-97d4-713c829f47fd.jpeg'
+  'mercedesA-1.jpg',
+  'mercedesA-2.jpg',
+  'mercedesA-3.jpg',
+  'mercedesA-4.jpg'
 );
 INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
 VALUES ( '3',
-  'announce-30468443-a374-4cfd-b025-46b34be5e067.jpeg',
-  'audi.jpeg',
-  'audi.jpeg',
-  'audi.jpeg'
+  'audiA4-1.jpg',
+  'audiA4-2.jpg',
+  'audiA4-3.jpg',
+  'audiA4-4.jpg'
 );
+
 INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
 VALUES ( '4',
-  'announce-fda953b3-f2d0-4b61-af9e-93aa03f2e0f6.webp',
-  'announce-63512bd5-5daf-44d2-9261-3a92f098c53c.webp',
-  'announce-63512bd5-5daf-44d2-9261-3a92f098c53c.webp',
-  'announce-63512bd5-5daf-44d2-9261-3a92f098c53c.webp'
+  'polo-1.jpg',
+  'polo-2.jpg',
+  'polo-3.jpg',
+  'polo-4.jpg'
 );
 INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
 VALUES ( '5',
-  'breaks1.jpg',
-  'breaks2.jpg',
-  'announce-63512bd5-5daf-44d2-9261-3a92f098c53c.webp',
-  'announce-63512bd5-5daf-44d2-9261-3a92f098c53c.webp'
+  'bmw-1.jpg',
+  'bmw-2.jpg',
+  'bmw-3.jpg',
+  'bmw-4.jpg'
 );
 INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
 VALUES ( '6',
-  'cabriolet1.jpg',
-  'cabriolet2.jpg',
-  'cabriolet2.jpg',
-  'cabriolet2.jpg'
+  'opel-1.jpg',
+  'opel-2.jpg',
+  'opel-3.jpg',
+  'opel-4.jpg'
 );
 INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
 VALUES ( '7',
-  'coupe1.jpg',
-  'coupe2.jpg',
-  'coupe2.jpg',
-  'coupe2.jpg'
+  'ford-1.jpg',
+  'ford-2.jpg',
+  'ford-3.jpg',
+  'ford-4.jpg'
 );
+INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
+VALUES ( '9',
+  'sanspermis-1.jpg',
+  'sanspermis-2.jpg',
+  'sanspermis-3.jpg',
+  'sanspermis-4.jpg'
+);
+
+INSERT INTO images (`announce_id`,`image_1`, `image_2`, `image_3`, `image_4`) 
+VALUES ( '8',
+  'megane-1.jpg',
+  'megane-2.jpg',
+  'megane-3.jpg',
+  'megane-4.jpg'
+);
+
 
 -- INSERT INTO messages (announce_id, sender_user_id, receiver_user_id, content) 
 -- VALUES ('1', '2', '1', 'Coucou Sala');

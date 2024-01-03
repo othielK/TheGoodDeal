@@ -29,12 +29,8 @@ export default function CarCarousel() {
         </div>
         <div className="header_nouveautés">
           {cars.map((car) => (
-            <div className="details">
-              <Link
-                to={`/cardetails/${car.announce_id}`}
-                key={car.id}
-                className="details"
-              >
+            <div className="details" key={car.announce_id}>
+              <Link to={`/cardetails/${car.announce_id}`} className="details">
                 <img
                   src={`${
                     import.meta.env.VITE_BACKEND_URL

@@ -20,8 +20,8 @@
 }
 
 .details > img {
-  max-width: auto;
-  max-height: 140px;
+  width: 180px;
+  height: 140px;
   object-fit: cover;
 }
 
